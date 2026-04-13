@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Magnetic } from '@/components/animations/magnetic';
 import { FadeIn } from '@/components/animations/fade-in';
 import { LineMask } from '@/components/animations/line-mask';
@@ -56,15 +57,8 @@ export default function AuditPage() {
         background: 'rgba(250,250,250,0.90)', backdropFilter: 'blur(20px)',
         borderBottom: '1px solid var(--line)', zIndex: 100,
       }}>
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 7, background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="12" height="16" viewBox="0 0 14 18" fill="none">
-              <path d="M8 1L1 10H7L6 17L13 8H7L8 1Z" fill="white"/>
-            </svg>
-          </div>
-          <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: 17, color: 'var(--text)', letterSpacing: '-0.04em' }}>
-            Impulse<span style={{ color: 'var(--accent-light)' }}>.</span>
-          </span>
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+          <Image src="/logo.png" alt="Impulse Agency" width={120} height={48} style={{ objectFit: 'contain', height: 44, width: 'auto' }} priority />
         </Link>
         <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--text-dim)', fontSize: 14, fontWeight: 500, textDecoration: 'none' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
