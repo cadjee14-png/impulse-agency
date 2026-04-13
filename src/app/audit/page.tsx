@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Magnetic } from '@/components/animations/magnetic';
 import { FadeIn } from '@/components/animations/fade-in';
 import { LineMask } from '@/components/animations/line-mask';
@@ -49,26 +48,15 @@ export default function AuditPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingTop: 100 }}>
 
-      {/* Minimal navbar */}
-      <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, height: 72,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 clamp(24px, 5vw, 64px)',
-        background: 'rgba(250,250,250,0.90)', backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid var(--line)', zIndex: 100,
-      }}>
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-          <Image src="/logo.png" alt="Impulse Agency" width={120} height={48} style={{ objectFit: 'contain', height: 44, width: 'auto' }} priority />
-        </Link>
-        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--text-dim)', fontSize: 14, fontWeight: 500, textDecoration: 'none' }}>
+      <div style={{ maxWidth: 560, margin: '0 auto', padding: 'clamp(48px, 8vw, 80px) clamp(24px, 4vw, 40px)' }}>
+
+        {/* Retour */}
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--text-dim)', fontSize: 14, fontWeight: 500, textDecoration: 'none', marginBottom: 32 }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
           </svg>
           Retour
         </Link>
-      </nav>
-
-      <div style={{ maxWidth: 560, margin: '0 auto', padding: 'clamp(48px, 8vw, 80px) clamp(24px, 4vw, 40px)' }}>
 
         {/* Header */}
         <div style={{ marginBottom: 40 }}>
