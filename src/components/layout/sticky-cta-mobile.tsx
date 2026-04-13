@@ -36,6 +36,7 @@ export function StickyCTAMobile() {
           right: 0,
           zIndex: 9980,
           padding: '12px 16px',
+          paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))',
           background: 'rgba(250,250,250,0.95)',
           backdropFilter: 'blur(20px)',
           borderTop: '1px solid rgba(30,70,107,0.10)',
