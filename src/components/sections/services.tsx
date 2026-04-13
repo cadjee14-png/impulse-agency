@@ -53,28 +53,30 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
         }}
       />
 
-      <div style={{ padding: '0 clamp(24px, 4vw, 64px)' }}>
+      <div style={{ padding: '0 clamp(16px, 4vw, 64px)' }}>
         {/* Main row */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: 24,
-            height: 80,
-            paddingLeft: 16,
+            gap: 12,
+            minHeight: 72,
+            paddingLeft: 8,
+            paddingTop: 12,
+            paddingBottom: 12,
           }}
         >
           {/* Number + Name */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(16px, 3vw, 40px)', flex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(12px, 3vw, 40px)', flex: 1, minWidth: 0 }}>
             <span
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
-                fontSize: 'clamp(13px, 1.5vw, 16px)',
+                fontSize: 12,
                 color: 'var(--text-muted)',
                 letterSpacing: '0.05em',
-                minWidth: 28,
+                flexShrink: 0,
               }}
             >
               {service.number}
@@ -83,17 +85,36 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
-                fontSize: 'clamp(20px, 3vw, 36px)',
+                fontSize: 'clamp(18px, 3vw, 36px)',
                 color: 'var(--text)',
                 letterSpacing: '-0.025em',
                 lineHeight: 1,
                 transition: 'color 300ms',
+                whiteSpace: 'nowrap',
                 ...(expanded ? { color: 'var(--accent)' } : {}),
               }}
             >
               {service.name}
             </span>
           </div>
+
+          {/* Metric mobile — sous le nom */}
+          <span
+            className="service-metric-mobile"
+            style={{
+              display: 'none',
+              fontSize: 12,
+              color: 'var(--accent)',
+              fontWeight: 600,
+              background: 'rgba(30,70,107,0.08)',
+              borderRadius: 32,
+              padding: '3px 10px',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}
+          >
+            {service.metric}
+          </span>
 
           {/* Description (hidden on mobile) */}
           <span
@@ -108,8 +129,9 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
             {service.description}
           </span>
 
-          {/* Metric */}
+          {/* Metric — hidden on mobile, shown on desktop */}
           <span
+            className="service-metric"
             style={{
               fontSize: 13,
               color: 'var(--accent)',
@@ -119,6 +141,7 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
               borderRadius: 32,
               padding: '4px 12px',
               whiteSpace: 'nowrap',
+              flexShrink: 0,
             }}
           >
             {service.metric}
@@ -127,8 +150,8 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
           {/* Arrow */}
           <div
             style={{
-              width: 36,
-              height: 36,
+              width: 32,
+              height: 32,
               borderRadius: '50%',
               border: '1px solid var(--line)',
               display: 'flex',
@@ -142,8 +165,8 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
             }}
           >
             <svg
-              width="14"
-              height="14"
+              width="13"
+              height="13"
               viewBox="0 0 24 24"
               fill="none"
               stroke={expanded ? 'white' : 'var(--text-dim)'}
@@ -198,6 +221,8 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
       <style>{`
         @media (max-width: 768px) {
           .service-desc { display: none; }
+          .service-metric { display: none !important; }
+          .service-metric-mobile { display: inline-flex !important; }
         }
       `}</style>
     </div>
