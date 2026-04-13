@@ -250,14 +250,32 @@ export function Footer() {
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>
             © {year} Impulse Agency. Tous droits réservés.
           </p>
-          <a
-            href="/audit"
-            style={{ fontSize: 13, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 500, transition: 'opacity 300ms' }}
-            onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.7'}
-            onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '1'}
-          >
-            Audit gratuit →
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+            <Link
+              href="/mentions-legales"
+              style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 200ms' }}
+              onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.7)'}
+              onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.35)'}
+            >
+              Mentions légales
+            </Link>
+            <Link
+              href="/politique-de-confidentialite"
+              style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 200ms' }}
+              onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.7)'}
+              onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.35)'}
+            >
+              Confidentialité
+            </Link>
+            <a
+              href="/audit"
+              style={{ fontSize: 13, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 500, transition: 'opacity 300ms' }}
+              onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.7'}
+              onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '1'}
+            >
+              Audit gratuit →
+            </a>
+          </div>
         </div>
       </div>
     </footer>
