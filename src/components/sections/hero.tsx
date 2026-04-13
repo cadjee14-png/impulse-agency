@@ -295,8 +295,8 @@ export function Hero() {
           ref={statsRef}
           style={{
             display: 'flex',
-            gap: 'clamp(24px, 4vw, 48px)',
-            flexWrap: 'wrap',
+            gap: 'clamp(16px, 4vw, 48px)',
+            flexWrap: 'nowrap',
             alignItems: 'center',
             paddingTop: 'clamp(20px, 3vw, 32px)',
             borderTop: '1px solid var(--line)',
@@ -312,7 +312,7 @@ export function Hero() {
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 800,
-                  fontSize: 'clamp(20px, 2.5vw, 28px)',
+                  fontSize: 'clamp(17px, 2.5vw, 28px)',
                   color: 'var(--accent)',
                   letterSpacing: '-0.03em',
                   lineHeight: 1,
