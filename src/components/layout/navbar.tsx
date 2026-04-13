@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { navLinks, siteConfig } from '@/data/site';
 
@@ -84,48 +85,7 @@ export function Navbar() {
             href="/"
             style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}
           >
-            {/* Logomark */}
-            <div style={{
-              width: 30,
-              height: 30,
-              borderRadius: 8,
-              background: 'var(--accent)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}>
-              <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 1L1 10H7L6 17L13 8H7L8 1Z" fill="white" strokeWidth="0"/>
-              </svg>
-            </div>
-            {/* Wordmark */}
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 800,
-                  fontSize: 18,
-                  letterSpacing: '-0.04em',
-                  color: 'var(--text)',
-                  lineHeight: 1,
-                }}
-              >
-                Impulse
-              </span>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 400,
-                  fontSize: 18,
-                  letterSpacing: '-0.02em',
-                  color: 'var(--accent-light)',
-                  lineHeight: 1,
-                }}
-              >
-                .
-              </span>
-            </div>
+            <Image src="/logo.png" alt="Impulse Agency" width={120} height={48} style={{ objectFit: 'contain', height: 36, width: 'auto' }} priority />
           </Link>
 
           {/* Desktop Links */}

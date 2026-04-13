@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { siteConfig } from '@/data/site';
 
 export function Footer() {
@@ -30,29 +31,8 @@ export function Footer() {
         >
           {/* Brand */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-              <div style={{
-                width: 32,
-                height: 32,
-                borderRadius: 8,
-                background: 'var(--accent)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}>
-                <svg width="14" height="18" viewBox="0 0 14 18" fill="none">
-                  <path d="M8 1L1 10H7L6 17L13 8H7L8 1Z" fill="white"/>
-                </svg>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
-                <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: 20, letterSpacing: '-0.04em', color: 'white' }}>
-                  Impulse
-                </span>
-                <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, fontSize: 20, color: 'var(--accent-light)' }}>
-                  .
-                </span>
-              </div>
+            <div style={{ marginBottom: 16 }}>
+              <Image src="/logo.png" alt="Impulse Agency" width={140} height={56} style={{ objectFit: 'contain', height: 44, width: 'auto', filter: 'brightness(0) invert(1)' }} />
             </div>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, maxWidth: 240 }}>
               Stratégies digitales qui génèrent de vrais résultats pour les marques ambitieuses.
