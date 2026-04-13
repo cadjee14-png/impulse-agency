@@ -67,7 +67,7 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
             paddingBottom: 12,
           }}
         >
-          {/* Number + Name */}
+          {/* Number + Name + Mobile metric */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(12px, 3vw, 40px)', flex: 1, minWidth: 0 }}>
             <span
               style={{
@@ -81,40 +81,35 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
             >
               {service.number}
             </span>
-            <span
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontWeight: 800,
-                fontSize: 'clamp(18px, 3vw, 36px)',
-                color: 'var(--text)',
-                letterSpacing: '-0.025em',
-                lineHeight: 1,
-                transition: 'color 300ms',
-                whiteSpace: 'nowrap',
-                ...(expanded ? { color: 'var(--accent)' } : {}),
-              }}
-            >
-              {service.name}
-            </span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 800,
+                  fontSize: 'clamp(18px, 3vw, 36px)',
+                  color: 'var(--text)',
+                  letterSpacing: '-0.025em',
+                  lineHeight: 1,
+                  transition: 'color 300ms',
+                  whiteSpace: 'nowrap',
+                  ...(expanded ? { color: 'var(--accent)' } : {}),
+                }}
+              >
+                {service.name}
+              </span>
+              <span
+                className="service-metric-mobile"
+                style={{
+                  display: 'none',
+                  fontSize: 11,
+                  color: 'var(--accent)',
+                  fontWeight: 600,
+                }}
+              >
+                {service.metric}
+              </span>
+            </div>
           </div>
-
-          {/* Metric mobile — sous le nom */}
-          <span
-            className="service-metric-mobile"
-            style={{
-              display: 'none',
-              fontSize: 12,
-              color: 'var(--accent)',
-              fontWeight: 600,
-              background: 'rgba(30,70,107,0.08)',
-              borderRadius: 32,
-              padding: '3px 10px',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-            }}
-          >
-            {service.metric}
-          </span>
 
           {/* Description (hidden on mobile) */}
           <span
