@@ -379,12 +379,14 @@ export function Hero() {
         <style>{`
           @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
           @media(max-width:900px){ .hero-floaters { display: none !important; } }
+          @media(max-width:768px){ .scroll-indicator { display: none !important; } }
         `}</style>
       </div>
 
       {/* Scroll indicator */}
       <div
         ref={scrollIndRef}
+        className="scroll-indicator"
         style={{
           position: 'absolute',
           bottom: 40,
