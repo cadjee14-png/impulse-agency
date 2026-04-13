@@ -1,11 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export function StickyCTAMobile() {
   const [visible, setVisible] = useState(false);
   const [hidden, setHidden] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  if (pathname === '/audit') return null;
 
   useEffect(() => {
     // Show after scrolling past the hero (300px)
