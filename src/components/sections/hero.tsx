@@ -135,7 +135,7 @@ export function Hero() {
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 800,
-            fontSize: 'clamp(48px, 7.5vw, 112px)',
+            fontSize: 'clamp(38px, 7.5vw, 112px)',
             lineHeight: 0.9,
             letterSpacing: '-0.04em',
             color: 'var(--text)',
