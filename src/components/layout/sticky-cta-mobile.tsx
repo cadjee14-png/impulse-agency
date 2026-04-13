@@ -50,7 +50,7 @@ export function StickyCTAMobile() {
       >
         {/* WhatsApp direct */}
         <a
-          href="https://wa.me/33600000000"
+          href="https://wa.me/33688663176"
           target="_blank"
           rel="noopener noreferrer"
           style={{

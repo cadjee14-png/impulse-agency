@@ -4,12 +4,12 @@ export const siteConfig = {
   subtext: 'Impulse accompagne les marques ambitieuses avec des stratégies digitales qui génèrent de vrais résultats mesurables.',
   cta: 'Recevoir mon audit gratuit →',
   ctaSecondary: 'Voir nos réalisations',
-  phone: '+33 6 00 00 00 00',
+  phone: '+33 6 88 66 31 76',
   email: 'hello@impulse-agency.fr',
   instagram: 'https://instagram.com',
   linkedin: 'https://linkedin.com',
   tiktok: 'https://tiktok.com',
-  whatsapp: 'https://wa.me/33600000000',
+  whatsapp: 'https://wa.me/33688663176',
 };
 
 export const stats = [
