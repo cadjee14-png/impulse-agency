@@ -157,8 +157,8 @@ export default function AuditPage() {
                 style={{
                   width: '100%', background: 'var(--accent)', color: 'white',
                   border: 'none', borderRadius: 64, padding: '18px 40px',
-                  fontSize: 17, fontWeight: 700, fontFamily: 'var(--font-heading)',
-                  letterSpacing: '-0.01em', cursor: 'none',
+                  fontSize: 'clamp(14px, 4vw, 17px)', fontWeight: 700, fontFamily: 'var(--font-heading)',
+                  letterSpacing: '-0.01em', cursor: 'none', whiteSpace: 'nowrap',
                   transition: 'background 300ms, box-shadow 300ms',
                   boxShadow: '0 8px 32px rgba(30,70,107,0.22)',
                   marginTop: 4,
@@ -177,9 +177,9 @@ export default function AuditPage() {
             </Magnetic>
 
             {/* Trust */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap', paddingTop: 4 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(8px, 2vw, 20px)', flexWrap: 'nowrap', paddingTop: 4 }}>
               {['Gratuit', 'Sans engagement', 'Réponse sous 24h'].map((t, i) => (
-                <span key={i} style={{ fontSize: 12, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 5 }}>
+                <span key={i} style={{ fontSize: 'clamp(11px, 3vw, 12px)', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 4, whiteSpace: 'nowrap' }}>
                   <span style={{ color: '#25D366', fontWeight: 700 }}>✓</span> {t}
                 </span>
               ))}
