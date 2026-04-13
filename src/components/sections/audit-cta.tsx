@@ -164,10 +164,11 @@ export function AuditCta() {
                   border: 'none',
                   borderRadius: 64,
                   padding: '18px 40px',
-                  fontSize: 17,
+                  fontSize: 'clamp(14px, 4vw, 17px)',
                   fontWeight: 700,
                   fontFamily: 'var(--font-heading)',
                   letterSpacing: '-0.01em',
+                  whiteSpace: 'nowrap',
                   transition: 'background 300ms, transform 300ms',
                   cursor: 'none',
                 }}
@@ -191,19 +192,20 @@ export function AuditCta() {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                gap: 'clamp(12px, 2vw, 24px)',
-                flexWrap: 'wrap',
+                gap: 'clamp(8px, 2vw, 24px)',
+                flexWrap: 'nowrap',
               }}
             >
               {['Gratuit', 'Sans engagement', 'Réponse sous 24h'].map((badge, i) => (
                 <span
                   key={i}
                   style={{
-                    fontSize: 13,
+                    fontSize: 'clamp(11px, 3vw, 13px)',
                     color: 'var(--text-muted)',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 6,
+                    gap: 4,
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   <span style={{ color: 'var(--accent)', fontWeight: 700 }}>✓</span>
