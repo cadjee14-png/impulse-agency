@@ -85,7 +85,7 @@ export function Navbar() {
             href="/"
             style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}
           >
-            <Image src="/logo.png" alt="Impulse Agency" width={120} height={48} style={{ objectFit: 'contain', height: 36, width: 'auto' }} priority />
+            <Image src="/logo.png" alt="Impulse Agency" width={120} height={48} style={{ objectFit: 'contain', height: 52, width: 'auto' }} priority />
           </Link>
 
           {/* Desktop Links */}
