@@ -3,12 +3,21 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 import { navLinks, siteConfig } from '@/data/site';
 
 export function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
   const [menuOpen, setMenuOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const overlayLinksRef = useRef<HTMLDivElement>(null);
@@ -83,6 +92,7 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
+            onClick={handleLogoClick}
             style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}
           >
             <Image src="/logo.png" alt="Impulse Agency" width={120} height={48} style={{ objectFit: 'contain', height: 110, width: 'auto' }} priority />
