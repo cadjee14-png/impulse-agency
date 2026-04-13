@@ -9,8 +9,6 @@ export function StickyCTAMobile() {
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  if (pathname === '/audit') return null;
-
   useEffect(() => {
     // Show after scrolling past the hero (300px)
     const onScroll = () => {
@@ -27,7 +25,7 @@ export function StickyCTAMobile() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const isShowing = visible && !hidden;
+  const isShowing = visible && !hidden && pathname !== '/audit';
 
   return (
     <>
