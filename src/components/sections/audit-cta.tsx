@@ -9,13 +9,33 @@ import { siteConfig } from '@/data/site';
 export function AuditCta() {
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // No backend — just a UI demo
-    const btn = formRef.current?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-    if (btn) {
-      btn.textContent = 'Envoyé ! On vous rappelle sous 24h ✓';
-      btn.style.background = '#25D366';
+    const form = formRef.current;
+    if (!form) return;
+
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const inputs = form.querySelectorAll('input');
+    const prenom = (inputs[0] as HTMLInputElement)?.value;
+    const whatsapp = (inputs[1] as HTMLInputElement)?.value;
+
+    if (btn) { btn.textContent = 'Envoi en cours...'; btn.disabled = true; }
+
+    try {
+      const res = await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prenom, whatsapp }),
+      });
+
+      if (res.ok) {
+        if (btn) { btn.textContent = 'Envoyé ! On vous rappelle sous 24h ✓'; btn.style.background = '#25D366'; }
+        form.reset();
+      } else {
+        if (btn) { btn.textContent = 'Erreur — réessayez'; btn.style.background = '#e53e3e'; btn.disabled = false; }
+      }
+    } catch {
+      if (btn) { btn.textContent = 'Erreur — réessayez'; btn.style.background = '#e53e3e'; btn.disabled = false; }
     }
   };
 

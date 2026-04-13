@@ -11,11 +11,37 @@ export default function AuditPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (btnRef.current) {
-      btnRef.current.textContent = '✓ On vous rappelle sous 24h !';
-      btnRef.current.style.background = '#25D366';
+    const form = formRef.current;
+    if (!form || !btnRef.current) return;
+
+    const prenom = (form.querySelector('input[type="text"]') as HTMLInputElement)?.value;
+    const whatsapp = (form.querySelector('input[type="tel"]') as HTMLInputElement)?.value;
+
+    btnRef.current.textContent = 'Envoi en cours...';
+    btnRef.current.disabled = true;
+
+    try {
+      const res = await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prenom, whatsapp }),
+      });
+
+      if (res.ok) {
+        btnRef.current.textContent = '✓ On vous rappelle sous 24h !';
+        btnRef.current.style.background = '#25D366';
+        form.reset();
+      } else {
+        btnRef.current.textContent = 'Erreur — réessayez';
+        btnRef.current.style.background = '#e53e3e';
+        btnRef.current.disabled = false;
+      }
+    } catch {
+      btnRef.current.textContent = 'Erreur — réessayez';
+      btnRef.current.style.background = '#e53e3e';
+      btnRef.current.disabled = false;
     }
   };
 
