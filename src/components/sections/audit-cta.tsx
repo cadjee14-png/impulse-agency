@@ -254,7 +254,7 @@ export function AuditCta() {
               </div>
             </div>
 
-            <Magnetic style={{ width: '100%' }}>
+            <Magnetic style={{ width: '100%', display: 'block' }}>
               <button
                 type="submit"
                 style={{
@@ -269,6 +269,7 @@ export function AuditCta() {
                   fontFamily: 'var(--font-heading)',
                   letterSpacing: '-0.01em',
                   whiteSpace: 'nowrap',
+                  textAlign: 'center',
                   transition: 'background 300ms, transform 300ms',
                   cursor: 'none',
                 }}
