@@ -143,10 +143,10 @@ export function Hero() {
             maxWidth: 1000,
           }}
         >
-          <div ref={line1Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter', paddingBottom: '0.08em' }}>
+          <div ref={line1Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter', paddingBottom: '0.2em' }}>
             <span style={{ display: 'block' }}>Transformez</span>
           </div>
-          <div ref={line2Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter', paddingBottom: '0.08em' }}>
+          <div ref={line2Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter', paddingBottom: '0.2em' }}>
             <span style={{ display: 'block' }}>votre{' '}
               <span style={{
                 color: 'var(--accent)',
@@ -209,7 +209,7 @@ export function Hero() {
             background: 'var(--accent-light)',
             animation: 'pulse 2s ease-in-out infinite',
           }} />
-          <span>Audit offert — Sans engagement</span>
+          <span>Diagnostic offert — Sans engagement</span>
           <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }`}</style>
         </div>
 
