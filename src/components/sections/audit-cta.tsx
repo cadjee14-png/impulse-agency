@@ -26,9 +26,10 @@ export function AuditCta() {
     if (!form) return;
 
     const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-    const inputs = form.querySelectorAll('input');
-    const prenom = (inputs[0] as HTMLInputElement)?.value;
-    const whatsapp = (inputs[1] as HTMLInputElement)?.value;
+    const prenom = (form.querySelector('input[name="prenom"]') as HTMLInputElement)?.value;
+    const whatsapp = (form.querySelector('input[name="whatsapp"]') as HTMLInputElement)?.value;
+    const entreprise = (form.querySelector('input[name="entreprise"]') as HTMLInputElement)?.value;
+    const secteur = (form.querySelector('select[name="secteur"]') as HTMLSelectElement)?.value;
 
     if (btn) { btn.textContent = 'Envoi en cours...'; btn.disabled = true; }
 
@@ -36,7 +37,7 @@ export function AuditCta() {
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prenom, whatsapp, services: selectedServices }),
+        body: JSON.stringify({ prenom, whatsapp, entreprise, secteur, services: selectedServices }),
       });
 
       if (res.ok) {
@@ -95,7 +96,7 @@ export function AuditCta() {
               marginBottom: 24,
             }}
           >
-            Audit Gratuit
+            Diagnostic Offert
           </span>
         </FadeIn>
 
@@ -117,7 +118,7 @@ export function AuditCta() {
 
         <FadeIn direction="up" delay={0.2}>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, marginBottom: 48 }}>
-            Réservez votre audit gratuit maintenant.<br />
+            Réservez votre diagnostic offert maintenant.<br />
             On vous rappelle sur WhatsApp sous 24h.
           </p>
         </FadeIn>
@@ -148,6 +149,7 @@ export function AuditCta() {
             >
               <input
                 type="text"
+                name="prenom"
                 placeholder="Votre prénom"
                 required
                 style={{
@@ -166,6 +168,7 @@ export function AuditCta() {
               />
               <input
                 type="tel"
+                name="whatsapp"
                 placeholder="Votre numéro WhatsApp"
                 required
                 style={{
@@ -182,6 +185,43 @@ export function AuditCta() {
                 onFocus={e => (e.target as HTMLInputElement).style.borderColor = 'var(--accent)'}
                 onBlur={e => (e.target as HTMLInputElement).style.borderColor = 'var(--line)'}
               />
+            </div>
+
+            {/* Entreprise + Secteur */}
+            <div className="form-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <input
+                type="text"
+                name="entreprise"
+                placeholder="Nom / site de votre entreprise"
+                style={{
+                  background: 'var(--bg)', border: '1px solid var(--line)', borderRadius: 12,
+                  padding: '14px 18px', fontSize: 15, color: 'var(--text)',
+                  fontFamily: 'var(--font-body)', outline: 'none', transition: 'border-color 200ms',
+                }}
+                onFocus={e => (e.target as HTMLInputElement).style.borderColor = 'var(--accent)'}
+                onBlur={e => (e.target as HTMLInputElement).style.borderColor = 'var(--line)'}
+              />
+              <select
+                name="secteur"
+                defaultValue=""
+                style={{
+                  background: 'var(--bg)', border: '1px solid var(--line)', borderRadius: 12,
+                  padding: '14px 18px', fontSize: 15, color: 'var(--text-dim)',
+                  fontFamily: 'var(--font-body)', outline: 'none', transition: 'border-color 200ms',
+                  appearance: 'none', cursor: 'pointer',
+                }}
+                onFocus={e => (e.target as HTMLSelectElement).style.borderColor = 'var(--accent)'}
+                onBlur={e => (e.target as HTMLSelectElement).style.borderColor = 'var(--line)'}
+              >
+                <option value="" disabled>Votre secteur</option>
+                <option value="E-commerce">E-commerce</option>
+                <option value="Restaurant / Food">Restaurant / Food</option>
+                <option value="Services B2B">Services B2B</option>
+                <option value="Retail / Boutique">Retail / Boutique</option>
+                <option value="Santé / Bien-être">Santé / Bien-être</option>
+                <option value="Immobilier">Immobilier</option>
+                <option value="Autre">Autre</option>
+              </select>
             </div>
 
             {/* Services */}
@@ -243,7 +283,7 @@ export function AuditCta() {
                   el.style.transform = 'scale(1)';
                 }}
               >
-                Recevoir mon audit gratuit →
+                Recevoir mon diagnostic offert →
               </button>
             </Magnetic>
 

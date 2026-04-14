@@ -6,12 +6,12 @@ import { FadeIn } from '@/components/animations/fade-in';
 
 const faqs = [
   {
-    q: "Comment se passe l'audit gratuit ?",
+    q: "Comment se passe l'diagnostic offert ?",
     a: "C'est simple : vous laissez votre prénom et votre numéro WhatsApp. On vous rappelle dans les 24h pour un échange de 20-30 minutes. On analyse votre présence digitale et on vous présente les axes d'amélioration prioritaires — sans engagement, sans jargon.",
   },
   {
     q: "Combien coûtent vos prestations ?",
-    a: "Nos tarifs dépendent de vos besoins et de l'ampleur du projet. Un site vitrine démarre à partir de 800€, une gestion des réseaux sociaux à partir de 400€/mois, et une campagne publicitaire à partir de 300€/mois. Tout est discuté lors de l'audit gratuit pour qu'on vous propose une offre adaptée à votre budget.",
+    a: "Nos tarifs dépendent de vos besoins et de l'ampleur du projet. Un site vitrine démarre à partir de 800€, une gestion des réseaux sociaux à partir de 400€/mois, et une campagne publicitaire à partir de 300€/mois. Tout est discuté lors de l'diagnostic offert pour qu'on vous propose une offre adaptée à votre budget.",
   },
   {
     q: "En combien de temps voit-on des résultats ?",

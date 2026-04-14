@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'Impulse Agency',
   tagline: 'Transformez votre business en machine à clients',
   subtext: 'Impulse accompagne les marques ambitieuses avec des stratégies digitales qui génèrent de vrais résultats mesurables.',
-  cta: 'Recevoir mon audit gratuit →',
+  cta: 'Recevoir mon diagnostic offert →',
   ctaSecondary: 'Obtenir ces résultats →',
   phone: '+33 6 88 66 31 76',
   email: 'hello@impulse-agency.fr',
@@ -90,7 +90,7 @@ export const realisations = [
 export const process = [
   {
     number: '01',
-    title: 'Audit gratuit',
+    title: 'Diagnostic offert',
     description: 'On analyse votre situation en 24h et identifie les leviers de croissance inexploités de votre business.',
   },
   {

@@ -158,7 +158,7 @@ export function Footer() {
               { label: 'Accueil', href: '/' },
               { label: 'Réalisations', href: '#realisations' },
               { label: 'Process', href: '#process' },
-              { label: 'Audit gratuit', href: '/audit' },
+              { label: 'Diagnostic offert', href: '/audit' },
             ].map(link => (
               <div key={link.href} style={{ marginBottom: 10 }}>
                 <Link
@@ -253,7 +253,7 @@ export function Footer() {
               onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.7'}
               onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '1'}
             >
-              Audit gratuit →
+              Diagnostic offert →
             </a>
           </div>
         </div>

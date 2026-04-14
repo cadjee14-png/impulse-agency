@@ -254,7 +254,7 @@ export function Hero() {
                 el.style.boxShadow = '0 8px 32px rgba(30,70,107,0.25)';
               }}
             >
-              Recevoir mon audit gratuit →
+              Recevoir mon diagnostic offert →
             </a>
           </Magnetic>
 

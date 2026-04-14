@@ -165,7 +165,7 @@ export function Navbar() {
                 (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)';
               }}
             >
-              Audit gratuit
+              Diagnostic offert
             </a>
           </nav>
 
@@ -268,7 +268,7 @@ export function Navbar() {
               textDecoration: 'none',
             }}
           >
-            Audit gratuit
+            Diagnostic offert
           </a>
         </div>
       </div>

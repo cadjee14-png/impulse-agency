@@ -94,7 +94,7 @@ export function StickyCTAMobile() {
             gap: 6,
           }}
         >
-          Audit gratuit →
+          Diagnostic offert →
         </a>
       </div>
 

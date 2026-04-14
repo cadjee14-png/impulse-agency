@@ -27,8 +27,10 @@ export default function AuditPage() {
     const form = formRef.current;
     if (!form || !btnRef.current) return;
 
-    const prenom = (form.querySelector('input[type="text"]') as HTMLInputElement)?.value;
-    const whatsapp = (form.querySelector('input[type="tel"]') as HTMLInputElement)?.value;
+    const prenom = (form.querySelector('input[name="prenom"]') as HTMLInputElement)?.value;
+    const whatsapp = (form.querySelector('input[name="whatsapp"]') as HTMLInputElement)?.value;
+    const entreprise = (form.querySelector('input[name="entreprise"]') as HTMLInputElement)?.value;
+    const secteur = (form.querySelector('select[name="secteur"]') as HTMLSelectElement)?.value;
 
     btnRef.current.textContent = 'Envoi en cours...';
     btnRef.current.disabled = true;
@@ -37,7 +39,7 @@ export default function AuditPage() {
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prenom, whatsapp, services: selectedServices }),
+        body: JSON.stringify({ prenom, whatsapp, entreprise, secteur, services: selectedServices }),
       });
 
       if (res.ok) {
@@ -71,7 +73,7 @@ export default function AuditPage() {
         <div style={{ marginBottom: 40 }}>
           <FadeIn direction="up">
             <span className="section-label" style={{ display: 'block', marginBottom: 16 }}>
-              Audit Gratuit
+              Diagnostic Offert
             </span>
           </FadeIn>
 
@@ -112,6 +114,7 @@ export default function AuditPage() {
               </label>
               <input
                 type="text"
+                name="prenom"
                 placeholder="Votre prénom"
                 required
                 style={{
@@ -138,6 +141,7 @@ export default function AuditPage() {
               </label>
               <input
                 type="tel"
+                name="whatsapp"
                 placeholder="+33 6 00 00 00 00"
                 required
                 style={{
@@ -156,6 +160,56 @@ export default function AuditPage() {
                   (e.target as HTMLInputElement).style.boxShadow = 'none';
                 }}
               />
+            </div>
+
+            {/* Entreprise */}
+            <div>
+              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                Entreprise / Site web
+              </label>
+              <input
+                type="text"
+                name="entreprise"
+                placeholder="monentreprise.fr ou nom de votre société"
+                style={{
+                  width: '100%', background: 'var(--bg)',
+                  border: '1px solid var(--line)', borderRadius: 12,
+                  padding: '15px 18px', fontSize: 16, color: 'var(--text)',
+                  fontFamily: 'var(--font-body)', outline: 'none',
+                  transition: 'border-color 200ms, box-shadow 200ms',
+                }}
+                onFocus={e => { (e.target as HTMLInputElement).style.borderColor = 'var(--accent)'; (e.target as HTMLInputElement).style.boxShadow = '0 0 0 3px rgba(30,70,107,0.08)'; }}
+                onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'var(--line)'; (e.target as HTMLInputElement).style.boxShadow = 'none'; }}
+              />
+            </div>
+
+            {/* Secteur */}
+            <div>
+              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                Votre secteur
+              </label>
+              <select
+                name="secteur"
+                defaultValue=""
+                style={{
+                  width: '100%', background: 'var(--bg)',
+                  border: '1px solid var(--line)', borderRadius: 12,
+                  padding: '15px 18px', fontSize: 16, color: 'var(--text-dim)',
+                  fontFamily: 'var(--font-body)', outline: 'none',
+                  transition: 'border-color 200ms', appearance: 'none', cursor: 'pointer',
+                }}
+                onFocus={e => { (e.target as HTMLSelectElement).style.borderColor = 'var(--accent)'; }}
+                onBlur={e => { (e.target as HTMLSelectElement).style.borderColor = 'var(--line)'; }}
+              >
+                <option value="" disabled>Sélectionnez votre secteur</option>
+                <option value="E-commerce">E-commerce</option>
+                <option value="Restaurant / Food">Restaurant / Food</option>
+                <option value="Services B2B">Services B2B</option>
+                <option value="Retail / Boutique">Retail / Boutique</option>
+                <option value="Santé / Bien-être">Santé / Bien-être</option>
+                <option value="Immobilier">Immobilier</option>
+                <option value="Autre">Autre</option>
+              </select>
             </div>
 
             {/* Services */}
@@ -211,7 +265,7 @@ export default function AuditPage() {
                   (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 8px 32px rgba(30,70,107,0.22)';
                 }}
               >
-                Recevoir mon audit gratuit →
+                Recevoir mon diagnostic offert →
               </button>
             </Magnetic>
 
