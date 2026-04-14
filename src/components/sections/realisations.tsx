@@ -93,7 +93,7 @@ export function Realisations() {
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: 'clamp(32px, 4vw, 64px)',
-            alignItems: 'start',
+            alignItems: 'stretch',
           }}
         >
           {/* Sticky image */}
@@ -101,6 +101,8 @@ export function Realisations() {
             style={{
               position: 'sticky',
               top: 120,
+              alignSelf: 'start',
+              height: 'fit-content',
             }}
             className="sticky-image-col"
           >
