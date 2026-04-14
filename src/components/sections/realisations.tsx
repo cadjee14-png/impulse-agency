@@ -93,19 +93,16 @@ export function Realisations() {
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: 'clamp(32px, 4vw, 64px)',
-            alignItems: 'stretch',
           }}
         >
-          {/* Sticky image */}
-          <div
-            style={{
-              position: 'sticky',
-              top: 120,
-              alignSelf: 'start',
-              height: 'fit-content',
-            }}
-            className="sticky-image-col"
-          >
+          {/* Left column — tall grid cell, sticky child inside */}
+          <div className="sticky-image-col">
+            <div
+              style={{
+                position: 'sticky',
+                top: 120,
+              }}
+            >
             <div
               ref={stickyImageRef}
               style={{
@@ -162,6 +159,7 @@ export function Realisations() {
                   </span>
                 ))}
               </div>
+            </div>
             </div>
           </div>
 
@@ -414,6 +412,7 @@ export function Realisations() {
       <style>{`
         .realisations-mobile { display: none; }
         .realisations-mobile div::-webkit-scrollbar { display: none; }
+        .sticky-image-col { align-self: stretch; }
         @media (max-width: 900px) {
           .realisations-layout { display: none !important; }
           .realisations-mobile { display: block !important; }
