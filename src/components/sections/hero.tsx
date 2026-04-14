@@ -159,12 +159,12 @@ export function Hero() {
                   viewBox="0 0 100 6"
                   preserveAspectRatio="none"
                 >
-                  <path d="M0,5 Q25,0 50,4 Q75,8 100,3" stroke="var(--accent-light)" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                  <path d="M0,5 Q25,0 50,4 Q75,8 100,3" stroke="var(--accent)" strokeWidth="2" fill="none" strokeLinecap="round"/>
                 </svg>
               </span>
             </span>
           </div>
-          <div style={{ overflow: 'hidden' }}>
+          <div style={{ overflow: 'hidden', paddingBottom: '0.2em' }}>
             <span style={{ display: 'block', color: 'var(--text-dim)' }}>en ligne.</span>
           </div>
         </h1>
@@ -190,8 +190,8 @@ export function Hero() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 10,
-            background: 'rgba(103,186,244,0.10)',
-            border: '1px solid rgba(103,186,244,0.30)',
+            background: 'rgba(30,70,107,0.10)',
+            border: '1px solid rgba(30,70,107,0.30)',
             borderRadius: 32,
             padding: '8px 18px',
             fontSize: 13,
@@ -206,7 +206,7 @@ export function Hero() {
             width: 8,
             height: 8,
             borderRadius: '50%',
-            background: 'var(--accent-light)',
+            background: 'var(--accent)',
             animation: 'pulse 2s ease-in-out infinite',
           }} />
           <span>Diagnostic offert — Sans engagement</span>
