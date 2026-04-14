@@ -12,9 +12,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Realisations() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0);
   const stickyImageRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const onScroll = () => {
+      const index = Math.round(track.scrollLeft / track.offsetWidth);
+      setMobileIndex(index);
+    };
+    track.addEventListener('scroll', onScroll, { passive: true });
+    return () => track.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scrollTo = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollTo({ left: index * track.offsetWidth, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const triggers: ScrollTrigger[] = [];
@@ -260,6 +279,105 @@ export function Realisations() {
           </div>
         </div>
 
+        {/* Mobile carousel */}
+        <div className="realisations-mobile">
+          <div
+            ref={trackRef}
+            style={{
+              display: 'flex',
+              overflowX: 'auto',
+              scrollSnapType: 'x mandatory',
+              scrollBehavior: 'smooth',
+              WebkitOverflowScrolling: 'touch',
+              gap: 16,
+              paddingBottom: 4,
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none',
+            }}
+          >
+            {realisations.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  flex: '0 0 100%',
+                  scrollSnapAlign: 'start',
+                  background: 'var(--surface)',
+                  borderRadius: 20,
+                  border: '1px solid var(--line)',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Image */}
+                <div style={{ aspectRatio: '16/9', position: 'relative', background: 'var(--bg-2)' }}>
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="90vw"
+                  />
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(135deg, rgba(30,70,107,0.3) 0%, transparent 60%)',
+                  }} />
+                  <div style={{ position: 'absolute', bottom: 12, left: 12, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    {item.tags.map((tag, j) => (
+                      <span key={j} style={{
+                        background: 'rgba(255,255,255,0.9)', color: 'var(--accent)',
+                        borderRadius: 32, padding: '3px 10px', fontSize: 11, fontWeight: 600,
+                        backdropFilter: 'blur(8px)',
+                      }}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                {/* Content */}
+                <div style={{ padding: '24px 20px' }}>
+                  <p style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 6, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                    {item.category}
+                  </p>
+                  <h3 style={{
+                    fontFamily: 'var(--font-heading)', fontWeight: 800,
+                    fontSize: 22, color: 'var(--text)', letterSpacing: '-0.025em',
+                    marginBottom: 8, lineHeight: 1,
+                  }}>
+                    {item.title}
+                  </h3>
+                  <div style={{
+                    fontFamily: 'var(--font-heading)', fontWeight: 800,
+                    fontSize: 32, color: 'var(--accent)', letterSpacing: '-0.04em',
+                    lineHeight: 1, marginBottom: 12,
+                  }}>
+                    {item.metric}
+                    <span style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: 13, color: 'var(--text-muted)', marginLeft: 6 }}>
+                      {item.period}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: 14, color: 'var(--text-dim)', lineHeight: 1.65 }}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Dots */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 20 }}>
+            {realisations.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => scrollTo(i)}
+                style={{
+                  width: mobileIndex === i ? 24 : 8,
+                  height: 8, borderRadius: 4,
+                  background: mobileIndex === i ? 'var(--accent)' : 'var(--line)',
+                  border: 'none', padding: 0, cursor: 'pointer',
+                  transition: 'all 300ms cubic-bezier(0.16,1,0.3,1)',
+                }}
+                aria-label={`Réalisation ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* CTA */}
         <FadeIn direction="up" delay={0.2}>
           <div style={{ textAlign: 'center', marginTop: 'clamp(48px, 6vw, 80px)' }}>
@@ -296,16 +414,11 @@ export function Realisations() {
       </div>
 
       <style>{`
+        .realisations-mobile { display: none; }
+        .realisations-mobile div::-webkit-scrollbar { display: none; }
         @media (max-width: 900px) {
-          .realisations-layout {
-            grid-template-columns: 1fr !important;
-          }
-          .sticky-image-col {
-            display: none !important;
-          }
-          .mobile-case-image {
-            display: block !important;
-          }
+          .realisations-layout { display: none !important; }
+          .realisations-mobile { display: block !important; }
         }
       `}</style>
     </section>
