@@ -268,8 +268,7 @@ export function AuditCta() {
                   fontWeight: 700,
                   fontFamily: 'var(--font-heading)',
                   letterSpacing: '-0.01em',
-                  whiteSpace: 'nowrap',
-                  textAlign: 'center',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
                   transition: 'background 300ms, transform 300ms',
                   cursor: 'none',
                 }}
