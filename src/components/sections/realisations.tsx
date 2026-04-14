@@ -46,21 +46,8 @@ export function Realisations() {
         trigger: el,
         start: 'top 60%',
         end: 'bottom 40%',
-        onEnter: () => {
-          setActiveIndex(i);
-          const imgContainer = stickyImageRef.current;
-          if (imgContainer) {
-            gsap.to(imgContainer, { opacity: 0, scale: 1.03, duration: 0.3, ease: 'expo.out',
-              onComplete: () => {
-                setActiveIndex(i);
-                gsap.to(imgContainer, { opacity: 1, scale: 1, duration: 0.5, ease: 'expo.out' });
-              }
-            });
-          }
-        },
-        onEnterBack: () => {
-          setActiveIndex(i);
-        },
+        onEnter: () => setActiveIndex(i),
+        onEnterBack: () => setActiveIndex(i),
       });
       triggers.push(st);
     });
@@ -127,14 +114,22 @@ export function Realisations() {
                 background: 'var(--surface-2)',
               }}
             >
-              <Image
-                src={realisations[activeIndex].image}
-                alt={realisations[activeIndex].title}
-                fill
-                style={{ objectFit: 'cover', transition: 'opacity 600ms var(--ease-expo)' }}
-                className="img-treated"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {/* Pre-render all images, show active via opacity */}
+              {realisations.map((item, i) => (
+                <Image
+                  key={i}
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  style={{
+                    objectFit: 'cover',
+                    opacity: activeIndex === i ? 1 : 0,
+                    transition: 'opacity 600ms cubic-bezier(0.16,1,0.3,1)',
+                  }}
+                  className="img-treated"
+                  sizes="50vw"
+                />
+              ))}
               {/* Overlay */}
               <div
                 style={{
@@ -142,10 +137,11 @@ export function Realisations() {
                   inset: 0,
                   background: 'linear-gradient(135deg, rgba(30,70,107,0.3) 0%, transparent 60%)',
                   borderRadius: 'var(--radius-card)',
+                  zIndex: 1,
                 }}
               />
               {/* Tags overlay */}
-              <div style={{ position: 'absolute', bottom: 20, left: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              <div style={{ position: 'absolute', bottom: 20, left: 20, display: 'flex', gap: 8, flexWrap: 'wrap', zIndex: 2 }}>
                 {realisations[activeIndex].tags.map((tag, i) => (
                   <span
                     key={i}
