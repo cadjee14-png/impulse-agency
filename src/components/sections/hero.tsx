@@ -149,7 +149,7 @@ export function Hero() {
           <div ref={line2Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter', paddingBottom: '0.2em' }}>
             <span style={{ display: 'block' }}>votre{' '}
               <span style={{
-                color: 'var(--accent)',
+                color: '#1E466B',
                 position: 'relative',
                 display: 'inline-block',
               }}>
@@ -159,7 +159,7 @@ export function Hero() {
                   viewBox="0 0 100 6"
                   preserveAspectRatio="none"
                 >
-                  <path d="M0,5 Q25,0 50,4 Q75,8 100,3" stroke="var(--accent)" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                  <path d="M0,5 Q25,0 50,4 Q75,8 100,3" stroke="#1E466B" strokeWidth="2" fill="none" strokeLinecap="round"/>
                 </svg>
               </span>
             </span>
