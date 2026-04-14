@@ -286,7 +286,7 @@ export function Hero() {
               el.style.background = 'transparent';
             }}
           >
-            Nos réalisations →
+            Obtenir ces résultats →
           </button>
         </div>
 

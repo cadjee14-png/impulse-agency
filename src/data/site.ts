@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: 'Transformez votre business en machine à clients',
   subtext: 'Impulse accompagne les marques ambitieuses avec des stratégies digitales qui génèrent de vrais résultats mesurables.',
   cta: 'Recevoir mon audit gratuit →',
-  ctaSecondary: 'Nos réalisations →',
+  ctaSecondary: 'Obtenir ces résultats →',
   phone: '+33 6 88 66 31 76',
   email: 'hello@impulse-agency.fr',
   instagram: 'https://instagram.com',
