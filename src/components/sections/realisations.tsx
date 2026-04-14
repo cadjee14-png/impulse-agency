@@ -289,7 +289,7 @@ export function Realisations() {
                 el.style.borderColor = 'var(--line-hover)';
               }}
             >
-              Voir tous nos projets →
+              Obtenir ces résultats →
             </a>
           </div>
         </FadeIn>

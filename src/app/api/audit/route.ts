@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { prenom, whatsapp } = await req.json();
+    const { prenom, whatsapp, services } = await req.json();
 
     if (!prenom || !whatsapp) {
       return NextResponse.json({ error: 'Champs manquants' }, { status: 400 });
@@ -25,9 +25,13 @@ export async function POST(req: Request) {
               <td style="padding: 12px 0; border-bottom: 1px solid #eee; font-weight: 600; font-size: 16px; color: #0D0D0D;">${prenom}</td>
             </tr>
             <tr>
-              <td style="padding: 12px 0; color: #666; font-size: 14px;">WhatsApp</td>
-              <td style="padding: 12px 0; font-weight: 600; font-size: 16px; color: #0D0D0D;">${whatsapp}</td>
+              <td style="padding: 12px 0; border-bottom: ${services?.length ? '1px solid #eee' : 'none'}; color: #666; font-size: 14px;">WhatsApp</td>
+              <td style="padding: 12px 0; border-bottom: ${services?.length ? '1px solid #eee' : 'none'}; font-weight: 600; font-size: 16px; color: #0D0D0D;">${whatsapp}</td>
             </tr>
+            ${services?.length ? `<tr>
+              <td style="padding: 12px 0; color: #666; font-size: 14px; vertical-align: top;">Besoins</td>
+              <td style="padding: 12px 0; font-size: 14px; color: #0D0D0D;">${(services as string[]).map(s => `<span style="display:inline-block;background:#EBF4FF;color:#1E466B;padding:3px 10px;border-radius:20px;margin:2px;font-size:13px;">${s}</span>`).join('')}</td>
+            </tr>` : ''}
           </table>
           <a href="https://wa.me/${whatsapp.replace(/\D/g, '')}" style="display: inline-block; margin-top: 24px; background: #25D366; color: white; padding: 14px 28px; border-radius: 32px; text-decoration: none; font-weight: 600; font-size: 15px;">
             📲 Rappeler sur WhatsApp

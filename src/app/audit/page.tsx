@@ -1,15 +1,24 @@
 'use client';
 
-import { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { Magnetic } from '@/components/animations/magnetic';
 import { FadeIn } from '@/components/animations/fade-in';
 import { LineMask } from '@/components/animations/line-mask';
 import { siteConfig } from '@/data/site';
 
+const SERVICES = ['Sites Web', 'Publicité (Meta/Google/TikTok)', 'Réseaux Sociaux', 'SEO', 'Branding'];
+
 export default function AuditPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+
+  const toggleService = (s: string) => {
+    setSelectedServices(prev =>
+      prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +35,7 @@ export default function AuditPage() {
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prenom, whatsapp }),
+        body: JSON.stringify({ prenom, whatsapp, services: selectedServices }),
       });
 
       if (res.ok) {
@@ -147,6 +156,36 @@ export default function AuditPage() {
                   (e.target as HTMLInputElement).style.boxShadow = 'none';
                 }}
               />
+            </div>
+
+            {/* Services */}
+            <div>
+              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                Vos besoins <span style={{ fontWeight: 400 }}>(optionnel)</span>
+              </label>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {SERVICES.map(s => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => toggleService(s)}
+                    style={{
+                      padding: '7px 14px',
+                      borderRadius: 32,
+                      fontSize: 13,
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 200ms',
+                      border: selectedServices.includes(s) ? '1px solid var(--accent)' : '1px solid var(--line)',
+                      background: selectedServices.includes(s) ? 'rgba(30,70,107,0.08)' : 'transparent',
+                      color: selectedServices.includes(s) ? 'var(--accent)' : 'var(--text-dim)',
+                    }}
+                  >
+                    {selectedServices.includes(s) ? '✓ ' : ''}{s}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Submit */}

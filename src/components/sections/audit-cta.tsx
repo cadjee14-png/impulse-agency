@@ -1,13 +1,22 @@
 'use client';
 
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { Magnetic } from '@/components/animations/magnetic';
 import { LineMask } from '@/components/animations/line-mask';
 import { FadeIn } from '@/components/animations/fade-in';
 import { siteConfig } from '@/data/site';
 
+const SERVICES = ['Sites Web', 'Publicité (Meta/Google/TikTok)', 'Réseaux Sociaux', 'SEO', 'Branding'];
+
 export function AuditCta() {
   const formRef = useRef<HTMLFormElement>(null);
+  const [selectedServices, setSelectedServices] = React.useState<string[]>([]);
+
+  const toggleService = (s: string) => {
+    setSelectedServices(prev =>
+      prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +34,7 @@ export function AuditCta() {
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prenom, whatsapp }),
+        body: JSON.stringify({ prenom, whatsapp, services: selectedServices }),
       });
 
       if (res.ok) {
@@ -172,6 +181,36 @@ export function AuditCta() {
                 onFocus={e => (e.target as HTMLInputElement).style.borderColor = 'var(--accent)'}
                 onBlur={e => (e.target as HTMLInputElement).style.borderColor = 'var(--line)'}
               />
+            </div>
+
+            {/* Services */}
+            <div>
+              <p style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 10 }}>
+                Vos besoins <span style={{ fontWeight: 400, opacity: 0.6 }}>(optionnel)</span>
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {SERVICES.map(s => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => toggleService(s)}
+                    style={{
+                      padding: '7px 14px',
+                      borderRadius: 32,
+                      fontSize: 13,
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 200ms',
+                      border: selectedServices.includes(s) ? '1px solid var(--accent-light)' : '1px solid rgba(255,255,255,0.2)',
+                      background: selectedServices.includes(s) ? 'rgba(103,186,244,0.15)' : 'transparent',
+                      color: selectedServices.includes(s) ? 'var(--accent-light)' : 'rgba(255,255,255,0.6)',
+                    }}
+                  >
+                    {selectedServices.includes(s) ? '✓ ' : ''}{s}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <Magnetic style={{ width: '100%' }}>
