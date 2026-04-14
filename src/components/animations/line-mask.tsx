@@ -73,7 +73,7 @@ export function LineMask({
   return (
     <Tag ref={containerRef as React.RefObject<HTMLHeadingElement>} className={className} style={style}>
       {lines.map((line, i) => (
-        <span key={i} className="line-mask-wrap" style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.15em' }}>
+        <span key={i} className="line-mask-wrap" style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.25em', marginBottom: '-0.25em' }}>
           <span className="line-mask-inner" style={{ display: 'block', willChange: 'transform, opacity, filter' }}>
             {line}
           </span>
