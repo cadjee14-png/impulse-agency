@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { Magnetic } from '@/components/animations/magnetic';
 import { LineMask } from '@/components/animations/line-mask';
 import { FadeIn } from '@/components/animations/fade-in';
@@ -11,6 +12,7 @@ const SERVICES = ['Sites Web', 'Publicité (Meta/Google/TikTok)', 'Réseaux Soci
 export function AuditCta() {
   const formRef = useRef<HTMLFormElement>(null);
   const [selectedServices, setSelectedServices] = React.useState<string[]>([]);
+  const router = useRouter();
 
   const toggleService = (s: string) => {
     setSelectedServices(prev =>
@@ -38,8 +40,7 @@ export function AuditCta() {
       });
 
       if (res.ok) {
-        if (btn) { btn.textContent = 'Envoyé ! On vous rappelle sous 24h ✓'; btn.style.background = '#25D366'; }
-        form.reset();
+        router.push('/merci');
       } else {
         if (btn) { btn.textContent = 'Erreur — réessayez'; btn.style.background = '#e53e3e'; btn.disabled = false; }
       }

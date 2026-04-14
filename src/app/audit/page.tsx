@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Magnetic } from '@/components/animations/magnetic';
 import { FadeIn } from '@/components/animations/fade-in';
 import { LineMask } from '@/components/animations/line-mask';
@@ -13,6 +14,7 @@ export default function AuditPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const router = useRouter();
 
   const toggleService = (s: string) => {
     setSelectedServices(prev =>
@@ -39,9 +41,7 @@ export default function AuditPage() {
       });
 
       if (res.ok) {
-        btnRef.current.textContent = '✓ On vous rappelle sous 24h !';
-        btnRef.current.style.background = '#25D366';
-        form.reset();
+        router.push('/merci');
       } else {
         btnRef.current.textContent = 'Erreur — réessayez';
         btnRef.current.style.background = '#e53e3e';
