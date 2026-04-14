@@ -243,7 +243,7 @@ export default function AuditPage() {
             </div>
 
             {/* Submit */}
-            <Magnetic style={{ width: '100%' }}>
+            <Magnetic style={{ width: '100%', display: 'block' }}>
               <button
                 ref={btnRef}
                 type="submit"
@@ -252,6 +252,7 @@ export default function AuditPage() {
                   border: 'none', borderRadius: 64, padding: '18px 40px',
                   fontSize: 'clamp(14px, 4vw, 17px)', fontWeight: 700, fontFamily: 'var(--font-heading)',
                   letterSpacing: '-0.01em', cursor: 'none', whiteSpace: 'nowrap',
+                  textAlign: 'center',
                   transition: 'background 300ms, box-shadow 300ms',
                   boxShadow: '0 8px 32px rgba(30,70,107,0.22)',
                   marginTop: 4,
