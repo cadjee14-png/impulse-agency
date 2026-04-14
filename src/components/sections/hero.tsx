@@ -136,17 +136,17 @@ export function Hero() {
             fontFamily: 'var(--font-heading)',
             fontWeight: 800,
             fontSize: 'clamp(34px, 6.5vw, 112px)',
-            lineHeight: 0.9,
+            lineHeight: 1.0,
             letterSpacing: '-0.04em',
             color: 'var(--text)',
             marginBottom: 'clamp(24px, 3vw, 40px)',
             maxWidth: 1000,
           }}
         >
-          <div ref={line1Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter' }}>
+          <div ref={line1Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter', paddingBottom: '0.08em' }}>
             <span style={{ display: 'block' }}>Transformez</span>
           </div>
-          <div ref={line2Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter' }}>
+          <div ref={line2Ref} style={{ overflow: 'hidden', willChange: 'transform, opacity, filter', paddingBottom: '0.08em' }}>
             <span style={{ display: 'block' }}>votre{' '}
               <span style={{
                 color: 'var(--accent)',
