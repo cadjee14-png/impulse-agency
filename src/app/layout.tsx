@@ -78,8 +78,8 @@ const jsonLd = {
   url: 'https://impulse-agency.fr',
   logo: 'https://impulse-agency.fr/logo.png',
   image: 'https://impulse-agency.fr/og-image.jpg',
-  telephone: '+33600000000',
-  email: 'contact@impulse-agency.fr',
+  telephone: '+33688663176',
+  email: 'cadjee14@gmail.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Marseille',
