@@ -226,7 +226,7 @@ export function AuditCta() {
 
             {/* Services */}
             <div>
-              <p style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 10 }}>
+              <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 10 }}>
                 Vos besoins <span style={{ fontWeight: 400, opacity: 0.6 }}>(optionnel)</span>
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -243,9 +243,9 @@ export function AuditCta() {
                       fontWeight: 500,
                       cursor: 'pointer',
                       transition: 'all 200ms',
-                      border: selectedServices.includes(s) ? '1px solid var(--accent-light)' : '1px solid rgba(255,255,255,0.2)',
-                      background: selectedServices.includes(s) ? 'rgba(103,186,244,0.15)' : 'transparent',
-                      color: selectedServices.includes(s) ? 'var(--accent-light)' : 'rgba(255,255,255,0.6)',
+                      border: selectedServices.includes(s) ? '1px solid var(--accent)' : '1px solid var(--line-hover)',
+                      background: selectedServices.includes(s) ? 'rgba(30,70,107,0.1)' : 'transparent',
+                      color: selectedServices.includes(s) ? 'var(--accent)' : 'var(--text-dim)',
                     }}
                   >
                     {selectedServices.includes(s) ? '✓ ' : ''}{s}
