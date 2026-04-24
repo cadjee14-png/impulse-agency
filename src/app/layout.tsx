@@ -7,6 +7,7 @@ import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { CustomCursor } from '@/components/layout/custom-cursor';
 import { StickyCTAMobile } from '@/components/layout/sticky-cta-mobile';
+import { CookieBanner } from '@/components/layout/cookie-banner';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://impulse-agency.fr'),
@@ -121,6 +122,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="ga4-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'wait_for_update': 500,
+          });
           gtag('js', new Date());
           gtag('config', 'G-S8CMV9K5NT');
         `}</Script>
@@ -132,6 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <Footer />
           <StickyCTAMobile />
+          <CookieBanner />
         </SmoothScroll>
       </body>
     </html>

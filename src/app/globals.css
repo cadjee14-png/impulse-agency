@@ -164,3 +164,39 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: top;
   transition: transform 400ms var(--ease-expo);
 }
+
+/* ─── Multi-step Form Animations ────────────────────────────── */
+@keyframes stepSlideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes stepSlideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.step-fwd { animation: stepSlideInRight 0.45s var(--ease-expo) both; }
+.step-bck { animation: stepSlideInLeft 0.45s var(--ease-expo) both; }
+
+/* ─── Audit Form Grids ───────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+@media (max-width: 420px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Cookie Banner ──────────────────────────────────────────── */
+@keyframes cookieSlideIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.cookie-banner-enter {
+  animation: cookieSlideIn 0.5s var(--ease-expo) both;
+}
