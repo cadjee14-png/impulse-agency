@@ -192,6 +192,34 @@ h1, h2, h3, h4, h5, h6 {
   .services-grid { grid-template-columns: 1fr; }
 }
 
+/* ─── Blog Cards ─────────────────────────────────────────────── */
+.blog-card-featured {
+  transition: box-shadow 400ms, transform 400ms;
+}
+.blog-card-featured:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.blog-card {
+  transition: box-shadow 350ms, transform 350ms;
+}
+.blog-card:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-3px);
+}
+.blog-related-link {
+  transition: border-color 200ms;
+}
+.blog-related-link:hover {
+  border-color: var(--line-hover) !important;
+}
+.blog-cta-link {
+  transition: opacity 200ms;
+}
+.blog-cta-link:hover {
+  opacity: 0.9;
+}
+
 /* ─── Cookie Banner ──────────────────────────────────────────── */
 @keyframes cookieSlideIn {
   from { transform: translateY(100%); opacity: 0; }
