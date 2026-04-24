@@ -674,6 +674,483 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+
+  // ─────────────────────────────────────────────────────────────────
+  // ARTICLE 7 — TikTok Ads PME 2025 (first-mover)
+  // ─────────────────────────────────────────────────────────────────
+  {
+    slug: 'tiktok-ads-pme-marseille-reunion-guide-2025',
+    title: 'TikTok Ads en 2025 : le Guide pour les PME de Marseille et La Réunion',
+    metaTitle: 'TikTok Ads PME 2025 — Guide Pratique Marseille & La Réunion',
+    metaDescription: 'TikTok Shop est arrivé en France. Comment les PME de Marseille et La Réunion peuvent utiliser TikTok Ads pour générer des ventes ? Coûts, stratégie, erreurs à éviter.',
+    excerpt: 'TikTok Shop a officiellement lancé en France. Les PME qui s\'y positionnent maintenant ont une fenêtre d\'avance que leurs concurrents n\'ont pas encore vue. Voici comment en profiter concrètement.',
+    publishedAt: '2026-04-23',
+    readTime: 8,
+    category: 'Publicité',
+    geo: 'both',
+    image: 'https://images.unsplash.com/photo-1611605698335-8441da07c5f1?w=1200&q=80',
+    keywords: [
+      'TikTok Ads PME France',
+      'TikTok Ads Marseille',
+      'TikTok Ads La Réunion',
+      'publicité TikTok commerce local',
+      'TikTok Shop France 2025',
+      'agence TikTok Ads',
+    ],
+    sections: [
+      {
+        type: 'p',
+        content: 'TikTok Shop a officiellement lancé en France le 31 mars 2025. Plus de 16 500 entreprises y sont déjà référencées, dont 70 % sont des PME. Pendant ce temps, la plupart des commerçants et entrepreneurs à Marseille comme à La Réunion n\'ont pas encore ouvert un compte TikTok Business. C\'est exactement le genre de fenêtre qui se referme vite.',
+      },
+      {
+        type: 'p',
+        content: 'Ce n\'est pas une mode. TikTok dépasse Google chez les 18-34 ans pour les recherches de produits et de services locaux. Et TikTok Ads, contrairement à ce qu\'on croit, ne cible pas que les ados — l\'audience française sur la plateforme monte jusqu\'à 45 ans avec des profils d\'acheteurs actifs.',
+      },
+      {
+        type: 'h2',
+        content: 'Pourquoi TikTok Ads est une opportunité majeure pour les PME en 2025',
+      },
+      {
+        type: 'p',
+        content: 'Le coût publicitaire sur TikTok est actuellement bien en dessous de Meta Ads sur des audiences comparables. Pourquoi ? Parce que la concurrence entre annonceurs y est encore limitée, surtout sur les marchés locaux comme Marseille ou La Réunion. Les grandes marques y sont, mais les PME locales, elles, sont encore absentes. Vous payez donc moins pour toucher plus — et plus longtemps.',
+      },
+      {
+        type: 'ul',
+        content: [
+          'CPM moyen TikTok France : 3 à 8€ pour 1000 impressions vs 8 à 15€ sur Meta',
+          'Taux d\'engagement organique 3 à 5x supérieur à Instagram Reels à audience équivalente',
+          'L\'algorithme TikTok pousse les contenus pertinents indépendamment du nombre d\'abonnés — un compte avec 100 abonnés peut toucher 50 000 personnes si le contenu est bon',
+          'TikTok Shop permet la vente directe intégrée — de la vidéo à l\'achat sans quitter l\'appli',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Ce que ça change pour un commerce local à Marseille',
+      },
+      {
+        type: 'p',
+        content: 'Marseille a un tissu commercial local dense — boutiques de mode, restaurants, salons, artisans, services à la personne. Sur TikTok, ces commerces ont un avantage naturel : ils peuvent produire du contenu authentique et ancré localement, ce qui performe mieux que les publicités génériques des grandes enseignes. Une vidéo de 30 secondes qui montre la préparation d\'une bouillabaisse au Vieux-Port ou la création d\'un bijou en atelier à la Plaine touchera des milliers de Marseillais avec 15€ de budget.',
+      },
+      {
+        type: 'p',
+        content: 'Le format In-Feed Ads (publicité dans le fil) et TopView (vidéo au lancement de l\'appli) sont les plus utilisés, mais pour les PME locales, le Spark Ads est souvent le plus efficace — il booste une vidéo organique qui marche déjà, sans avoir besoin de créer du contenu publicitaire de zéro.',
+      },
+      {
+        type: 'h2',
+        content: 'Et à La Réunion ? La plateforme est-elle adaptée ?',
+      },
+      {
+        type: 'p',
+        content: 'À La Réunion, TikTok est déjà massivement utilisé par les 15-35 ans. La culture du contenu court, visuel, dynamique correspond parfaitement aux usages locaux. Ce qui manque, c\'est l\'annonceur. Aujourd\'hui, si vous lancez une campagne TikTok Ads ciblée sur La Réunion, vous avez très peu de concurrents directs sur la plateforme. Le coût par vue et le coût par clic y sont parmi les plus bas de France — le marché publicitaire TikTok sur l\'île est encore vierge.',
+      },
+      {
+        type: 'blockquote',
+        content: 'À La Réunion, le premier commerce local de votre secteur à lancer sur TikTok Ads va dominer sa niche pendant des mois avant que les concurrents réagissent. C\'est une fenêtre qui se referme.',
+      },
+      {
+        type: 'h2',
+        content: 'Comment lancer votre première campagne TikTok Ads',
+      },
+      {
+        type: 'h3',
+        content: 'Étape 1 — Créer votre compte TikTok Business',
+      },
+      {
+        type: 'p',
+        content: 'Rendez-vous sur business.tiktok.com. La création est gratuite. Reliez votre page TikTok existante ou créez-en une. Ajoutez votre moyen de paiement et définissez votre fuseau horaire (Paris pour La Réunion et métropole).',
+      },
+      {
+        type: 'h3',
+        content: 'Étape 2 — Installer le TikTok Pixel sur votre site',
+      },
+      {
+        type: 'p',
+        content: 'Avant de dépenser un centime en publicité, installez le pixel. C\'est un extrait de code JavaScript qui suit les actions des visiteurs sur votre site (visites, ajouts au panier, achats). Sans pixel, vous ne pouvez pas optimiser vos campagnes pour les conversions — vous payez pour du trafic aveugle.',
+      },
+      {
+        type: 'h3',
+        content: 'Étape 3 — Choisir le bon objectif',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Notoriété (Reach) : pour faire connaître votre commerce ou marque localement',
+          'Trafic : pour envoyer des visiteurs sur votre site ou page de vente',
+          'Conversions : pour générer des achats, inscriptions ou demandes de devis — nécessite le pixel',
+          'Catalogue Shopping : pour les e-commerces avec flux produits',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Quel budget prévoir pour démarrer ?',
+      },
+      {
+        type: 'p',
+        content: 'TikTok Ads impose un budget minimum de 20€/jour au niveau du groupe d\'annonces. Pour tester sérieusement, prévoyez 300 à 500€ sur 2 à 3 semaines. C\'est suffisant pour collecter des données et savoir si vos créatifs fonctionnent avant de scaler. Si vous faites du Spark Ads sur une vidéo organique qui performe déjà, vous pouvez commencer avec 50€ et obtenir des résultats visibles.',
+      },
+      {
+        type: 'h2',
+        content: 'Le contenu qui convertit sur TikTok en 2025',
+      },
+      {
+        type: 'p',
+        content: 'Sur TikTok, la règle d\'or est simple : ça doit ressembler à du contenu organique, pas à une pub. Les vidéos qui surperforment ont quelques caractéristiques communes : elles commencent par quelque chose d\'inattendu dans les 3 premières secondes, elles montrent un résultat ou une transformation, elles utilisent des sons tendance, et elles parlent à une vraie douleur du client sans vendre frontalement.',
+      },
+      {
+        type: 'p',
+        content: 'Pour une PME à Marseille ou La Réunion, ça peut être aussi simple qu\'une vidéo "dans les coulisses" de votre activité, un before/after, un client qui partage son expérience en face caméra, ou une démonstration de produit filmée dans votre contexte local. L\'authenticité locale est un avantage concurrentiel réel sur TikTok.',
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────
+  // ARTICLE 8 — Création site web La Réunion
+  // ─────────────────────────────────────────────────────────────────
+  {
+    slug: 'creation-site-web-la-reunion-prix-delais-agence',
+    title: 'Création de Site Web à La Réunion : Prix, Délais et Comment Bien Choisir',
+    metaTitle: 'Création Site Web La Réunion — Prix, Délais et Agence Web 974 (2026)',
+    metaDescription: 'Combien coûte un site web à La Réunion ? Quels délais ? Comment choisir la bonne agence web en 974 ? Guide complet pour les entrepreneurs et PME réunionnais.',
+    excerpt: 'Faire créer son site web à La Réunion, c\'est souvent un parcours du combattant. Les prix varient de 500€ à 10 000€ pour un résultat parfois similaire. Ce guide vous donne les clés pour ne pas vous tromper.',
+    publishedAt: '2026-04-24',
+    readTime: 7,
+    category: 'Sites Web',
+    geo: 'reunion',
+    image: 'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1200&q=80',
+    keywords: [
+      'création site web La Réunion',
+      'agence web 974',
+      'site internet professionnel Saint-Denis',
+      'création site vitrine Réunion',
+      'prix site web La Réunion',
+      'développeur web La Réunion',
+    ],
+    sections: [
+      {
+        type: 'p',
+        content: 'À La Réunion, le marché de la création de sites web a explosé ces dernières années. Plus une PME, un artisan ou un commerçant ne peut se permettre d\'être absent d\'internet — les consommateurs réunionnais cherchent leurs prestataires sur Google avant même de se déplacer. Résultat : des dizaines d\'agences et de freelances se sont positionnés sur ce marché, avec des propositions qui ressemblent en surface mais cachent des réalités très différentes.',
+      },
+      {
+        type: 'h2',
+        content: 'Ce que coûte vraiment un site web à La Réunion en 2026',
+      },
+      {
+        type: 'p',
+        content: 'Les tarifs à La Réunion sont généralement en dessous de ceux pratiqués en métropole pour un travail comparable — les coûts de structure des agences locales sont différents. Voici les fourchettes réelles selon le type de projet :',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Site vitrine simple (5-8 pages, template personnalisé) : 800€ à 2 500€',
+          'Site vitrine sur mesure avec design unique : 2 500€ à 5 000€',
+          'Site e-commerce avec catalogue produits : 3 000€ à 12 000€',
+          'Landing page conversion seule : 400€ à 1 200€',
+          'Refonte complète d\'un site existant : 1 500€ à 4 500€',
+        ],
+      },
+      {
+        type: 'p',
+        content: 'En dessous de 800€ pour un site vitrine, posez des questions. Soit c\'est un template assemblé en quelques heures sans personnalisation réelle, soit c\'est un prestataire qui se rattrape sur les coûts annuels d\'hébergement et les modifications futures. Le prix bas à la création coûte souvent cher sur la durée.',
+      },
+      {
+        type: 'h2',
+        content: 'Les délais réels pour chaque type de projet',
+      },
+      {
+        type: 'p',
+        content: 'C\'est l\'une des questions les plus fréquentes — et l\'une des réponses les moins honnêtes dans les devis. Voici ce que vous devriez attendre de façon réaliste :',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Site vitrine sur template : 2 à 4 semaines (si vous fournissez vos textes et photos rapidement)',
+          'Site vitrine sur mesure : 4 à 8 semaines',
+          'Site e-commerce : 8 à 16 semaines selon la complexité',
+          'Landing page : 1 à 2 semaines',
+        ],
+      },
+      {
+        type: 'p',
+        content: 'La variable qui allonge le plus les délais, c\'est rarement l\'agence — c\'est le client. Les retards de validation des maquettes, les textes envoyés en retard, les changements de direction en cours de projet sont responsables de 80 % des dépassements. Prévoyez d\'avoir vos contenus prêts avant même de signer.',
+      },
+      {
+        type: 'h2',
+        content: 'Agence locale 974 ou prestataire métropolitain ?',
+      },
+      {
+        type: 'p',
+        content: 'La question se pose souvent. Un prestataire parisien peut livrer un site correct à distance, mais il ne connaît pas votre marché, vos concurrents locaux, les habitudes des consommateurs réunionnais. Pour un site de restaurant à Saint-Gilles-les-Bains, un plombier à Saint-Pierre ou une boutique de mode à Saint-Denis, le contexte local compte dans la façon dont le site est conçu et référencé.',
+      },
+      {
+        type: 'p',
+        content: 'Une agence web à La Réunion sait que 80 % du trafic vient du mobile sur l\'île, que la connexion peut être instable dans certaines zones, et que les visuels qui parlent à la réalité réunionnaise convertissent mieux que les images génériques. Ce n\'est pas secondaire — c\'est ce qui fait la différence entre un site qui génère des clients et un site vitrine que personne ne visite.',
+      },
+      {
+        type: 'h2',
+        content: 'Ce que votre site doit absolument avoir en 2026',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Mobile-first — votre site doit être conçu pour le smartphone avant l\'écran desktop',
+          'Vitesse de chargement < 3 secondes sur 4G — au-delà, vous perdez la moitié de vos visiteurs',
+          'Formulaire de contact ou WhatsApp visible sans scroller — c\'est votre principal outil de conversion',
+          'Google Analytics ou Matomo installé — vous devez savoir d\'où viennent vos visiteurs',
+          'Certificat SSL (HTTPS) actif — obligatoire pour la confiance et le SEO',
+          'Meta description et balise H1 optimisées sur chaque page pour les mots-clés locaux',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Questions clés à poser avant de signer',
+      },
+      {
+        type: 'p',
+        content: 'Ces questions font fuir les mauvais prestataires et rassurer sur les bons. Posez-les avant tout engagement :',
+      },
+      {
+        type: 'ul',
+        content: [
+          '« Est-ce que j\'aurai accès à tous les fichiers et codes sources à la livraison ? »',
+          '« Sur quelle technologie travaillez-vous et pourquoi pour mon projet ? »',
+          '« Qui gère concrètement mon site — un développeur senior ou un stagiaire ? »',
+          '« Que se passe-t-il si je veux changer d\'agence dans 2 ans ? »',
+          '« Le SEO de base (balises, vitesse, mobile) est-il inclus dans le devis ? »',
+        ],
+      },
+      {
+        type: 'blockquote',
+        content: 'Un site web à La Réunion qui ne se positionne pas sur Google dans les 6 mois après sa mise en ligne, c\'est de l\'argent dormant. Assurez-vous que l\'agence que vous choisissez pense SEO dès la conception, pas après.',
+      },
+      {
+        type: 'h2',
+        content: 'Le vrai coût total sur 3 ans',
+      },
+      {
+        type: 'p',
+        content: 'Un site web n\'est pas un achat unique — c\'est un investissement récurrent. Au coût de création, ajoutez : hébergement (5 à 30€/mois selon la solution), nom de domaine (10 à 20€/an), maintenance et mises à jour de sécurité (50 à 200€/mois selon le prestataire), éventuelles évolutions et ajout de contenu. Sur 3 ans, un site à 1 500€ de création peut vous coûter 3 à 4 fois plus en frais récurrents si vous n\'avez pas négocié ces points dès le départ.',
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────
+  // ARTICLE 9 — Réseaux sociaux Marseille
+  // ─────────────────────────────────────────────────────────────────
+  {
+    slug: 'gestion-reseaux-sociaux-marseille-tarifs-roi',
+    title: 'Gestion des Réseaux Sociaux à Marseille : Ce que Ça Coûte et Ce que Ça Rapporte',
+    metaTitle: 'Gestion Réseaux Sociaux Marseille — Tarifs Réels et ROI (2026)',
+    metaDescription: 'Combien coûte un community manager à Marseille ? Quels résultats attendre des réseaux sociaux pour votre PME ? Tarifs réels, erreurs fréquentes et stratégie concrète.',
+    excerpt: 'La gestion des réseaux sociaux à Marseille, c\'est un marché opaque. Entre le freelance à 150€/mois et l\'agence à 2 500€/mois, qu\'est-ce qui justifie la différence — et qu\'est-ce qui génère vraiment des clients ?',
+    publishedAt: '2026-04-25',
+    readTime: 7,
+    category: 'Réseaux Sociaux',
+    geo: 'marseille',
+    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1200&q=80',
+    keywords: [
+      'gestion réseaux sociaux Marseille',
+      'community manager Marseille',
+      'animation Instagram Marseille',
+      'agence social media Marseille',
+      'tarif community manager Marseille',
+      'gestion Facebook entreprise Marseille',
+    ],
+    sections: [
+      {
+        type: 'p',
+        content: 'Vous vous êtes déjà demandé pourquoi certains restaurants, boutiques et services à Marseille cartonnent sur Instagram pendant que d\'autres publient dans le vide depuis des mois ? Ce n\'est pas une question de chance ou de followers. C\'est une question de stratégie — et de quelqu\'un qui sait vraiment ce qu\'il fait.',
+      },
+      {
+        type: 'h2',
+        content: 'Les tarifs réels du community management à Marseille en 2026',
+      },
+      {
+        type: 'p',
+        content: 'Le marché est segmenté en trois niveaux, et la différence de tarif reflète des différences réelles de service — pas juste de marge.',
+      },
+      {
+        type: 'h3',
+        content: 'Le freelance junior (150€ — 500€/mois)',
+      },
+      {
+        type: 'p',
+        content: 'C\'est souvent un étudiant en communication ou un autodidacte qui gère plusieurs comptes en parallèle. Il publie régulièrement, mais rarement avec une vraie stratégie de conversion. Le contenu est propre, mais l\'impact business est difficile à mesurer. Adapté pour démarrer si votre budget est serré et que vous êtes dans un secteur peu concurrentiel.',
+      },
+      {
+        type: 'h3',
+        content: 'Le community manager senior / agence boutique (600€ — 1 500€/mois)',
+      },
+      {
+        type: 'p',
+        content: 'C\'est ici que la valeur réelle commence. Un professionnel qui combine stratégie éditoriale, création de contenus qualitatifs, gestion de la communauté ET analyse des performances. À ce niveau, vous obtenez un reporting mensuel avec des métriques business (pas juste des likes), une adaptation continue de la stratégie selon ce qui fonctionne, et une cohérence visuelle et éditoriale sur l\'ensemble de vos canaux.',
+      },
+      {
+        type: 'h3',
+        content: 'L\'agence full-service (1 500€ — 3 500€+/mois)',
+      },
+      {
+        type: 'p',
+        content: 'Pour ce budget, vous avez une équipe : un stratège, un créatif, un monteur vidéo, un copywriter. Ce niveau est justifié pour des marques qui veulent une présence forte, qui ont du budget publicitaire à allouer en plus, ou qui opèrent dans des secteurs très concurrentiels sur Marseille (immobilier, hôtellerie, restauration premium, e-commerce).',
+      },
+      {
+        type: 'h2',
+        content: 'Ce que les réseaux sociaux peuvent vraiment générer pour une PME marseillaise',
+      },
+      {
+        type: 'p',
+        content: 'Soyons honnêtes : les réseaux sociaux ne sont pas une machine à leads directe pour tous les secteurs. Un cabinet comptable à Marseille ne va pas remplir son agenda uniquement grâce à ses posts Instagram. Mais un restaurant, une boutique de mode, un salon de coiffure, une salle de sport, un coach — là, les réseaux sociaux ont un impact direct et mesurable sur le chiffre d\'affaires.',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Restauration : Instagram génère des réservations directes via le lien en bio ou les stories',
+          'Retail / boutique : TikTok et Reels génèrent du trafic en magasin à Marseille sur des rayons de 5 à 15km',
+          'Services B2C (coach, kiné, thérapeute) : la crédibilité construite sur LinkedIn et Instagram se convertit en prises de rendez-vous',
+          'E-commerce : les réseaux alimentent la notoriété + le retargeting publicitaire',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Les erreurs qui font perdre du temps et de l\'argent',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Publier sans stratégie — poster pour poster sans objectif de conversion ne génère rien',
+          'Négliger les stories et Reels au profit des posts statiques — en 2026, le contenu vidéo court a 3 à 5x plus de portée',
+          'Ignorer les commentaires et les messages — les algorithmes pénalisent les comptes qui n\'engagent pas leur communauté',
+          'Confondre abonnés et clients — 5 000 followers sans engagement valent moins que 500 followers actifs',
+          'Choisir une agence qui gère vos comptes sans vous donner les accès admin — vous ne devez jamais perdre la main sur vos pages',
+        ],
+      },
+      {
+        type: 'blockquote',
+        content: 'Un compte Instagram avec 800 abonnés engagés à Marseille, dans votre quartier, dans votre secteur, vaut plus qu\'un compte à 10 000 abonnés dispersés sans lien avec votre activité.',
+      },
+      {
+        type: 'h2',
+        content: 'Par où commencer si vous partez de zéro',
+      },
+      {
+        type: 'p',
+        content: 'Ne tentez pas de gérer cinq plateformes à la fois. Choisissez une ou deux en fonction de votre cible : Instagram pour le B2C visuel, LinkedIn pour le B2B et les services premium, TikTok pour toucher les 18-40 ans avec du contenu dynamique. Maîtrisez-les avant de vous étendre.',
+      },
+      {
+        type: 'p',
+        content: 'La cohérence prime sur la fréquence. Trois publications par semaine avec une vraie ligne éditoriale et des visuels soignés génèrent plus de résultats que sept posts quotidiens sans fil conducteur. Et si vous choisissez de déléguer, assurez-vous que le prestataire comprend votre activité, votre ton et votre clientèle marseillaise — pas juste qu\'il sait utiliser Canva.',
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────
+  // ARTICLE 10 — Branding Marseille
+  // ─────────────────────────────────────────────────────────────────
+  {
+    slug: 'branding-marseille-identite-visuelle-pme',
+    title: 'Branding à Marseille : Pourquoi Votre Identité Visuelle Fait la Différence',
+    metaTitle: 'Branding Marseille — Identité Visuelle PME et Artisans (2026)',
+    metaDescription: 'Pourquoi investir dans votre branding à Marseille ? Logo, charte graphique, identité visuelle : ce que ça coûte vraiment, ce que ça rapporte et comment ne pas se tromper d\'agence.',
+    excerpt: 'Beaucoup de PME marseillaises pensent que le branding, c\'est juste un logo. C\'est une erreur qui leur coûte des clients chaque jour. Une identité visuelle solide, ça ne sert pas qu\'à faire beau — ça sert à vendre.',
+    publishedAt: '2026-04-25',
+    readTime: 6,
+    category: 'Branding',
+    geo: 'marseille',
+    image: 'https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200&q=80',
+    keywords: [
+      'branding agence Marseille',
+      'identité visuelle Marseille',
+      'création logo Marseille',
+      'charte graphique PME Marseille',
+      'branding Aix-en-Provence',
+      'image de marque artisan Marseille',
+    ],
+    sections: [
+      {
+        type: 'p',
+        content: 'À Marseille, deux restaurants côte à côte proposent la même qualité de cuisine. L\'un a une devanture soignée, un logo mémorable, une cohérence visuelle sur ses menus, ses réseaux et ses emballages. L\'autre a un logo fait sur Canva en 20 minutes et une police Times New Roman sur ses ardoises. Lequel fait queue le vendredi soir ? Vous connaissez déjà la réponse.',
+      },
+      {
+        type: 'h2',
+        content: 'Le branding, ce n\'est pas de la décoration',
+      },
+      {
+        type: 'p',
+        content: 'Le branding — identité visuelle, logo, charte graphique, ton de communication — est un outil commercial. Il sert à ancrer votre positionnement dans l\'esprit de vos clients, à justifier votre tarif, à créer la confiance avant même le premier contact. Un artisan marseillais avec une identité professionnelle soignée peut facturer 20 à 30 % de plus qu\'un concurrent avec une image brouillonne, à compétences égales.',
+      },
+      {
+        type: 'p',
+        content: 'Ce n\'est pas une question de taille d\'entreprise. Les auto-entrepreneurs, les artisans, les petits commerces ont tout autant besoin d\'une identité forte que les grandes marques. Parfois plus — parce qu\'ils n\'ont pas les budgets publicitaires pour compenser une image négligée.',
+      },
+      {
+        type: 'h2',
+        content: 'Ce que comprend vraiment une identité visuelle complète',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Logo principal et ses déclinaisons (fond blanc, fond noir, monochrome, icône seule)',
+          'Palette de couleurs primaires et secondaires avec codes HEX/RVB/CMJN',
+          'Typographies choisies et règles d\'utilisation (titres, corps de texte, accents)',
+          'Éléments graphiques complémentaires (formes, textures, icônes)',
+          'Règles d\'espacement et de mise en page',
+          'Applications : carte de visite, en-tête email, signature, réseaux sociaux',
+        ],
+      },
+      {
+        type: 'p',
+        content: 'Un "logo" sans ces éléments n\'est pas un branding — c\'est juste une image. Et sans charte graphique qui définit comment utiliser ces éléments, vous vous retrouvez avec des déclinaisons incohérentes selon les supports et les prestataires.',
+      },
+      {
+        type: 'h2',
+        content: 'Combien coûte un branding professionnel à Marseille ?',
+      },
+      {
+        type: 'p',
+        content: 'Trois niveaux de budget, trois niveaux de résultats :',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Freelance junior (300€ — 800€) : logo + éléments de base. Correct pour démarrer, mais souvent peu stratégique',
+          'Designer senior ou agence boutique (1 000€ — 3 000€) : identité complète avec charte, réflexion sur le positionnement, déclinaisons',
+          'Agence branding complète (3 000€ — 8 000€+) : stratégie de marque, naming, positionnement, identité visuelle intégrale et accompagnement dans le déploiement',
+        ],
+      },
+      {
+        type: 'p',
+        content: 'Sur Marseille, vous trouverez des offres à 99€ pour un logo sur des plateformes de type Fiverr. Ce que vous obtenez, dans 90 % des cas : un logo générique issu d\'une banque d\'icônes, identique à des dizaines d\'autres entreprises. Le risque ? Une confusion avec un concurrent, une impossibilité de déposer la marque, et surtout l\'absence de réflexion stratégique sur ce qui vous distingue.',
+      },
+      {
+        type: 'h2',
+        content: 'Branding et SEO : le lien que personne ne fait',
+      },
+      {
+        type: 'p',
+        content: 'Votre branding influence directement votre performance SEO. Les recherches de marque (quand des gens cherchent directement votre nom sur Google) sont un signal fort pour l\'algorithme. Une marque mémorable génère plus de recherches directes, ce qui améliore votre positionnement global. À Marseille, des marques locales avec une identité forte et reconnaissable obtiennent plus de clics organiques que leurs concurrents mieux référencés sur les mots-clés génériques.',
+      },
+      {
+        type: 'blockquote',
+        content: 'À Marseille comme ailleurs, les gens ne font pas confiance à une marque qu\'ils ne reconnaissent pas. Un branding solide, c\'est 30 secondes pour convaincre — avant même que la personne ait lu une ligne de votre pitch.',
+      },
+      {
+        type: 'h2',
+        content: 'Comment évaluer un prestataire branding à Marseille',
+      },
+      {
+        type: 'ul',
+        content: [
+          'Demandez à voir son processus — un bon designer pose des questions stratégiques avant de dessiner quoi que ce soit',
+          'Vérifiez que les livrables incluent les fichiers sources (AI, EPS, SVG) — sans eux, vous n\'êtes pas propriétaire de votre logo',
+          'Assurez-vous qu\'il teste le logo sur différents supports (mobile, imprimé, fond coloré)',
+          'Évitez les prestataires qui proposent « 3 logos au choix en 48h » — le branding sérieux prend du temps',
+        ],
+      },
+      {
+        type: 'p',
+        content: 'Votre identité visuelle est souvent la première chose que voient vos prospects — avant même de lire votre offre. À Marseille, dans un marché local compétitif, cette première impression vaut de l\'argent. Investissez-y sérieusement une fois, et vous travaillez avec cette base pour des années.',
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
