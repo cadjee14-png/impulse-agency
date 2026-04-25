@@ -106,7 +106,10 @@ const jsonLd = {
     'Branding',
   ],
   priceRange: '€€',
-  sameAs: [],
+  sameAs: [
+    'https://www.instagram.com/impulseagency.fr/',
+    'https://www.facebook.com/people/Impulse-Agency/61575800943551/',
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -119,6 +122,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-S8CMV9K5NT" strategy="afterInteractive" />
+        {/* Meta Pixel */}
+        <Script id="meta-pixel" strategy="afterInteractive">{`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '943542001830707');
+          fbq('track', 'PageView');
+        `}</Script>
         <Script id="ga4-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
