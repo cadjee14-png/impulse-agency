@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: 'Impulse Agency <noreply@impulse-agency.fr>',
-      to: 'hello@impulse-agency.fr',
+      to: 'contact@impulse-agency.fr',
       subject: `🔥 Nouveau lead — ${prenom}`,
       html: `
         <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; padding: 32px; background: #f9f9f9; border-radius: 12px;">
