@@ -118,7 +118,7 @@ export function DiagnosticForm({ variant = 'page' }: DiagnosticFormProps) {
         body: JSON.stringify({ prenom, whatsapp, entreprise, secteur, services, budget, description }),
       });
       if (res.ok) {
-        router.push('/merci');
+        router.push(`/merci?prenom=${encodeURIComponent(prenom.trim())}`);
       } else {
         setError('Une erreur est survenue. Réessayez ou contactez-nous sur WhatsApp.');
         setSubmitting(false);
