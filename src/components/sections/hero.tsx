@@ -81,40 +81,10 @@ export function Hero() {
         animation: 'floatBlur 11s ease-in-out infinite alternate-reverse',
       }} />
 
-      {/* ── IMPULSE watermark — CSS only, no GSAP conflict ── */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          left: '10%',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          fontFamily: 'var(--font-heading)',
-          fontWeight: 900,
-          fontSize: 'clamp(160px, 24vw, 420px)',
-          lineHeight: 1,
-          letterSpacing: '-0.05em',
-          color: 'rgba(30,70,107,0.10)',
-          pointerEvents: 'none',
-          userSelect: 'none',
-          whiteSpace: 'nowrap',
-          animation: 'watermarkFloat 12s ease-in-out infinite',
-          zIndex: 0,
-        }}
-      >
-        IMPULSE
-      </div>
-
       <style>{`
         @keyframes floatBlur {
           0%   { transform: translate(0, 0) scale(1); }
           100% { transform: translate(20px, -30px) scale(1.1); }
-        }
-        @keyframes watermarkFloat {
-          0%   { transform: translateY(-50%) translateX(0px)   scale(1); }
-          30%  { transform: translateY(-54%) translateX(-22px) scale(1.03); }
-          60%  { transform: translateY(-46%) translateX(14px)  scale(0.98); }
-          100% { transform: translateY(-50%) translateX(0px)   scale(1); }
         }
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
