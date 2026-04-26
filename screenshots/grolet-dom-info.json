@@ -1,0 +1,530 @@
+{
+  "sections": [
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "container --small shopsLayer__grid",
+      "height": 575,
+      "top": 0,
+      "width": 1200,
+      "hasVideo": false,
+      "hasImages": 0,
+      "textContent": "Paris\n                                                                                              "
+    },
+    {
+      "tag": "MAIN",
+      "id": "wrapper",
+      "class": "wrapper",
+      "height": 5208,
+      "top": 74,
+      "width": 1440,
+      "hasVideo": false,
+      "hasImages": 204,
+      "textContent": "Cedric Grolet\n                Opéra\n            \n            \n                A la commande ou en ta"
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "products__container js-products-container",
+      "height": 4131,
+      "top": 471,
+      "width": 1440,
+      "hasVideo": false,
+      "hasImages": 202,
+      "textContent": "Produits disponibles (28)\n                    \n                        \n                            "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "container",
+      "height": 3941,
+      "top": 531,
+      "width": 1440,
+      "hasVideo": false,
+      "hasImages": 202,
+      "textContent": "Produits disponibles (28)\n                    \n                        \n                            "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Mangue\n                                                    \n                                  "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Chocolat Vanille\n                                                    \n                        "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Pavlova Fraise\n                                                    \n                          "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Pamplemousse\n                                                    \n                            "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Banoffee\n                                                    \n                                "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Coco Passion\n                                                    \n                            "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Paris-Brest Noisette\n                                                    \n                    "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Chocolat\n                                                    \n                                "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Coco Matcha\n                                                    \n                             "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Vanille\n                                                    \n                                 "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Gousse de vanille\n                                                    \n                             "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Cake Chocolat\n                                                    \n                                 "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Cake Marbré\n                                                    \n                                   "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Cake Fraise\n                                                    \n                                   "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Mangue\n                                                    \n                                  "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Coco Passion\n                                                    \n                            "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Pavlova Fraise\n                                                    \n                          "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Coco Matcha\n                                                    \n                             "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Vanille Chocolat\n                                                    \n                        "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Vanille\n                                                    \n                                 "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Pamplemousse\n                                                    \n                            "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Paris-Brest Noisette\n                                                    \n                    "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Chocolat\n                                                    \n                                "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Fleur Saint-Honoré caramel\n                                                    \n                    "
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Saint-Honoré chiffres"
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "product-row__overlay__container",
+      "height": 470,
+      "top": 0,
+      "width": 340,
+      "hasVideo": false,
+      "hasImages": 1,
+      "textContent": "Livre Cedric Grolet Fruits\n                                                    \n                    "
+    }
+  ],
+  "allImages": [
+    {
+      "src": "https://cedric-grolet.com/img/sym/medias/resize/prehome_mobile-66c4b4ec7537697e1",
+      "alt": "",
+      "width": 1,
+      "height": 1,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7627-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 307,
+      "height": 425,
+      "displayW": 340,
+      "displayH": 470
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7627-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 482,
+      "height": 666,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7628-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7629-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7630-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7631-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7632-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7633-product_laptop/fleur-mangueindiv26.jpg",
+      "alt": "Fleur Mangue",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7721-product_laptop/fleur-chocolat-vanille26.jpg",
+      "alt": "Fleur Chocolat Vanille",
+      "width": 307,
+      "height": 425,
+      "displayW": 340,
+      "displayH": 470
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7721-product_laptop/fleur-chocolat-vanille26.jpg",
+      "alt": "Fleur Chocolat Vanille",
+      "width": 482,
+      "height": 666,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7703-product_laptop/fleur-chocolat-vanille26.jpg",
+      "alt": "Fleur Chocolat Vanille",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7704-product_laptop/fleur-chocolat-vanille26.jpg",
+      "alt": "Fleur Chocolat Vanille",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7705-product_laptop/fleur-chocolat-vanille26.jpg",
+      "alt": "Fleur Chocolat Vanille",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7722-product_laptop/fleur-chocolat-vanille26.jpg",
+      "alt": "Fleur Chocolat Vanille",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7724-product_laptop/fleur-pavlova-fraiseindiv26.",
+      "alt": "Fleur Pavlova Fraise",
+      "width": 307,
+      "height": 425,
+      "displayW": 340,
+      "displayH": 470
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7724-product_laptop/fleur-pavlova-fraiseindiv26.",
+      "alt": "Fleur Pavlova Fraise",
+      "width": 482,
+      "height": 666,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7723-product_laptop/fleur-pavlova-fraiseindiv26.",
+      "alt": "Fleur Pavlova Fraise",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7725-product_laptop/fleur-pavlova-fraiseindiv26.",
+      "alt": "Fleur Pavlova Fraise",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    },
+    {
+      "src": "https://cedric-grolet.com/opera/7726-product_laptop/fleur-pavlova-fraiseindiv26.",
+      "alt": "Fleur Pavlova Fraise",
+      "width": 0,
+      "height": 0,
+      "displayW": 0,
+      "displayH": 0
+    }
+  ],
+  "bodyStyles": {
+    "bg": "rgb(246, 246, 246)",
+    "color": "rgb(0, 0, 0)",
+    "font": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "fontSize": "16px"
+  },
+  "navDetails": {
+    "bg": "rgb(255, 255, 255)",
+    "height": 74,
+    "position": "sticky",
+    "class": "header"
+  },
+  "colorVars": [
+    {
+      "name": "--color-primary",
+      "value": "0,0,0"
+    },
+    {
+      "name": "--color-secondary",
+      "value": "143,143,143"
+    },
+    {
+      "name": "--font-heading",
+      "value": "\"La Grolet\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",Helvetica,Arial,sans-serif"
+    }
+  ],
+  "heroDetails": {
+    "height": 397,
+    "bg": "rgba(0, 0, 0, 0)",
+    "bgImage": "none",
+    "class": "introHome",
+    "hasVideo": false,
+    "videoSrc": ""
+  }
+}

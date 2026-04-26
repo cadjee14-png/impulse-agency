@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { LineMask } from '@/components/animations/line-mask';
+import { SectionHeading } from '@/components/animations/section-heading';
 import { FadeIn } from '@/components/animations/fade-in';
 import { realisations } from '@/data/site';
 
@@ -39,18 +39,9 @@ export function Realisations() {
           <span className="section-label" style={{ display: 'block', marginBottom: 20 }}>
             Nos Réalisations
           </span>
-          <LineMask
-            as="h2"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 800,
-              fontSize: 'clamp(32px, 4.5vw, 64px)',
-              color: 'var(--text)',
-              maxWidth: 700,
-            }}
-          >
-            {`Des résultats qui parlent\nd'eux-mêmes`}
-          </LineMask>
+          <SectionHeading accent="concrets" style={{ maxWidth: 700 }}>
+            Des résultats vraiment
+          </SectionHeading>
         </div>
 
         {/* Desktop: image + content side by side per project */}

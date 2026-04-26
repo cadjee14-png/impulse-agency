@@ -1,6 +1,6 @@
 'use client';
 
-import { LineMask } from '@/components/animations/line-mask';
+import { SectionHeading } from '@/components/animations/section-heading';
 import { FadeIn } from '@/components/animations/fade-in';
 import { DiagnosticForm } from '@/components/forms/diagnostic-form';
 
@@ -39,17 +39,15 @@ export function AuditCta() {
             </span>
           </FadeIn>
 
-          <LineMask
-            as="h2"
-            style={{
-              fontFamily: 'var(--font-heading)', fontWeight: 800,
-              fontSize: 'clamp(32px, 5.5vw, 80px)',
-              color: 'white',
-              letterSpacing: '-0.035em', lineHeight: 0.92, marginBottom: 20,
-            }}
+          <SectionHeading
+            accent="business ?"
+            fontSize="clamp(32px, 5.5vw, 80px)"
+            color="white"
+            accentColor="var(--accent-light)"
+            style={{ lineHeight: 0.95, marginBottom: 20 }}
           >
-            {`Prêt à faire exploser\nvotre business ?`}
-          </LineMask>
+            Prêt à faire décoller votre
+          </SectionHeading>
 
           <FadeIn direction="up" delay={0.15}>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>

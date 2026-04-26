@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { LineMask } from '@/components/animations/line-mask';
+import { SectionHeading } from '@/components/animations/section-heading';
 import { FadeIn } from '@/components/animations/fade-in';
 import { process as processSteps } from '@/data/site';
 
@@ -50,17 +50,9 @@ export function Process() {
           <span className="section-label" style={{ display: 'block', marginBottom: 20 }}>
             Comment ça marche
           </span>
-          <LineMask
-            as="h2"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 800,
-              fontSize: 'clamp(32px, 4.5vw, 64px)',
-              color: 'var(--text)',
-            }}
-          >
-            Simple, rapide, efficace
-          </LineMask>
+          <SectionHeading accent="efficace">
+            Simple, rapide,
+          </SectionHeading>
         </div>
 
         {/* Steps */}

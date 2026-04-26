@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { LineMask } from '@/components/animations/line-mask';
+import { SectionHeading } from '@/components/animations/section-heading';
 import { FadeIn } from '@/components/animations/fade-in';
 import { testimonials } from '@/data/site';
 
@@ -42,17 +42,9 @@ export function Testimonials() {
           <span className="section-label" style={{ display: 'block', marginBottom: 20 }}>
             Ils nous font confiance
           </span>
-          <LineMask
-            as="h2"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 800,
-              fontSize: 'clamp(32px, 4.5vw, 64px)',
-              color: 'var(--text)',
-            }}
-          >
-            Nos clients témoignent
-          </LineMask>
+          <SectionHeading accent="témoignent">
+            Nos clients
+          </SectionHeading>
         </div>
 
         {/* Desktop — editorial rows */}

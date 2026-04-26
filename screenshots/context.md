@@ -1,201 +1,326 @@
-# Screenshot Reference — Impulse Agency (http://localhost:3000)
-
-Captured: 2026-04-13
-Total screenshots: 86
-
----
-
-## Site Overview
-
-**Impulse Agency** is a French-language digital marketing agency landing page built with Next.js. The homepage is a long-form single-page layout (~8 130px tall on desktop, ~10 000px on mobile). A separate `/audit` page hosts a standalone contact/lead-gen form.
+# Cedric Grolet Opera — Visual Reference
+## URL: https://cedric-grolet.com/opera/
+## Captured: 2026-04-14
 
 ---
 
-## Full-Page Screenshots
+## Summary
 
-| File | Viewport | Notes |
-|------|----------|-------|
-| `full-page-desktop.png` | 1440x900 | Complete homepage, ~8 130px tall |
-| `full-page-tablet.png` | 1024x768 | Complete homepage, ~7 500px tall |
-| `full-page-mobile.png` | 375x812 | Complete homepage, ~10 000px tall |
-| `full-page-audit-desktop.png` | 1440x900 | /audit page, ~1 936px tall |
-| `full-page-audit-mobile.png` | 375x812 | /audit page, ~2 500px tall |
+This is the **online shop page** for **Cedric Grolet Opera** — the Paris pastry boutique located at 35 avenue de l'Opéra, 75002 Paris. The page is a product catalog / e-commerce listing showing 28 available pastry items. Open Wednesday to Sunday, 9h00–18h00.
 
 ---
 
-## Homepage Sections (Desktop 1440)
+## Screenshots Inventory
 
-All sections captured as full-width crops.
+### Full Page
+| File | Description |
+|------|-------------|
+| `full-page-desktop.png` | Complete page — desktop 1440px wide |
+| `full-page-desktop-loaded.png` | Full page after lazy-load triggered |
+| `full-page-mobile.png` | Complete page — mobile 390px wide |
+| `full-page-tablet.png` | Complete page — tablet 1024px wide |
 
-| File | Section ID | Approx Height | Content |
-|------|-----------|---------------|---------|
-| `section-header.png` | `<header>` | 56px | Navigation bar — logo "Impulse." + nav links + CTA |
-| `section-nav.png` | `<nav>` | 41px | Desktop nav links only |
-| `section-hero.png` | `#hero` | 1 030px | Hero section with mesh background animation |
-| `section-hero-above-fold.png` | `#hero` | 900px | Exactly above-the-fold view |
-| `section-stats.png` | `#stats` | 323px | Counter stats: marques, ROAS, engagement, leads |
-| `section-services.png` | `#services` | 858px | "Nos Services" — 4 numbered services (Sites Web, Publicité, Social Media, Branding) |
-| `section-realisations.png` | `#realisations` | 1 911px | "Nos Réalisations" — case study tabs + 3 case cards |
-| `section-case-0.png` | `#case-0` | 381px | Case study: E-commerce Mode "Maison Belle" +247% CA |
-| `section-case-1.png` | `#case-1` | 381px | Case study: SaaS B2B "TechFlow" +520% leads |
-| `section-case-2.png` | `#case-2` | 356px | Case study: Restaurant "Le Jardin" +180% réservations |
-| `section-process.png` | `#process` | 867px | "Comment ça marche" — 4-step process |
-| `section-testimonials.png` | `#testimonials` | 1 214px | "Ils nous font confiance" — testimonial cards carousel |
-| `section-integrations.png` | `#integrations` | 581px | "Nos Outils" — platform logos grid (Shopify, WordPress, Meta Ads, Google Ads, etc.) |
-| `section-audit-cta.png` | `#audit` | 931px | "Audit Gratuit" CTA section with embedded form |
-| `section-footer.png` | `<footer>` | 413px | Footer with logo, links, tagline |
+### Above Fold / Hero
+| File | Description |
+|------|-------------|
+| `section-above-fold.png` | Full above-fold viewport 1440x900 |
+| `section-hero.png` | Hero viewport (initial capture) |
+| `section-hero-above-fold.png` | Hero close-up desktop |
+| `section-intro-hero.png` | `.introHome` section only (74-471px) — title + subtitle + shop info |
+| `section-hero-mobile.png` | Above fold on mobile 390px |
+| `mobile-above-fold.png` | Mobile above fold (re-captured) |
 
----
+### Navigation
+| File | Description |
+|------|-------------|
+| `component-nav-default.png` | Header/nav bar default state — white bg, 74px height, sticky |
+| `component-nav-hover.png` | Nav hover state on "Click & collect" link |
+| `mobile-component-nav.png` | Mobile nav bar |
 
-## Homepage Sections (Mobile 375)
+### Product Grid
+| File | Description |
+|------|-------------|
+| `section-product-filters.png` | Product count header + filter controls |
+| `section-product-grid.png` | Product grid top rows |
+| `section-product-grid-wide.png` | Product grid — 3-column layout view |
+| `section-product-area.png` | Product area at 1500px scroll |
+| `section-mid-page.png` | Mid-page products |
+| `section-lower-products.png` | Lower product rows |
+| `mobile-component-product-card.png` | Single product card on mobile |
+| `mobile-mid-page.png` | Mobile mid-page products |
 
-| File | Section | Approx Height |
-|------|---------|---------------|
-| `mobile-section-hero.png` | `#hero` | 834px |
-| `mobile-section-stats.png` | `#stats` | 342px |
-| `mobile-section-services.png` | `#services` | 671px |
-| `mobile-section-realisations.png` | `#realisations` | 2 108px |
-| `mobile-section-process.png` | `#process` | 1 232px |
-| `mobile-section-testimonials.png` | `#testimonials` | 1 362px |
-| `mobile-section-integrations.png` | `#integrations` | 372px |
-| `mobile-section-audit-cta.png` | `#audit` | 884px |
-| `mobile-section-footer.png` | `<footer>` | 1 099px |
+### Product Card Components
+| File | Description |
+|------|-------------|
+| `component-product-card.png` | Single product card default state |
+| `component-product-card-hover.png` | Product card hover state |
+| `component-add-to-cart.png` | Add to cart / CTA button |
 
----
+### Footer
+| File | Description |
+|------|-------------|
+| `section-footer-area.png` | Bottom of page — footer approach |
+| `section-page-bottom.png` | Very bottom of page |
+| `section-footer-mobile.png` | Mobile footer |
 
-## /audit Page Sections
+### Typography Close-ups
+| File | Description |
+|------|-------------|
+| `typography-h1-grolet.png` | H1 "Cedric Grolet / Opera" — 90px, -3.6px tracking |
+| `typography-heading-h1.png` | H1 DOM element capture |
+| `typography-subtitle.png` | Subtitle + location + hours section |
+| `typography-product-name.png` | Product name + price in card |
 
-| File | Element | Approx Height | Content |
-|------|---------|---------------|---------|
-| `audit-above-fold-desktop.png` | viewport | 900px | Full page above fold — nav + form header |
-| `audit-above-fold.png` | viewport | 900px | Duplicate above fold |
-| `audit-section-header.png` | `<header>` | 56px | Same nav as homepage |
-| `audit-section-nav.png` | `<nav>` | 41px | "ImpulseAgency" + "Retour" link |
-| `audit-section-form.png` | `<form>` | 826px | Lead-gen form: Prénom, Nom, Email, Téléphone, Site, Secteur |
-| `audit-section-footer.png` | `<footer>` | 413px | Same footer as homepage |
-| `audit-bottom.png` | viewport | 900px | Bottom of /audit page (footer area) |
-| `audit-mobile-above-fold.png` | viewport | 812px | /audit mobile above fold |
-| `audit-mobile-form.png` | `<form>` | 1 026px | Full form on mobile |
-| `audit-mobile-footer.png` | `<footer>` | 1 099px | Footer on mobile |
+### Scroll Sequences — Desktop (1440px)
+| File | Scroll position |
+|------|----------------|
+| `desktop-scroll-01.png` | y=0 |
+| `desktop-scroll-02.png` | y=800 |
+| `desktop-scroll-03.png` | y=1600 |
+| `desktop-scroll-04.png` | y=2400 |
+| `desktop-scroll-05.png` | y=3200 |
+| `desktop-scroll-06.png` | y=4000 |
+| `desktop-scroll-07.png` | y=4800 |
+| `section-scroll-y0.png` | y=0 (second pass) |
+| `section-scroll-y900.png` | y=900 |
+| `section-scroll-y1800.png` | y=1800 |
+| `section-scroll-y2700.png` | y=2700 |
+| `section-scroll-y3600.png` | y=3600 |
+| `section-scroll-y4500.png` | y=4500 |
 
----
-
-## Scrolling Viewport Shots
-
-### Desktop (1440x900) — 10 shots
-`desktop-scroll-01.png` through `desktop-scroll-10.png`
-Each shot overlaps 80px with the previous. Covers the full ~8 130px page.
-
-| Shot | Scroll Y | Content |
-|------|----------|---------|
-| 01 | 0 | Hero section above fold |
-| 02 | 820 | Lower hero + stats |
-| 03 | 1 640 | Services section |
-| 04 | 2 460 | Realisations — top |
-| 05 | 3 280 | Realisations — case studies |
-| 06 | 4 100 | Process section |
-| 07 | 4 920 | Process lower + testimonials top |
-| 08 | 5 740 | Testimonials |
-| 09 | 6 560 | Integrations + audit CTA |
-| 10 | 7 380 | Audit CTA lower + footer |
-
-### Tablet (1024x768) — 11 shots
-`tablet-scroll-01.png` through `tablet-scroll-11.png`
-
-### Mobile (375x812) — 13 shots
-`mobile-scroll-01.png` through `mobile-scroll-13.png`
-
-### /audit Desktop — 3 shots
-`audit-desktop-scroll-01.png` through `audit-desktop-scroll-03.png`
-
-### /audit Mobile — 4 shots
-`audit-mobile-scroll-01.png` through `audit-mobile-scroll-04.png`
-
----
-
-## Interactive Components
-
-| File | Element | State |
-|------|---------|-------|
-| `component-button-primary-hover.png` | Primary CTA button | Hover state |
-| `component-mobile-nav-open.png` | Mobile hamburger nav | Open/expanded state |
+### Scroll Sequences — Mobile (390px)
+| File | Scroll position |
+|------|----------------|
+| `mobile-scroll-01.png` | y=0 |
+| `mobile-scroll-02.png` | y=700 |
+| `mobile-scroll-03.png` | y=1400 |
+| `mobile-scroll-04.png` | y=2100 |
+| `mobile-scroll-05.png` | y=2800 |
+| `mobile-scroll-06.png` | y=3500 |
+| `mobile-scroll-07.png` | y=4200 |
+| `mobile-scroll-08.png` | y=4900 |
 
 ---
 
-## Sections Identified (Homepage)
+## Page Architecture
 
-1. **Header / Nav** — sticky top bar, logo left, nav links center/right, "Audit gratuit" CTA button
-2. **Hero** (#hero) — headline, sub-headline, dual CTAs, animated mesh background
-3. **Stats** (#stats) — 4 animated counters (brands, ROAS, engagement, leads) — dark background
-4. **Services** (#services) — "Nos Services" + "Tout ce qu'il faut pour dominer votre marché" — 4 numbered service blocks
-5. **Realisations** (#realisations) — filterable case study portfolio with category tabs
-6. **Case Studies** (#case-0, #case-1, #case-2) — individual cards with metrics, tags, descriptions
-7. **Process** (#process) — "Comment ça marche" — 4-step numbered process
-8. **Testimonials** (#testimonials) — "Ils nous font confiance" — client testimonial cards
-9. **Integrations** (#integrations) — "Nos Outils" — technology/platform logo grid
-10. **Audit CTA** (#audit) — "Audit Gratuit" with inline form (name, email, phone, website, sector)
-11. **Footer** — logo, tagline, nav links, copyright
+### Overall Structure
+
+```
+<header class="header">          — sticky, 74px, white bg
+<main id="wrapper">              — 5208px total height
+  .introHome                     — 397px, hero/title section
+  .products__container           — 4131px, full product catalog
+    .container                   — inner container
+      [filter bar]               — product count + layout toggle
+      [product rows]             — 28 products in 4-column grid
+        .product-row__overlay__container  — each 340x470px
+```
+
+### Section Breakdown
+| Section | CSS Class | Height | Top Offset | Content |
+|---------|-----------|--------|------------|---------|
+| Navigation | `.header` | 74px | 0 | Logo, nav links, cart |
+| Hero/Intro | `.introHome` | 397px | 74px | Title "Cedric Grolet / Opera", subtitle, address, hours |
+| Product Container | `.products__container` | 4131px | 471px | 28 products in grid |
+| Footer | (bottom of wrapper) | ~300px | ~4900px | Contact info, links |
 
 ---
 
-## /audit Page Structure
+## Typography System
 
-- Minimal page: nav bar with back arrow + "ImpulseAgency" branding
-- Main content: two-column layout on desktop — left: headline + description, right: form
-- Form fields: Prénom, Nom, Email, Téléphone (WhatsApp), Site web (optional), Secteur d'activité (select)
-- Single-column on mobile
-- Same footer as homepage
+### Fonts Used
+
+1. **"La Grolet"** — Custom proprietary font, used exclusively for H1/headings
+   - CSS var: `--font-heading: "La Grolet", ...`
+   - Fallbacks: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, etc.`
+   - Character: Editorial, slightly organic, signature-like — likely a custom display serif
+
+2. **"Akkurat"** — Used for all body text, labels, navigation, product names
+   - CSS body font
+   - Fallbacks: `-apple-system, "system-ui", "Segoe UI", Roboto, etc.`
+   - Character: Clean geometric sans-serif, Swiss influenced
+
+### Heading Styles
+| Element | Font | Size | Weight | Letter Spacing | Transform |
+|---------|------|------|--------|----------------|-----------|
+| H1 main title | "La Grolet" | 90px | 400 | -3.6px | none |
+| H1 sub (shop selector) | "La Grolet" | 32px | 400 | normal | none |
+
+### Body Text Styles
+| Use | Font | Size | Weight | Line Height | Color |
+|-----|------|------|--------|-------------|-------|
+| Body default | Akkurat | 16px | 400 | normal | rgb(0,0,0) |
+| Address / hours | Akkurat | 14px | 400 | 19.25px | rgb(75,75,75) |
+| Product description | Akkurat | 13px | 400 | 17.94px | rgb(143,143,143) |
+| Nav links | Akkurat | 16px | 400 | normal | rgb(0,0,0) |
+
+---
+
+## Color Palette
+
+### Core Colors
+| Name | Hex | RGB | Usage |
+|------|-----|-----|-------|
+| Pure White | `#FFFFFF` | rgb(255,255,255) | Navigation background, cards |
+| Off-White | `#F6F6F6` | rgb(246,246,246) | Page body background |
+| Pure Black | `#000000` | rgb(0,0,0) | Primary text, H1, borders, CTA bg |
+| Dark Gray | `#4B4B4B` | rgb(75,75,75) | Address, hours, secondary body text |
+| Medium Gray | `#8F8F8F` | rgb(143,143,143) | Product descriptions (CSS var `--color-secondary`) |
+| Overlay Black | — | rgba(0,0,0,0.7) | Overlay hover states |
+
+### CSS Custom Properties
+```css
+--color-primary: 0,0,0;
+--color-secondary: 143,143,143;
+--font-heading: "La Grolet", -apple-system, ...;
+```
+
+### Design Philosophy
+The color scheme is **strictly monochromatic** — black, white, and two grays. Zero color accents, no gold, no warm tones. The visual richness comes entirely from the **pastry photography**. This creates an editorial/fashion-house feel rather than a typical food brand look.
+
+---
+
+## Product Catalog
+
+### Grid Layout
+- **Desktop 1440px**: 4 columns (each card 340px wide x 470px tall)
+- **Tablet 1024px**: likely 3 columns
+- **Mobile 390px**: 2 columns (standard responsive grid)
+- Total: 28 products displayed
+
+### Product Card Structure
+Each `.product-row__overlay__container` (340 x 470px) contains:
+- Product image (307 x 425px natural, displayed at 340 x 470px — slightly stretched portrait)
+- Product name (Akkurat font, ~16px)
+- Product description line (gray, 13px Akkurat)
+- Price
+- Add to cart action (revealed on hover or always visible)
+
+### Products Listed (28 total)
+- Fleur Mangue
+- Fleur Chocolat Vanille
+- Fleur Pavlova Fraise
+- Fleur Pamplemousse
+- Fleur Banoffee
+- Fleur Coco Passion
+- Fleur Paris-Brest Noisette
+- Fleur Chocolat
+- Fleur Coco Matcha
+- Fleur Vanille
+- Gousse de vanille
+- Cake Chocolat
+- Cake Marbré
+- Cake Fraise
+- Fleur Vanille Chocolat
+- Fleur Saint-Honoré caramel
+- Saint-Honoré chiffres
+- Livre Cedric Grolet Fruits
+- (+ 10 additional items)
+
+---
+
+## Navigation
+
+### Desktop Nav Links (left to right)
+```
+[Logo]
+Opéra               (active location)
+Click & collect
+Réserver une table
+Notre maison
+---
+Changer de boutique
+Votre compte
+fr | en             (language switcher)
+[Cart counter: 0]
+Voir mon panier
+```
+
+### Nav Properties
+- Height: 74px
+- Background: `rgb(255,255,255)` — pure white
+- Position: `sticky` (stays fixed on scroll)
+- Font: Akkurat, 16px
+
+---
+
+## Interactive Elements
+
+### Navigation
+- Sticky positioning — visible throughout scroll
+- Language toggle: fr/en
+- Cart with item count badge
+- "Voir mon panier" CTA button
+
+### Cart Button (two states)
+- **Transparent state**: transparent bg, black text — `border: none`
+- **Active/cart widget button**: `background: rgb(0,0,0)`, `color: white`, `border: 1px solid black`, `border-radius: 10px`, `padding: 0 15px`
+
+### Product Cards
+- Default: image + name + description visible
+- Hover: see `component-product-card-hover.png` — likely overlay with add-to-cart appears
+- Portrait image format (307x425 natural / 340x470 display)
+
+### Layout Toggle (in product filter bar)
+- "Affichage 2 colonnes" — 2-column layout
+- "Affichage 1 colonne" — 1-column layout
+
+### Shop Selector
+- Initial layer shows shop/location selector (`.shopsLayer__grid container --small`)
+- Lists Paris locations
+- Height: 575px overlay
 
 ---
 
 ## Animations Observed
 
-- **Hero mesh background**: `floatBlur` keyframe animation — blobs float and scale (CSS animation)
-- **Stats counters**: Number counting animation (likely triggered on scroll/intersection)
-- **Section reveals**: Likely fade-in / slide-up on scroll (intersection observer pattern)
-- **Case study tabs**: Filter tabs change displayed cards (interactive)
-- **Testimonials**: Carousel/slider component with navigation controls
+- Product card hover likely shows overlay with add-to-cart (opacity fade-in)
+- Navigation is sticky with no transition animation on scroll
+- Page intro likely has subtle fade-in on load (`.introHome` class)
+- Lazy loading: images use multiple SKU-suffixed URLs, loaded on scroll
+- No video elements on this page (unusual for luxury brand, confirms focus on product catalog)
 
 ---
 
-## Interactive Elements Found
+## Image URL Pattern
 
-| Element | Location | Behavior |
-|---------|----------|----------|
-| Nav links | Header | Smooth scroll to section anchors (#services, #realisations, #process, #contact) |
-| "Audit gratuit" CTA button | Header + hero | Links to /audit page |
-| Mobile hamburger menu | Header (mobile) | Toggles nav menu open/closed |
-| Case study filter tabs | #realisations | Filters case studies by category |
-| Testimonials carousel | #testimonials | Slides through testimonials |
-| Audit form | #audit + /audit | Lead-gen form — Prénom, Nom, Email, Téléphone, Site, Secteur |
-| Stats counters | #stats | Animated number counter on scroll |
+```
+https://cedric-grolet.com/opera/[SKU]-product_laptop/[product-slug].jpg
+https://cedric-grolet.com/opera/[SKU]-product_mobile/[product-slug].jpg
+```
+
+Each product has multiple SKU variants for carousel or zoom functionality. Example for "Fleur Mangue": SKUs 7627, 7628, 7629, 7630, 7631, 7632, 7633.
 
 ---
 
-## Approximate Section Dimensions (Desktop 1440)
+## Technical Notes
 
-| Section | Top (px) | Height (px) | Notes |
-|---------|----------|-------------|-------|
-| Header | 24 | 56 | Fixed/sticky |
-| Hero | 0 | 1 030 | Full screen + overflow |
-| Stats | 1 030 | 323 | |
-| Services | 1 359 | 858 | |
-| Realisations | 2 212 | 1 911 | Very tall — filterable content |
-| Process | 4 123 | 867 | |
-| Testimonials | 4 990 | 1 214 | |
-| Integrations | 6 204 | 581 | |
-| Audit CTA | 6 785 | 931 | |
-| Footer | 7 716 | 413 | |
-| **Total** | | **~8 129px** | |
+- Custom font "La Grolet" — not a Google Font, likely self-hosted
+- Akkurat — commercial Swiss sans-serif by Lineto foundry, self-hosted
+- `js-products-container` class suggests JS-driven filtering/sorting
+- `.shopsLayer__grid` — shop picker overlay (shown before location selected)
+- No video on this page
+- Page height: ~5485px at 1440px viewport
 
 ---
 
-## Notes for Cloner
+## Design Observations for Cloning
 
-- The site uses custom CSS classes (not Tailwind utility classes) — selectors like `.hidden-mobile` confirm this
-- Section IDs are clean and semantic: `#hero`, `#stats`, `#services`, `#realisations`, `#process`, `#testimonials`, `#integrations`, `#audit`
-- The `/audit` page is a separate route, not a modal
-- The audit CTA section on the homepage (#audit) appears to be a duplicate/embedded version of the /audit page form
-- Mobile nav uses a hamburger that when opened shows the full nav with "ImpulseAgency" branding and a back arrow
-- Font appears to be a sans-serif — likely Inter or a similar modern geometric sans
-- Color palette: dark backgrounds for stats section, light/white for most content, accent color for CTAs (appears to be a bright gradient or solid accent)
+1. **Minimal luxury aesthetic** — no decorative elements, the food photography IS the design
+2. **Strictly black + white + off-white** — zero accent colors, a true monochromatic palette
+3. **Two custom fonts only** — "La Grolet" (editorial display) + "Akkurat" (neutral sans)
+4. **Massive H1** — 90px with -3.6px letter-spacing creates bold editorial impact
+5. **4-column product grid** — tight, dense layout maximizing product visibility at desktop
+6. **Sticky white header** — minimal, clean, 74px
+7. **No hero image** — the intro section is text-only with essential shop info (very unusual)
+8. **Portrait product cards** — 340x470px portrait format, taller than wide, lets pastry photography dominate
+9. **Off-white page background** — `#F6F6F6` not pure white, adds subtle warmth
+10. **All interactions are clean** — no animations that feel flashy or decorative
+
+---
+
+## Data Files
+
+- `grolet-dom-info.json` — Full DOM structure, CSS variables, image URLs, section details
+- `grolet-typography.json` — All heading/button/paragraph style measurements

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LineMask } from '@/components/animations/line-mask';
+import { SectionHeading } from '@/components/animations/section-heading';
 import { FadeIn } from '@/components/animations/fade-in';
 
 const faqs = [
@@ -50,18 +50,9 @@ export function Faq() {
               FAQ
             </span>
           </FadeIn>
-          <LineMask
-            as="h2"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 800,
-              fontSize: 'clamp(28px, 4.5vw, 56px)',
-              color: 'var(--text)',
-              maxWidth: 600,
-            }}
-          >
-            Les questions qu'on nous pose tout le temps
-          </LineMask>
+          <SectionHeading accent="fréquentes" fontSize="clamp(28px, 4.5vw, 56px)" style={{ maxWidth: 600 }}>
+            Les questions
+          </SectionHeading>
         </div>
 
         {/* Accordion */}

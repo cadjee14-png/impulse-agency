@@ -1,0 +1,224 @@
+{
+  "allHeadings": [
+    {
+      "tag": "H1",
+      "text": "",
+      "fontFamily": "\"La Grolet\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "32px",
+      "fontWeight": "400",
+      "lineHeight": "32px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(0, 0, 0)",
+      "pageY": 20
+    },
+    {
+      "tag": "H1",
+      "text": "Cedric Grolet\n                Opéra",
+      "fontFamily": "\"La Grolet\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "90px",
+      "fontWeight": "400",
+      "lineHeight": "normal",
+      "letterSpacing": "-3.6px",
+      "textTransform": "none",
+      "color": "rgb(0, 0, 0)",
+      "pageY": 114
+    }
+  ],
+  "bodyText": [
+    {
+      "text": "",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "19.25px",
+      "color": "rgb(255, 255, 255)"
+    },
+    {
+      "text": "",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "19.25px",
+      "color": "rgb(255, 255, 255)"
+    },
+    {
+      "text": "35 avenue de l’Opéra, 75002 Paris",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "19.25px",
+      "color": "rgb(75, 75, 75)"
+    },
+    {
+      "text": "Du mercredi au dimanche",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "19.25px",
+      "color": "rgb(75, 75, 75)"
+    },
+    {
+      "text": "de 9h00 à 18h00",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "19.25px",
+      "color": "rgb(75, 75, 75)"
+    },
+    {
+      "text": "Pâte sucrée, crème amande vanille, gel citron vert, coeur coulant mangue vanille",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "13px",
+      "fontWeight": "400",
+      "lineHeight": "17.94px",
+      "color": "rgb(143, 143, 143)"
+    }
+  ],
+  "links": [],
+  "buttons": [
+    {
+      "text": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": 29
+    },
+    {
+      "text": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": 0
+    },
+    {
+      "text": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "1px 6px",
+      "pageY": 0
+    },
+    {
+      "text": "Voir mon panier",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "16px",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": 0
+    },
+    {
+      "text": "Voir mon panier",
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "border": "1px solid rgb(0, 0, 0)",
+      "borderRadius": "10px",
+      "fontSize": "16px",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px 15px",
+      "pageY": 0
+    },
+    {
+      "text": "",
+      "bg": "rgba(0, 0, 0, 0.7)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": 0
+    },
+    {
+      "text": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": -628
+    },
+    {
+      "text": "Affichage 2 colonnes\n                            \n",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "16px",
+      "fontFamily": "Akkurat, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": 0
+    },
+    {
+      "text": "Affichage 2 colonnes",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": 0
+    },
+    {
+      "text": "Affichage 1 colonne",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "borderRadius": "0px",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "0px",
+      "pageY": 0
+    },
+    {
+      "text": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(51, 51, 51)",
+      "border": "0px none rgb(51, 51, 51)",
+      "borderRadius": "50%",
+      "fontSize": "13.3333px",
+      "fontFamily": "Arial",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "padding": "1px 6px",
+      "pageY": 0
+    }
+  ]
+}
