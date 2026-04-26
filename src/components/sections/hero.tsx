@@ -13,7 +13,6 @@ export function Hero() {
   const subtextRef = useRef<HTMLParagraphElement>(null);
   const ctaGroupRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
   const scrollIndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,10 +27,6 @@ export function Hero() {
       gsap.set(ctaItems, { y: 24, opacity: 0 });
     }
     gsap.set(badgeRef.current, { opacity: 0, y: 10, scale: 0.95 });
-    if (statsRef.current) {
-      const statItems = statsRef.current.children;
-      gsap.set(statItems, { y: 20, opacity: 0 });
-    }
     gsap.set(scrollIndRef.current, { opacity: 0 });
 
     tl
@@ -51,13 +46,7 @@ export function Hero() {
         stagger: 0.12,
         duration: 0.7,
       }, 1.1)
-      .to(statsRef.current ? Array.from(statsRef.current.children) : [], {
-        y: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.6,
-      }, 1.35)
-      .to(scrollIndRef.current, { opacity: 1, duration: 0.5 }, 1.6);
+      .to(scrollIndRef.current, { opacity: 1, duration: 0.5 }, 1.35);
 
     return () => { tl.kill(); };
   }, []);
@@ -290,98 +279,11 @@ export function Hero() {
           </button>
         </div>
 
-        {/* Hero Stats */}
-        <div
-          ref={statsRef}
-          style={{
-            display: 'flex',
-            gap: 'clamp(16px, 4vw, 48px)',
-            flexWrap: 'nowrap',
-            alignItems: 'center',
-            paddingTop: 'clamp(20px, 3vw, 32px)',
-            borderTop: '1px solid var(--line)',
-          }}
-        >
-          {[
-            { value: '30+', label: 'Projets réalisés' },
-            { value: '3 ans', label: "D'expérience" },
-            { value: '90j', label: 'Pour voir les résultats' },
-          ].map((stat, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 800,
-                  fontSize: 'clamp(17px, 2.5vw, 28px)',
-                  color: 'var(--accent)',
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                }}
-              >
-                {stat.value}
-              </span>
-              <span style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 500 }}>
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* Floating metric cards — desktop only */}
-      <div className="hero-floaters" style={{
-        position: 'absolute',
-        right: 'clamp(24px, 5vw, 80px)',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 16,
-        pointerEvents: 'none',
-      }}>
-        {[
-          { label: 'Projets réalisés', value: '30+', color: 'var(--accent-light)', delay: '0s' },
-          { label: 'Leads garantis', value: '+30%', color: '#25D366', delay: '0.3s' },
-          { label: "D'expérience", value: '3 ans', color: 'var(--accent)', delay: '0.6s' },
-        ].map((card, i) => (
-          <div key={i} style={{
-            background: 'var(--surface)',
-            border: '1px solid var(--line)',
-            borderRadius: 14,
-            padding: '14px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-            animation: `floatCard 4s ease-in-out infinite`,
-            animationDelay: card.delay,
-            backdropFilter: 'blur(8px)',
-            minWidth: 170,
-          }}>
-            <div style={{
-              width: 36,
-              height: 36,
-              borderRadius: 10,
-              background: `${card.color}18`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: card.color }} />
-            </div>
-            <div>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: 2 }}>{card.label}</div>
-              <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: 22, color: 'var(--text)', letterSpacing: '-0.03em', lineHeight: 1 }}>{card.value}</div>
-            </div>
-          </div>
-        ))}
-        <style>{`
-          @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-          @media(max-width:900px){ .hero-floaters { display: none !important; } }
-          @media(max-width:768px){ .scroll-indicator { display: none !important; } }
-        `}</style>
-      </div>
+      <style>{`
+        @media(max-width:768px){ .scroll-indicator { display: none !important; } }
+      `}</style>
 
       {/* Scroll indicator */}
       <div
