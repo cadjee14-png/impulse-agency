@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -21,36 +21,35 @@ export function Counter({
   suffix = '',
   prefix = '',
   isFloat = false,
-  duration = 2,
+  duration = 1.6,
   className,
   style,
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [triggered, setTriggered] = useState(false);
-
-  const startVal = 0;
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || triggered) return;
+    if (!el) return;
 
-    const obj = { val: startVal };
+    el.textContent = `${prefix}0${suffix}`;
+
+    const obj = { val: 0 };
     let tween: gsap.core.Tween;
 
     const st = ScrollTrigger.create({
       trigger: el,
-      start: 'top 92%',
+      start: 'top 90%',
       once: true,
       onEnter: () => {
-        if (triggered) return;
-        setTriggered(true);
         tween = gsap.to(obj, {
           val: target,
           duration,
           ease: 'power2.out',
           onUpdate: () => {
             if (el) {
-              const display = isFloat ? obj.val.toFixed(1) : Math.round(obj.val).toString();
+              const display = isFloat
+                ? obj.val.toFixed(1)
+                : Math.round(obj.val).toString();
               el.textContent = `${prefix}${display}${suffix}`;
             }
           },
@@ -62,13 +61,11 @@ export function Counter({
       tween?.kill();
       st.kill();
     };
-  }, [target, suffix, prefix, isFloat, duration, triggered, startVal]);
-
-  const initialDisplay = isFloat ? (0).toFixed(1) : '0';
+  }, [target, suffix, prefix, isFloat, duration]);
 
   return (
     <span ref={ref} className={className} style={style}>
-      {prefix}{initialDisplay}{suffix}
+      {prefix}0{suffix}
     </span>
   );
 }
