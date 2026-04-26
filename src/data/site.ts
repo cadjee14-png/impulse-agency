@@ -13,10 +13,10 @@ export const siteConfig = {
 };
 
 export const stats = [
-  { value: 200, suffix: '+', label: 'Marques accompagnées' },
-  { value: 5.2, suffix: 'x', label: 'ROAS moyen', isFloat: true },
-  { value: 340, suffix: '%', label: 'Engagement moyen' },
-  { value: 180, suffix: '%', label: 'Leads générés' },
+  { value: 30, suffix: '+', label: 'Projets réalisés' },
+  { value: 3, suffix: ' ans', label: 'Expérience digitale' },
+  { value: 30, suffix: '%', label: 'Leads garantis ou remboursé' },
+  { value: 90, suffix: 'j', label: 'Pour voir les résultats' },
 ];
 
 export const services = [

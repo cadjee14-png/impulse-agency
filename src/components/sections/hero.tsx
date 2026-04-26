@@ -303,9 +303,9 @@ export function Hero() {
           }}
         >
           {[
-            { value: '200+', label: 'Marques' },
-            { value: 'x3.4', label: 'ROI moyen' },
-            { value: '24h', label: 'Setup' },
+            { value: '30+', label: 'Projets réalisés' },
+            { value: '3 ans', label: "D'expérience" },
+            { value: '90j', label: 'Pour voir les résultats' },
           ].map((stat, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
               <span
@@ -340,9 +340,9 @@ export function Hero() {
         pointerEvents: 'none',
       }}>
         {[
-          { label: 'ROAS moyen', value: '5.2×', color: 'var(--accent-light)', delay: '0s' },
-          { label: 'Engagement', value: '+340%', color: '#25D366', delay: '0.3s' },
-          { label: 'Marques', value: '200+', color: 'var(--accent)', delay: '0.6s' },
+          { label: 'Projets réalisés', value: '30+', color: 'var(--accent-light)', delay: '0s' },
+          { label: 'Leads garantis', value: '+30%', color: '#25D366', delay: '0.3s' },
+          { label: "D'expérience", value: '3 ans', color: 'var(--accent)', delay: '0.6s' },
         ].map((card, i) => (
           <div key={i} style={{
             background: 'var(--surface)',

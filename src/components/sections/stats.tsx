@@ -48,7 +48,7 @@ export function Stats() {
               <Counter
                 target={stat.value}
                 suffix={stat.suffix}
-                isFloat={stat.isFloat}
+                isFloat={false}
                 duration={2.2}
               />
             </span>
