@@ -117,18 +117,22 @@ export function Hero() {
           .scroll-indicator { display: none !important; }
           .hero-badge       { display: none !important; }
           .hero-h1          { font-size: 40px !important; }
-          .hero-section     { padding-bottom: 40px !important; }
+          .hero-section     {
+            align-items: flex-start !important;
+            padding-top: 100px !important;
+            padding-bottom: 48px !important;
+            min-height: auto !important;
+          }
           .hero-cta-group   {
             flex-wrap: nowrap !important;
             width: 100%;
-            margin-top: 4px;
           }
           .hero-cta-group > * {
             flex: 1;
             justify-content: center !important;
             padding-left: 12px !important;
             padding-right: 12px !important;
-            font-size: 13px !important;
+            font-size: 14px !important;
             white-space: nowrap;
             text-align: center;
           }
@@ -254,8 +258,8 @@ export function Hero() {
                 el.style.boxShadow = '0 8px 32px rgba(30,70,107,0.25)';
               }}
             >
-              <span className="cta-text-long">Recevoir mon diagnostic offert →</span>
-              <span className="cta-text-short">Audit offert →</span>
+              <span className="cta-text-long">Recevoir mon audit gratuit</span>
+              <span className="cta-text-short">Booster mon business</span>
             </a>
           </Magnetic>
 
@@ -283,8 +287,8 @@ export function Hero() {
               el.style.background = 'transparent';
             }}
           >
-              <span className="cta-text-long">Obtenir ces résultats →</span>
-              <span className="cta-text-short">Résultats →</span>
+              <span className="cta-text-long">Voir nos réalisations</span>
+              <span className="cta-text-short">Voir les résultats</span>
           </button>
         </div>
       </div>
