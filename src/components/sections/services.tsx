@@ -16,24 +16,65 @@ const cardConfig = [
   { isDark: false, isWide: true,  metricValue: '+95%',  metricLabel: 'Satisfaction client' },
 ];
 
-/* ─── Brand logo ─── */
-function BrandLogo({ slug, bg, iconColor = 'ffffff', size = 44 }: {
-  slug: string; bg: string; iconColor?: string; size?: number;
+/* ─── Inline SVG paths from simple-icons + manual for missing ones ─── */
+import {
+  siShopify, siWordpress, siReact, siNextdotjs,
+  siInstagram, siTiktok, siFacebook, siMeta,
+  siGoogle, siFigma, siGoogleads,
+  siGooglesearchconsole, siGoogleanalytics, siSemrush,
+} from 'simple-icons';
+
+// LinkedIn — removed from simple-icons, manual path
+const linkedinPath = 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z';
+// Canva — manual path
+const canvaPath = 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c4.142 0 7.5 3.358 7.5 7.5s-3.358 7.5-7.5 7.5S4.5 16.142 4.5 12 7.858 4.5 12 4.5zm0 2.25A5.25 5.25 0 1 0 17.25 12 5.256 5.256 0 0 0 12 6.75z';
+// Adobe Illustrator — "Ai" mark
+const illustratorPath = 'M11.96.43L.25 23.57h3.968l2.346-5.13h10.875l2.346 5.13h3.968zm0 6.522l3.9 8.51H8.06z';
+
+/* ─── Brand logo — inline SVG, zero external dependency ─── */
+function BrandLogo({
+  path, bg, iconColor = '#ffffff', size = 44, viewBox = '0 0 24 24', multiColor = false,
+}: {
+  path: string; bg: string; iconColor?: string; size?: number;
+  viewBox?: string; multiColor?: boolean;
 }) {
+  const s = Math.round(size * 0.52);
   return (
     <div style={{
       width: size, height: size, borderRadius: 12, background: bg,
       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-      overflow: 'hidden',
     }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`https://cdn.simpleicons.org/${slug}/${iconColor}`}
-        width={size * 0.52}
-        height={size * 0.52}
-        alt={slug}
-        style={{ display: 'block' }}
-      />
+      <svg viewBox={viewBox} width={s} height={s} fill={iconColor} xmlns="http://www.w3.org/2000/svg">
+        <path d={path} />
+      </svg>
+    </div>
+  );
+}
+
+/* ─── Google multicolor G ─── */
+function GoogleLogo({ size = 44 }: { size?: number }) {
+  const s = Math.round(size * 0.56);
+  return (
+    <div style={{ width: size, height: size, borderRadius: 12, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '1px solid rgba(0,0,0,0.08)' }}>
+      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+    </div>
+  );
+}
+
+/* ─── Instagram gradient ─── */
+function InstagramLogo({ size = 44 }: { size?: number }) {
+  const s = Math.round(size * 0.52);
+  const id = 'ig-grad';
+  return (
+    <div style={{ width: size, height: size, borderRadius: 12, background: 'linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <svg viewBox="0 0 24 24" width={s} height={s} fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <path d={siInstagram.path} />
+      </svg>
     </div>
   );
 }
@@ -42,37 +83,37 @@ function BrandLogo({ slug, bg, iconColor = 'ffffff', size = 44 }: {
 const cardLogos: React.ReactNode[][] = [
   // 0 — Sites Web
   [
-    <BrandLogo key="shopify"    slug="shopify"           bg="#96BF48" />,
-    <BrandLogo key="wordpress"  slug="wordpress"         bg="#21759B" />,
-    <BrandLogo key="react"      slug="react"             bg="#20232A" iconColor="61DAFB" />,
-    <BrandLogo key="nextjs"     slug="nextdotjs"         bg="#000000" />,
+    <BrandLogo key="shopify"   path={siShopify.path}   bg="#7AB55C" />,
+    <BrandLogo key="wordpress" path={siWordpress.path}  bg="#21759B" />,
+    <BrandLogo key="react"     path={siReact.path}      bg="#20232A" iconColor="#61DAFB" />,
+    <BrandLogo key="nextjs"    path={siNextdotjs.path}  bg="#000000" />,
   ],
   // 1 — Social Media
   [
-    <BrandLogo key="instagram"  slug="instagram"         bg="linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)" />,
-    <BrandLogo key="tiktok"     slug="tiktok"            bg="#010101" />,
-    <BrandLogo key="facebook"   slug="facebook"          bg="#1877F2" />,
-    <BrandLogo key="linkedin"   slug="linkedin"          bg="#0A66C2" />,
+    <InstagramLogo key="instagram" />,
+    <BrandLogo key="tiktok"    path={siTiktok.path}     bg="#010101" />,
+    <BrandLogo key="facebook"  path={siFacebook.path}   bg="#0866FF" />,
+    <BrandLogo key="linkedin"  path={linkedinPath}      bg="#0A66C2" />,
   ],
   // 2 — Publicité
   [
-    <BrandLogo key="meta"       slug="meta"              bg="#0866FF" />,
-    <BrandLogo key="google"     slug="google"            bg="#ffffff"  iconColor="4285F4" />,
-    <BrandLogo key="googleads"  slug="googleads"         bg="#4285F4" />,
-    <BrandLogo key="tiktok2"    slug="tiktok"            bg="#010101" />,
+    <BrandLogo key="meta"      path={siMeta.path}       bg="#0467DF" />,
+    <GoogleLogo key="google" />,
+    <BrandLogo key="googleads" path={siGoogleads.path}  bg="#4285F4" />,
+    <BrandLogo key="tiktok2"   path={siTiktok.path}     bg="#010101" />,
   ],
   // 3 — SEO
   [
-    <BrandLogo key="google2"    slug="google"            bg="#ffffff"  iconColor="4285F4" />,
-    <BrandLogo key="gsc"        slug="googlesearchconsole" bg="#458CF5" />,
-    <BrandLogo key="ga"         slug="googleanalytics"   bg="#E37400" />,
-    <BrandLogo key="semrush"    slug="semrush"           bg="#FF642D" />,
+    <GoogleLogo key="google2" />,
+    <BrandLogo key="gsc"       path={siGooglesearchconsole.path} bg="#458CF5" />,
+    <BrandLogo key="ga"        path={siGoogleanalytics.path}     bg="#E37400" />,
+    <BrandLogo key="semrush"   path={siSemrush.path}    bg="#FF642D" />,
   ],
   // 4 — Branding
   [
-    <BrandLogo key="figma"      slug="figma"             bg="#1e1e1e"  iconColor="F24E1E" />,
-    <BrandLogo key="canva"      slug="canva"             bg="#00C4CC" />,
-    <BrandLogo key="ai"         slug="adobeillustrator"  bg="#FF9A00" />,
+    <BrandLogo key="figma"     path={siFigma.path}      bg="#1e1e1e" iconColor="#F24E1E" />,
+    <BrandLogo key="canva"     path={canvaPath}          bg="#00C4CC" />,
+    <BrandLogo key="ai"        path={illustratorPath}   bg="#FF9A00" />,
   ],
 ];
 
