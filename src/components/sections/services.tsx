@@ -393,6 +393,7 @@ export function Services() {
             ))}
             <span className="services-title-word" style={{
               display: 'inline-block', fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-playfair), "Playfair Display", Georgia, serif',
               color: 'var(--accent)', letterSpacing: '0.01em',
             }}>
               tout

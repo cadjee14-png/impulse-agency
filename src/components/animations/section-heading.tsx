@@ -91,7 +91,7 @@ export function SectionHeading({
         className="sh-word"
         style={{
           display: 'inline-block',
-          fontFamily: 'var(--font-outfit), Outfit, serif',
+          fontFamily: 'var(--font-playfair), "Playfair Display", Georgia, serif',
           fontWeight: 400,
           fontStyle: 'italic',
           color: accentColor,

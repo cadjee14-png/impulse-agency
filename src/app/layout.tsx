@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
-import { inter, plusJakarta, outfit } from '@/lib/fonts';
+import { inter, plusJakarta, playfair } from '@/lib/fonts';
 import { SmoothScroll } from '@/components/layout/smooth-scroll';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
@@ -114,7 +114,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${plusJakarta.variable} ${outfit.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${plusJakarta.variable} ${playfair.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <script
