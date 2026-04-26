@@ -72,11 +72,14 @@ export function Stats() {
 
       <style>{`
         @media (max-width: 768px) {
+          section#stats {
+            padding: 16px 16px !important;
+          }
           .stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
           .stats-grid > div {
-            padding: 16px 12px !important;
+            padding: 10px 8px !important;
           }
           .stats-grid > div:nth-child(2) {
             border-right: none !important;

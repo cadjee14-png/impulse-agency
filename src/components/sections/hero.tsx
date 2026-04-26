@@ -126,14 +126,23 @@ export function Hero() {
           .hero-cta-group   {
             flex-wrap: nowrap !important;
             justify-content: center !important;
-            gap: 10px !important;
+            gap: 8px !important;
           }
           .hero-cta-group > * {
+            flex: 1 1 0 !important;
+            display: block !important;
+            min-width: 0 !important;
+          }
+          .hero-cta-group > * > a,
+          .hero-cta-group > button {
+            display: flex !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
             justify-content: center !important;
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-            font-size: 14px !important;
-            white-space: nowrap;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+            font-size: 13px !important;
+            white-space: nowrap !important;
           }
           .cta-text-long  { display: none !important; }
           .cta-text-short { display: inline !important; }
