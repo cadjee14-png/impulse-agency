@@ -5,6 +5,13 @@ import { gsap } from 'gsap';
 import { Magnetic } from '@/components/animations/magnetic';
 import { siteConfig } from '@/data/site';
 
+/* ─── Card data — replace src with your real screenshots ─── */
+const CARDS = [
+  { rot: -14, tx: -55, ty:  15, z: 3, src: '/images/card-1.jpg' },
+  { rot:  -3, tx:  20, ty:   0, z: 2, src: '/images/card-2.jpg' },
+  { rot:   9, tx:  95, ty:  20, z: 1, src: '/images/card-3.jpg' },
+];
+
 export function Hero() {
   const sectionRef   = useRef<HTMLElement>(null);
   const labelRef     = useRef<HTMLSpanElement>(null);
@@ -15,6 +22,7 @@ export function Hero() {
   const ctaGroupRef  = useRef<HTMLDivElement>(null);
   const badgeRef     = useRef<HTMLDivElement>(null);
   const scrollIndRef = useRef<HTMLDivElement>(null);
+  const cardsRef     = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
@@ -29,6 +37,16 @@ export function Hero() {
     }
     gsap.set(badgeRef.current, { opacity: 0, y: 10, scale: 0.95 });
     gsap.set(scrollIndRef.current, { opacity: 0 });
+
+    // Cards entrance
+    if (cardsRef.current) {
+      const cardEls = Array.from(cardsRef.current.children);
+      gsap.set(cardEls, { opacity: 0, y: 60, scale: 0.85 });
+      tl.to(cardEls, {
+        opacity: 1, y: 0, scale: 1,
+        duration: 1.0, stagger: 0.12, ease: 'power3.out',
+      }, 0.3);
+    }
 
     tl
       .to(labelRef.current, { y: 0, opacity: 1, duration: 0.6 }, 0.15)
@@ -58,11 +76,11 @@ export function Hero() {
       style={{
         minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        alignItems: 'center',
         padding: 'clamp(100px, 14vw, 160px) clamp(24px, 4vw, 64px) 80px',
         position: 'relative',
         overflow: 'hidden',
+        gap: 'clamp(40px, 6vw, 100px)',
       }}
     >
       {/* ── Background blurs ── */}
@@ -90,15 +108,19 @@ export function Hero() {
           0%, 100% { transform: translateY(0); }
           50%       { transform: translateY(8px); }
         }
-        @media (max-width: 768px) {
-          .scroll-indicator { display: none !important; }
+        @keyframes cardFloat {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-12px); }
+        }
+        @media (max-width: 900px) {
+          .hero-cards        { display: none !important; }
+          .scroll-indicator  { display: none !important; }
         }
       `}</style>
 
-      {/* ── Content — aligné à gauche ── */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
+      {/* ── Left — content ── */}
+      <div style={{ flex: 1, minWidth: 0, position: 'relative', zIndex: 1 }}>
 
-        {/* Label */}
         <span
           ref={labelRef}
           className="section-label"
@@ -111,17 +133,15 @@ export function Hero() {
           Agence Digitale Full-Service
         </span>
 
-        {/* Headline — 3 lignes */}
         <h1
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 900,
-            fontSize: 'clamp(48px, 6.5vw, 108px)',
+            fontSize: 'clamp(48px, 6vw, 104px)',
             lineHeight: 0.95,
             letterSpacing: '-0.04em',
             color: 'var(--text)',
             marginBottom: 'clamp(24px, 3vw, 40px)',
-            maxWidth: '55vw',
           }}
         >
           <div ref={line1Ref} style={{ overflow: 'hidden', paddingBottom: '0.15em' }}>
@@ -145,21 +165,19 @@ export function Hero() {
           </div>
         </h1>
 
-        {/* Subtext */}
         <p
           ref={subtextRef}
           style={{
-            fontSize: 'clamp(15px, 1.5vw, 18px)',
+            fontSize: 'clamp(15px, 1.4vw, 18px)',
             color: 'var(--text-dim)',
             lineHeight: 1.7,
-            maxWidth: 480,
+            maxWidth: 460,
             marginBottom: 32,
           }}
         >
           {siteConfig.subtext}
         </p>
 
-        {/* Badge */}
         <div
           ref={badgeRef}
           style={{
@@ -181,7 +199,6 @@ export function Hero() {
           <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }`}</style>
         </div>
 
-        {/* CTAs */}
         <div
           ref={ctaGroupRef}
           style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}
@@ -243,7 +260,90 @@ export function Hero() {
             Obtenir ces résultats →
           </button>
         </div>
+      </div>
 
+      {/* ── Right — stacked cards ── */}
+      <div
+        className="hero-cards"
+        style={{
+          position: 'relative',
+          width: 'clamp(320px, 32vw, 480px)',
+          height: 'clamp(380px, 42vw, 560px)',
+          flexShrink: 0,
+          zIndex: 1,
+          animation: 'cardFloat 6s ease-in-out infinite',
+        }}
+      >
+        <div ref={cardsRef} style={{ position: 'relative', width: '100%', height: '100%' }}>
+          {CARDS.map((card, i) => (
+            <div
+              key={i}
+              style={{
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                width: 'clamp(180px, 18vw, 260px)',
+                height: 'clamp(250px, 26vw, 370px)',
+                marginLeft: 'calc(clamp(180px, 18vw, 260px) / -2)',
+                marginTop: 'calc(clamp(250px, 26vw, 370px) / -2)',
+                borderRadius: 20,
+                overflow: 'hidden',
+                boxShadow: '0 24px 60px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10)',
+                transform: `rotate(${card.rot}deg) translate(${card.tx}px, ${card.ty}px)`,
+                zIndex: card.z,
+                background: '#1E466B',
+              }}
+            >
+              {/* Screenshot — add your image to /public/images/card-1.jpg etc. */}
+              <img
+                src={card.src}
+                alt=""
+                style={{
+                  width: '100%', height: '100%',
+                  objectFit: 'cover', objectPosition: 'top',
+                  display: 'block',
+                }}
+                onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+              />
+              {/* Fallback gradient si image absente */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: i === 0
+                  ? 'linear-gradient(145deg, #1E466B 0%, #0d2640 100%)'
+                  : i === 1
+                  ? 'linear-gradient(145deg, #163350 0%, #0a1e30 100%)'
+                  : 'linear-gradient(145deg, #0a1628 0%, #05101e 100%)',
+                zIndex: -1,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <span style={{
+                  color: 'rgba(255,255,255,0.15)',
+                  fontSize: 12, fontWeight: 700,
+                  letterSpacing: 2, textTransform: 'uppercase',
+                  fontFamily: 'var(--font-heading)',
+                }}>
+                  Projet {i + 1}
+                </span>
+              </div>
+              {/* Badge logo */}
+              <div style={{
+                position: 'absolute', top: 14, left: 14,
+                width: 34, height: 34, borderRadius: 10,
+                background: 'rgba(255,255,255,0.18)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                zIndex: 2,
+              }}>
+                <span style={{
+                  color: 'white', fontSize: 13,
+                  fontWeight: 900, fontFamily: 'var(--font-heading)',
+                  letterSpacing: '-0.03em',
+                }}>I</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Scroll indicator */}
