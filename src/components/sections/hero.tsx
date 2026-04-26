@@ -113,8 +113,26 @@ export function Hero() {
           50%       { transform: translateY(-12px); }
         }
         @media (max-width: 900px) {
-          .hero-cards        { display: none !important; }
-          .scroll-indicator  { display: none !important; }
+          .hero-cards       { display: none !important; }
+          .scroll-indicator { display: none !important; }
+          .hero-badge       { display: none !important; }
+          .hero-cta-group   {
+            flex-wrap: nowrap !important;
+            width: 100%;
+          }
+          .hero-cta-group > * {
+            flex: 1;
+            justify-content: center !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+            font-size: 14px !important;
+            text-align: center;
+          }
+          .cta-text-long  { display: none !important; }
+          .cta-text-short { display: inline !important; }
+        }
+        @media (min-width: 901px) {
+          .cta-text-short { display: none; }
         }
       `}</style>
 
@@ -137,7 +155,7 @@ export function Hero() {
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 900,
-            fontSize: 'clamp(48px, 6vw, 104px)',
+            fontSize: 'clamp(54px, 6vw, 104px)',
             lineHeight: 0.95,
             letterSpacing: '-0.04em',
             color: 'var(--text)',
@@ -180,6 +198,7 @@ export function Hero() {
 
         <div
           ref={badgeRef}
+          className="hero-badge"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
             background: 'rgba(30,70,107,0.08)',
@@ -201,6 +220,7 @@ export function Hero() {
 
         <div
           ref={ctaGroupRef}
+          className="hero-cta-group"
           style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}
         >
           <Magnetic>
@@ -229,7 +249,8 @@ export function Hero() {
                 el.style.boxShadow = '0 8px 32px rgba(30,70,107,0.25)';
               }}
             >
-              Recevoir mon diagnostic offert →
+              <span className="cta-text-long">Recevoir mon diagnostic offert →</span>
+              <span className="cta-text-short">Diagnostic offert →</span>
             </a>
           </Magnetic>
 
@@ -257,7 +278,8 @@ export function Hero() {
               el.style.background = 'transparent';
             }}
           >
-            Obtenir ces résultats →
+              <span className="cta-text-long">Obtenir ces résultats →</span>
+              <span className="cta-text-short">Nos résultats →</span>
           </button>
         </div>
       </div>
