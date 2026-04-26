@@ -28,8 +28,7 @@ export function Counter({
   const ref = useRef<HTMLSpanElement>(null);
   const [triggered, setTriggered] = useState(false);
 
-  // Start from 80% of target so even if captured mid-animation it looks credible
-  const startVal = isFloat ? target * 0.75 : Math.round(target * 0.75);
+  const startVal = 0;
 
   useEffect(() => {
     const el = ref.current;
@@ -65,7 +64,7 @@ export function Counter({
     };
   }, [target, suffix, prefix, isFloat, duration, triggered, startVal]);
 
-  const initialDisplay = isFloat ? startVal.toFixed(1) : Math.round(startVal).toString();
+  const initialDisplay = isFloat ? (0).toFixed(1) : '0';
 
   return (
     <span ref={ref} className={className} style={style}>
