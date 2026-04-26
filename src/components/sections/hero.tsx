@@ -11,6 +11,7 @@ export function Hero() {
   const line1Ref      = useRef<HTMLDivElement>(null);
   const line2Ref      = useRef<HTMLDivElement>(null);
   const line3Ref      = useRef<HTMLDivElement>(null);
+
   const subtextRef    = useRef<HTMLParagraphElement>(null);
   const ctaGroupRef   = useRef<HTMLDivElement>(null);
   const badgeRef      = useRef<HTMLDivElement>(null);
@@ -103,7 +104,7 @@ export function Hero() {
           pointerEvents: 'none',
           userSelect: 'none',
           whiteSpace: 'nowrap',
-          animation: 'watermarkDrift 16s ease-in-out infinite alternate',
+          animation: 'watermarkFloat 10s ease-in-out infinite',
           zIndex: 0,
         }}
       >
@@ -115,9 +116,12 @@ export function Hero() {
           0%   { transform: translate(0, 0) scale(1); }
           100% { transform: translate(20px, -30px) scale(1.1); }
         }
-        @keyframes watermarkDrift {
-          0%   { transform: translateY(-52%) translateX(0px); }
-          100% { transform: translateY(-50%) translateX(-18px); }
+        @keyframes watermarkFloat {
+          0%   { transform: translateY(-52%) translateX(0px)   scale(1);    opacity: 0.055; }
+          25%  { transform: translateY(-56%) translateX(-20px) scale(1.03); opacity: 0.08; }
+          50%  { transform: translateY(-50%) translateX(-8px)  scale(1.01); opacity: 0.06; }
+          75%  { transform: translateY(-54%) translateX(12px)  scale(0.98); opacity: 0.09; }
+          100% { transform: translateY(-52%) translateX(0px)   scale(1);    opacity: 0.055; }
         }
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
@@ -125,7 +129,6 @@ export function Hero() {
         }
         @media (max-width: 768px) {
           .scroll-indicator { display: none !important; }
-          .hero-watermark   { font-size: clamp(80px, 28vw, 160px) !important; right: -15% !important; }
         }
       `}</style>
 
@@ -142,24 +145,24 @@ export function Hero() {
           Agence Digitale Full-Service
         </span>
 
-        {/* Headline */}
+        {/* Headline — 3 lignes max */}
         <h1
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 900,
-            fontSize: 'clamp(44px, 7.5vw, 128px)',
+            fontSize: 'clamp(42px, 5.8vw, 96px)',
             lineHeight: 0.95,
             letterSpacing: '-0.04em',
             color: 'var(--text)',
             marginBottom: 'clamp(24px, 3vw, 40px)',
-            maxWidth: 820,
+            maxWidth: 980,
           }}
         >
-          <div ref={line1Ref} style={{ overflow: 'hidden', paddingBottom: '0.12em' }}>
-            <span style={{ display: 'block' }}>Transformez</span>
+          <div ref={line1Ref} style={{ overflow: 'hidden', paddingBottom: '0.15em' }}>
+            <span style={{ display: 'block' }}>Transformez votre</span>
           </div>
-          <div ref={line2Ref} style={{ overflow: 'hidden', paddingBottom: '0.12em' }}>
-            <span style={{ display: 'block' }}>votre{' '}
+          <div ref={line2Ref} style={{ overflow: 'hidden', paddingBottom: '0.15em' }}>
+            <span style={{ display: 'block' }}>
               <span style={{ color: 'var(--accent)', position: 'relative', display: 'inline-block' }}>
                 business
                 <svg
@@ -171,7 +174,7 @@ export function Hero() {
               </span>
             </span>
           </div>
-          <div ref={line3Ref} style={{ overflow: 'hidden', paddingBottom: '0.12em' }}>
+          <div ref={line3Ref} style={{ overflow: 'hidden', paddingBottom: '0.15em' }}>
             <span style={{ display: 'block', color: 'var(--text-dim)' }}>en ligne.</span>
           </div>
         </h1>
@@ -271,7 +274,7 @@ export function Hero() {
               el.style.background = 'transparent';
             }}
           >
-            Voir nos réalisations →
+            Obtenir ces résultats →
           </button>
         </div>
 
