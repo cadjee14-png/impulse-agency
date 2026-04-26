@@ -1,289 +1,441 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { LineMask } from '@/components/animations/line-mask';
 import { services } from '@/data/site';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ServiceRow({ service, index }: { service: typeof services[0]; index: number }) {
-  const [expanded, setExpanded] = useState(false);
-  const rowRef = useRef<HTMLDivElement>(null);
-  const subRef = useRef<HTMLDivElement>(null);
+/* ─── Card visual config ─── */
+const cardConfig = [
+  { isDark: false, isWide: true,  metricValue: '+180%', metricLabel: 'Leads en moyenne' },
+  { isDark: true,  isWide: true,  metricValue: '+340%', metricLabel: 'Engagement moyen' },
+  { isDark: false, isWide: false, metricValue: '5.2x',  metricLabel: 'ROAS moyen' },
+  { isDark: true,  isWide: false, metricValue: 'Top 3', metricLabel: 'En 90 jours' },
+  { isDark: false, isWide: true,  metricValue: '100%',  metricLabel: 'Identité mémorable' },
+];
+
+/* ─── Icons ─── */
+function IconWeb() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+  );
+}
+function IconSocial() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+    </svg>
+  );
+}
+function IconAds() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+      <polyline points="16 7 22 7 22 13"/>
+    </svg>
+  );
+}
+function IconSeo() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="m21 21-4.35-4.35"/>
+    </svg>
+  );
+}
+function IconBrand() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.5-.7-.5-1.1 0-.9.7-1.7 1.7-1.7H16c3 0 5.5-2.5 5.5-5.5C22 6 17.5 2 12 2z"/>
+      <circle cx="8" cy="9" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="7" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="16" cy="9" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}
+const ICONS = [IconWeb, IconSocial, IconAds, IconSeo, IconBrand];
+
+/* ─── Dot-grid background (light cards) ─── */
+const dotGridStyle: React.CSSProperties = {
+  position: 'absolute', inset: 0, pointerEvents: 'none',
+  backgroundImage: 'radial-gradient(circle, rgba(30,70,107,0.12) 1px, transparent 1px)',
+  backgroundSize: '24px 24px',
+  maskImage: 'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, transparent 60%)',
+  WebkitMaskImage: 'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, transparent 60%)',
+};
+
+/* ─── Line-grid background (dark cards) ─── */
+const lineGridStyle: React.CSSProperties = {
+  position: 'absolute', inset: 0, pointerEvents: 'none',
+  backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)',
+  backgroundSize: '48px 48px',
+  maskImage: 'linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,transparent 60%)',
+  WebkitMaskImage: 'linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,transparent 60%)',
+};
+
+/* ─── Service Card ─── */
+function ServiceCard({
+  service, index,
+}: {
+  service: typeof services[0];
+  index: number;
+}) {
+  const cfg = cardConfig[index];
+  const IconComp = ICONS[index];
+  const cardRef = useRef<HTMLDivElement>(null);
+  const accentLineRef = useRef<HTMLDivElement>(null);
+
+  const dark = cfg.isDark;
+  const wide = cfg.isWide;
+
+  const bg = dark
+    ? '#0a1628'
+    : index === 0
+      ? 'linear-gradient(135deg,#f0f5fb 0%,#e8f0f8 100%)'
+      : index === 4
+        ? 'linear-gradient(135deg,#e8f0f8 0%,#f0f5fb 100%)'
+        : '#f5f8fc';
+
+  const border = dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(30,70,107,0.1)';
+  const shadow = dark
+    ? '0 8px 32px rgba(0,0,0,0.4)'
+    : '0 2px 8px rgba(0,0,0,0.03),0 8px 32px rgba(30,70,107,0.06)';
 
   const handleMouseEnter = () => {
-    setExpanded(true);
-    if (subRef.current) {
-      const items = subRef.current.querySelectorAll('.sub-item');
-      gsap.fromTo(items, { y: 10, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.4, ease: 'expo.out' });
-    }
+    if (!cardRef.current) return;
+    gsap.to(cardRef.current, { y: -8, scale: 1.01, duration: 0.5, ease: 'power3.out',
+      boxShadow: dark
+        ? '0 24px 64px rgba(0,0,0,0.5)'
+        : '0 24px 64px rgba(30,70,107,0.15)',
+    });
+    if (accentLineRef.current) gsap.to(accentLineRef.current, { scaleX: 1, duration: 0.5, ease: 'power3.out' });
   };
 
   const handleMouseLeave = () => {
-    setExpanded(false);
+    if (!cardRef.current) return;
+    gsap.to(cardRef.current, { y: 0, scale: 1, duration: 0.5, ease: 'power3.out', boxShadow: shadow });
+    if (accentLineRef.current) gsap.to(accentLineRef.current, { scaleX: 0, duration: 0.5, ease: 'power3.out' });
   };
 
   return (
     <div
-      ref={rowRef}
+      ref={cardRef}
+      className={`service-card service-card-${index}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
+        gridColumn: wide ? '1 / -1' : undefined,
+        background: bg,
+        border,
+        borderRadius: 16,
+        padding: wide ? 'clamp(32px,4vw,48px) clamp(24px,3vw,40px)' : 'clamp(28px,3vw,40px) clamp(20px,2.5vw,32px)',
         position: 'relative',
-        borderBottom: '1px solid var(--line)',
+        overflow: 'hidden',
         cursor: 'none',
-        transition: 'background 300ms',
-        background: expanded ? 'rgba(30,70,107,0.03)' : 'transparent',
+        willChange: 'transform',
       }}
     >
-      {/* Left accent bar */}
-      <div
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          width: 3,
-          height: '100%',
-          background: 'var(--accent)',
-          transform: expanded ? 'scaleY(1)' : 'scaleY(0)',
-          transformOrigin: 'top',
-          transition: 'transform 400ms var(--ease-expo)',
-        }}
-      />
+      {/* Background decoration */}
+      <div style={dark ? lineGridStyle : dotGridStyle} />
 
-      <div style={{ padding: '0 clamp(16px, 4vw, 64px)' }}>
-        {/* Main row */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 12,
-            minHeight: 72,
-            paddingLeft: 8,
-            paddingTop: 12,
-            paddingBottom: 12,
-          }}
-        >
-          {/* Number + Name + Mobile metric */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(12px, 3vw, 40px)', flex: 1, minWidth: 0 }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontWeight: 800,
-                fontSize: 12,
-                color: 'var(--text-muted)',
-                letterSpacing: '0.05em',
-                flexShrink: 0,
-              }}
-            >
+      {/* Accent line bottom */}
+      <div ref={accentLineRef} style={{
+        position: 'absolute', bottom: 0, left: 0,
+        width: '100%', height: 3,
+        background: dark ? 'rgba(103,186,244,0.8)' : 'var(--accent)',
+        borderRadius: '0 0 16px 16px',
+        transform: 'scaleX(0)', transformOrigin: 'left',
+      }} />
+
+      {/* Inner layout */}
+      <div className={wide ? 'service-card-inner-wide' : undefined} style={{
+        display: wide ? 'grid' : 'block',
+        gridTemplateColumns: wide ? '1.2fr 1fr' : undefined,
+        gap: wide ? 'clamp(24px,4vw,40px)' : undefined,
+        alignItems: wide ? 'center' : undefined,
+      }}>
+
+        {/* LEFT — content */}
+        <div>
+          {/* Icon + Number */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
+            <div className={`service-icon-${index}`} style={{
+              width: 52, height: 52, borderRadius: 14,
+              background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(30,70,107,0.08)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: dark ? 'rgba(255,255,255,0.7)' : 'var(--accent)',
+              flexShrink: 0,
+            }}>
+              <IconComp />
+            </div>
+            <span style={{
+              fontFamily: 'var(--font-heading)', fontWeight: 900,
+              fontSize: wide ? 'clamp(2rem,3.5vw,3rem)' : 'clamp(1.5rem,2.5vw,2.5rem)',
+              color: dark ? 'rgba(255,255,255,0.05)' : 'rgba(30,70,107,0.05)',
+              lineHeight: 1, letterSpacing: '-0.02em',
+            }}>
               {service.number}
             </span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 800,
-                  fontSize: 'clamp(18px, 3vw, 36px)',
-                  color: 'var(--text)',
-                  letterSpacing: '-0.025em',
-                  lineHeight: 1,
-                  transition: 'color 300ms',
-                  whiteSpace: 'nowrap',
-                  ...(expanded ? { color: 'var(--accent)' } : {}),
-                }}
-              >
-                {service.name}
-              </span>
-              <span
-                className="service-metric-mobile"
-                style={{
-                  display: 'none',
-                  fontSize: 11,
-                  color: 'var(--accent)',
-                  fontWeight: 600,
-                }}
-              >
-                {service.metric}
-              </span>
-            </div>
           </div>
 
-          {/* Description (hidden on mobile) */}
-          <span
-            className="service-desc"
-            style={{
-              fontSize: 14,
-              color: 'var(--text-muted)',
-              flex: 1,
-              maxWidth: 280,
-            }}
-          >
+          {/* Title */}
+          <h3 style={{
+            fontFamily: 'var(--font-heading)', fontWeight: 800,
+            fontSize: wide ? 'clamp(1.6rem,3vw,2.8rem)' : 'clamp(1.2rem,2vw,1.75rem)',
+            letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: 12,
+            color: dark ? '#ffffff' : 'var(--text)',
+          }}>
+            {service.name}
+          </h3>
+
+          {/* Description */}
+          <p style={{
+            fontSize: 'clamp(0.9rem,1vw,1.05rem)', lineHeight: 1.7,
+            color: dark ? 'rgba(255,255,255,0.5)' : 'var(--text-dim)',
+            marginBottom: 24, maxWidth: 400,
+          }}>
             {service.description}
-          </span>
+          </p>
 
-          {/* Metric — hidden on mobile, shown on desktop */}
-          <span
-            className="service-metric"
-            style={{
-              fontSize: 13,
-              color: 'var(--accent)',
-              fontWeight: 600,
-              letterSpacing: '0.01em',
-              background: 'rgba(30,70,107,0.08)',
-              borderRadius: 32,
-              padding: '4px 12px',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-            }}
-          >
-            {service.metric}
-          </span>
-
-          {/* Arrow */}
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              border: '1px solid var(--line)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'transform 400ms var(--ease-expo), background 300ms, border-color 300ms',
-              transform: expanded ? 'rotate(45deg)' : 'rotate(0deg)',
-              background: expanded ? 'var(--accent)' : 'transparent',
-              borderColor: expanded ? 'var(--accent)' : 'var(--line)',
-              flexShrink: 0,
-            }}
-          >
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke={expanded ? 'white' : 'var(--text-dim)'}
-              strokeWidth="2"
-            >
-              <path d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
+          {/* Tags */}
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {service.sub.map((tag, t) => (
+              <span key={t} className="service-tag" style={{
+                fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
+                padding: '5px 13px', borderRadius: 100,
+                background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(30,70,107,0.07)',
+                color: dark ? 'rgba(255,255,255,0.55)' : 'var(--accent)',
+                border: dark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(30,70,107,0.12)',
+              }}>
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Expanded sub-items */}
-        <div
-          ref={subRef}
-          style={{
-            display: 'grid',
-            gridTemplateRows: expanded ? '1fr' : '0fr',
-            transition: 'grid-template-rows 400ms var(--ease-expo)',
-          }}
-        >
-          <div style={{ overflow: 'hidden' }}>
-            <div
-              style={{
-                display: 'flex',
-                gap: 12,
-                paddingBottom: 20,
-                paddingLeft: 68,
-                flexWrap: 'wrap',
-              }}
-            >
-              {service.sub.map((item, i) => (
-                <span
-                  key={i}
-                  className="sub-item"
-                  style={{
-                    fontSize: 13,
-                    color: 'var(--text-dim)',
-                    background: 'var(--bg-2)',
-                    border: '1px solid var(--line)',
-                    borderRadius: 32,
-                    padding: '6px 14px',
-                    fontWeight: 500,
-                  }}
-                >
-                  {item}
+        {/* RIGHT — metric (wide cards only) */}
+        {wide && (
+          <div style={{
+            borderLeft: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(30,70,107,0.08)',
+            paddingLeft: 'clamp(20px,3vw,40px)',
+            display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12,
+            justifyContent: 'center',
+          }}>
+            <div style={{ textAlign: 'right' }}>
+              <div className="service-metric-value" style={{
+                fontFamily: 'var(--font-heading)', fontWeight: 900,
+                fontSize: 'clamp(2.2rem,5vw,4.5rem)', letterSpacing: '-0.04em', lineHeight: 1,
+                color: dark ? '#ffffff' : 'var(--accent)',
+              }}>
+                {cfg.metricValue}
+              </div>
+              <div style={{
+                fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em',
+                marginTop: 6,
+                color: dark ? 'rgba(255,255,255,0.35)' : 'var(--text-muted)',
+              }}>
+                {cfg.metricLabel}
+              </div>
+            </div>
+
+            {/* Visual pill row */}
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+              {service.sub.map((s, k) => (
+                <span key={k} style={{
+                  fontSize: 11, fontWeight: 500,
+                  padding: '4px 12px', borderRadius: 100,
+                  background: dark ? 'rgba(103,186,244,0.12)' : 'rgba(30,70,107,0.06)',
+                  color: dark ? 'rgba(103,186,244,0.8)' : 'rgba(30,70,107,0.6)',
+                  border: dark ? '1px solid rgba(103,186,244,0.15)' : '1px solid rgba(30,70,107,0.1)',
+                }}>
+                  {s}
                 </span>
               ))}
             </div>
           </div>
-        </div>
+        )}
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .service-desc { display: none; }
-          .service-metric { display: none !important; }
-          .service-metric-mobile { display: inline-flex !important; }
-        }
-      `}</style>
     </div>
   );
 }
 
+/* ─── Main section ─── */
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    const ctx = gsap.context(() => {
 
-    const tween = gsap.from(el, {
-      transformPerspective: 1600,
-      rotationX: -8,
-      yPercent: 2,
-      opacity: 0.7,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 95%',
-        end: 'top 55%',
-        scrub: 0.6,
-      },
-    });
+      /* Heading */
+      const eyebrow = headingRef.current?.querySelector('.services-eyebrow');
+      const titleWords = headingRef.current?.querySelectorAll<HTMLElement>('.services-title-word');
+      const subtitle = headingRef.current?.querySelector('.services-subtitle');
 
-    return () => { tween.kill(); };
+      if (eyebrow) {
+        gsap.fromTo(eyebrow,
+          { opacity: 0, x: -30 },
+          { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+            scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true } }
+        );
+      }
+      if (titleWords?.length) {
+        gsap.set(titleWords, { opacity: 0, y: 60, rotateX: -15 });
+        gsap.to(titleWords, {
+          opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1,
+          scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
+        });
+      }
+      if (subtitle) {
+        gsap.fromTo(subtitle,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.35,
+            scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true } }
+        );
+      }
+      if (dividerRef.current) {
+        gsap.fromTo(dividerRef.current,
+          { scaleX: 0 },
+          { scaleX: 1, duration: 1.2, ease: 'power3.inOut', transformOrigin: 'left',
+            scrollTrigger: { trigger: dividerRef.current, start: 'top 90%', once: true } }
+        );
+      }
+
+      /* Cards */
+      const cards = gridRef.current?.querySelectorAll<HTMLElement>('.service-card');
+      cards?.forEach((card, i) => {
+        const isEven = i % 2 === 0;
+
+        gsap.fromTo(card,
+          { opacity: 0, y: 80, scale: 0.88, rotateZ: isEven ? -3 : 3, rotateX: -8 },
+          { opacity: 1, y: 0, scale: 1, rotateZ: 0, rotateX: 0, duration: 1, ease: 'power3.out',
+            delay: 0.12 * i,
+            scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true } }
+        );
+
+        const tags = card.querySelectorAll('.service-tag');
+        if (tags.length) {
+          gsap.fromTo(tags,
+            { opacity: 0, y: 12, scale: 0.85 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power3.out', stagger: 0.08,
+              delay: 0.12 * i + 0.5,
+              scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true } }
+          );
+        }
+
+        const metric = card.querySelector<HTMLElement>('.service-metric-value');
+        if (metric) {
+          gsap.fromTo(metric,
+            { clipPath: 'inset(0 100% 0 0)' },
+            { clipPath: 'inset(0 0% 0 0)', duration: 1, ease: 'power3.inOut',
+              delay: 0.12 * i + 0.6,
+              scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true } }
+          );
+        }
+      });
+
+      /* Icon float */
+      services.forEach((_, i) => {
+        const icon = gridRef.current?.querySelector(`.service-icon-${i}`);
+        if (icon) {
+          gsap.to(icon, { y: -8, rotate: 3, duration: 2.6 + i * 0.3, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: i * 0.5 });
+        }
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
       id="services"
-      style={{
-        padding: 'clamp(64px, 8vw, 120px) 0',
-        background: 'var(--bg)',
-      }}
+      style={{ padding: 'clamp(80px,10vw,140px) 0', background: 'var(--bg)', overflow: 'hidden' }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(24px, 5vw, 80px)' }}>
-        {/* Header */}
-        <div style={{ marginBottom: 'clamp(40px, 5vw, 64px)' }}>
-          <span className="section-label" style={{ display: 'block', marginBottom: 20 }}>
-            Nos Services
-          </span>
-          <LineMask
-            as="h2"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 800,
-              fontSize: 'clamp(32px, 4.5vw, 64px)',
-              color: 'var(--text)',
-              maxWidth: 700,
-            }}
-          >
-            {`Tout ce qu'il faut pour\ndominer votre marché`}
-          </LineMask>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,48px)' }}>
+
+        {/* ── Heading ── */}
+        <div ref={headingRef} style={{ marginBottom: 48 }}>
+
+          <div className="services-eyebrow" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 20,
+            padding: '8px 20px 8px 12px', borderRadius: 100,
+            background: 'rgba(30,70,107,0.06)', border: '1px solid rgba(30,70,107,0.14)',
+          }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', display: 'inline-block', flexShrink: 0 }} />
+            <span style={{
+              fontFamily: 'var(--font-heading)', fontSize: 11, fontWeight: 700,
+              textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--accent)',
+            }}>
+              Nos Services
+            </span>
+          </div>
+
+          <h2 style={{
+            fontFamily: 'var(--font-heading)', fontWeight: 800,
+            fontSize: 'clamp(2.2rem,4.5vw,4rem)', lineHeight: 1,
+            letterSpacing: '-0.04em', perspective: 800, marginBottom: 20,
+            overflow: 'hidden',
+          }}>
+            {['On', "s'occupe", 'de'].map((w, i) => (
+              <span key={i} className="services-title-word" style={{ display: 'inline-block', marginRight: '0.22em', color: 'var(--text)' }}>
+                {w}
+              </span>
+            ))}
+            <span className="services-title-word" style={{
+              display: 'inline-block', fontStyle: 'italic', fontWeight: 400,
+              color: 'var(--accent)', letterSpacing: '0.01em',
+            }}>
+              tout
+            </span>
+          </h2>
+
+          <p className="services-subtitle" style={{
+            fontSize: 'clamp(1rem,1.2vw,1.15rem)', color: 'var(--text-dim)',
+            lineHeight: 1.7, maxWidth: 460,
+          }}>
+            Concentrez-vous sur votre métier. Impulse gère votre visibilité digitale.
+          </p>
         </div>
 
-        {/* Border top */}
-        <div style={{ borderTop: '1px solid var(--line)' }}>
+        {/* Divider */}
+        <div ref={dividerRef} style={{
+          width: '100%', height: 1, marginBottom: 48,
+          background: 'linear-gradient(90deg,rgba(30,70,107,0.25),rgba(30,70,107,0.1) 50%,transparent)',
+          transformOrigin: 'left',
+        }} />
+
+        {/* ── Grid ── */}
+        <div
+          ref={gridRef}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 16 }}
+          className="services-cards-grid"
+        >
           {services.map((service, i) => (
-            <ServiceRow key={i} service={service} index={i} />
+            <ServiceCard key={i} service={service} index={i} />
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .services-cards-grid { grid-template-columns: 1fr !important; }
+          .service-card { grid-column: 1 !important; }
+          .service-card-inner-wide { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 900px) {
+          .service-card-inner-wide > div:last-child { display: none !important; }
+        }
+      `}</style>
     </section>
   );
 }
