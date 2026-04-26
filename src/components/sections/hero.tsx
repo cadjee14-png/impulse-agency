@@ -136,8 +136,8 @@ export function Hero() {
           .hero-cta-group > button {
             display: flex !important;
             justify-content: center !important;
-            padding: 12px 16px !important;
-            font-size: 12px !important;
+            padding: 14px 22px !important;
+            font-size: 14px !important;
             white-space: nowrap !important;
           }
           .cta-text-long  { display: none !important; }
