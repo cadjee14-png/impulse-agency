@@ -36,6 +36,7 @@ export function Stats() {
             }}
           >
             <span
+              className="stats-num"
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
@@ -53,6 +54,7 @@ export function Stats() {
               />
             </span>
             <span
+              className="stats-label"
               style={{
                 fontSize: 12,
                 letterSpacing: 3,
@@ -73,12 +75,22 @@ export function Stats() {
           .stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
+          .stats-grid > div {
+            padding: 16px 12px !important;
+          }
           .stats-grid > div:nth-child(2) {
             border-right: none !important;
           }
           .stats-grid > div:nth-child(1),
           .stats-grid > div:nth-child(2) {
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+          }
+          .stats-num {
+            font-size: 28px !important;
+          }
+          .stats-label {
+            font-size: 10px !important;
+            letter-spacing: 2px !important;
           }
         }
       `}</style>
