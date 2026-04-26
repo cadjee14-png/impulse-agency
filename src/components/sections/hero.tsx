@@ -9,7 +9,7 @@ import { siteConfig } from '@/data/site';
 const CARDS = [
   { rot: -14, tx: -55, ty:  15, z: 3, src: '/images/card-1.jpg' },
   { rot:  -3, tx:  20, ty:   0, z: 2, src: '/images/card-2.jpg' },
-  { rot:   9, tx:  95, ty:  20, z: 1, src: '/images/card-3.jpg' },
+  { rot:   9, tx:  95, ty:  20, z: 1, src: '/images/card-1.jpg' },
 ];
 
 export function Hero() {
