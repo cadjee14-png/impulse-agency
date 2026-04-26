@@ -72,7 +72,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="hero-mesh"
+      className="hero-mesh hero-section"
       style={{
         minHeight: '100vh',
         display: 'flex',
@@ -116,16 +116,20 @@ export function Hero() {
           .hero-cards       { display: none !important; }
           .scroll-indicator { display: none !important; }
           .hero-badge       { display: none !important; }
+          .hero-h1          { font-size: 40px !important; }
+          .hero-section     { padding-bottom: 40px !important; }
           .hero-cta-group   {
             flex-wrap: nowrap !important;
             width: 100%;
+            margin-top: 4px;
           }
           .hero-cta-group > * {
             flex: 1;
             justify-content: center !important;
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-            font-size: 14px !important;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+            font-size: 13px !important;
+            white-space: nowrap;
             text-align: center;
           }
           .cta-text-long  { display: none !important; }
@@ -152,6 +156,7 @@ export function Hero() {
         </span>
 
         <h1
+          className="hero-h1"
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 900,
@@ -250,7 +255,7 @@ export function Hero() {
               }}
             >
               <span className="cta-text-long">Recevoir mon diagnostic offert →</span>
-              <span className="cta-text-short">Diagnostic offert →</span>
+              <span className="cta-text-short">Audit offert →</span>
             </a>
           </Magnetic>
 
@@ -279,7 +284,7 @@ export function Hero() {
             }}
           >
               <span className="cta-text-long">Obtenir ces résultats →</span>
-              <span className="cta-text-short">Nos résultats →</span>
+              <span className="cta-text-short">Résultats →</span>
           </button>
         </div>
       </div>
