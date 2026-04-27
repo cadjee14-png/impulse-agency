@@ -249,7 +249,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
             {service.description}
           </p>
 
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: !wide ? 28 : 0 }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: !wide ? 28 : 16 }}>
             {service.sub.map((tag, t) => (
               <span key={t} className="service-tag" style={{
                 fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
@@ -262,6 +262,13 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
               </span>
             ))}
           </div>
+
+          {/* Wide cards: logos visible on mobile only */}
+          {wide && (
+            <div className="service-logos-mobile" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
+              {logos.map((logo, k) => <span key={k}>{logo}</span>)}
+            </div>
+          )}
 
           {/* Half-card bottom: metric + logos */}
           {!wide && (
@@ -417,6 +424,9 @@ export function Services() {
           .service-card { grid-column: 1 !important; }
           .service-card-inner-wide { grid-template-columns: 1fr !important; }
           .service-card-inner-wide > div:last-child { display: none !important; }
+        }
+        @media (min-width: 901px) {
+          .service-logos-mobile { display: none !important; }
         }
       `}</style>
     </section>
