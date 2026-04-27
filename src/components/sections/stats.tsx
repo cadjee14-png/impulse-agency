@@ -70,8 +70,8 @@ export function Stats() {
         ))}
       </div>
 
-      {/* ── CTA strip ── */}
-      <div style={{
+      {/* ── CTA strip (desktop only) ── */}
+      <div className="stats-cta-strip" style={{
         maxWidth: 1280, margin: '0 auto',
         padding: 'clamp(24px,3vw,36px) clamp(24px,5vw,80px) 0',
         borderTop: '1px solid rgba(255,255,255,0.08)',
@@ -99,6 +99,7 @@ export function Stats() {
 
       <style>{`
         @media (max-width: 768px) {
+          .stats-cta-strip { display: none !important; }
           section#stats {
             padding: 16px 16px !important;
           }

@@ -418,7 +418,7 @@ export function Services() {
         </div>
 
         {/* ── CTA bannière ── */}
-        <div style={{
+        <div className="services-cta-banner" style={{
           marginTop: 32,
           background: 'rgba(30,70,107,0.05)',
           border: '1px solid rgba(30,70,107,0.12)',
@@ -458,6 +458,11 @@ export function Services() {
           .service-card { grid-column: 1 !important; }
           .service-card-inner-wide { grid-template-columns: 1fr !important; }
           .service-card-inner-wide > div:last-child { display: none !important; }
+          .services-cta-banner {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
         }
         @media (min-width: 901px) {
           .service-logos-mobile { display: none !important; }

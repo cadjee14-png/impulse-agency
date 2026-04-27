@@ -330,7 +330,7 @@ export function Process() {
       </div>
 
       {/* ── CTA bloc ── */}
-      <div style={{
+      <div className="process-cta-bloc" style={{
         maxWidth: 800, margin: 'clamp(48px,6vw,72px) auto 0',
         background: 'var(--accent)',
         borderRadius: 20,
@@ -376,6 +376,11 @@ export function Process() {
           </p>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .process-cta-bloc { margin-left: 16px !important; margin-right: 16px !important; }
+        }
+      `}</style>
     </section>
   );
 }
