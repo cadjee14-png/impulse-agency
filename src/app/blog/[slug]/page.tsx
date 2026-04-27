@@ -202,7 +202,7 @@ export default async function BlogPostPage({ params }: Props) {
               className="blog-cta-link"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'white', color: 'var(--accent)', borderRadius: 64, padding: '16px 32px', fontSize: 16, fontWeight: 700, fontFamily: 'var(--font-heading)', textDecoration: 'none' }}
             >
-              Obtenir mon diagnostic offert →
+              Obtenir mon diagnostic offert
             </Link>
           </div>
 

@@ -94,7 +94,7 @@ export function StickyCTAMobile() {
             gap: 6,
           }}
         >
-          Diagnostic offert →
+          Diagnostic offert
         </a>
       </div>
 

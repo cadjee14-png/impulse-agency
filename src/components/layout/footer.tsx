@@ -253,7 +253,7 @@ export function Footer() {
               onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.7'}
               onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '1'}
             >
-              Diagnostic offert →
+              Diagnostic offert
             </a>
           </div>
         </div>

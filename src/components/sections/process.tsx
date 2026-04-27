@@ -369,7 +369,7 @@ export function Process() {
             textDecoration: 'none', letterSpacing: '-0.01em',
             boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
           }}>
-            Démarrer maintenant →
+            Démarrer maintenant
           </a>
           <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.03em', margin: 0 }}>
             Gratuit · Sans engagement · Réponse sous 24h

@@ -136,7 +136,7 @@ export function Testimonials() {
               textDecoration: 'none', letterSpacing: '-0.01em',
               boxShadow: '0 8px 32px rgba(30,70,107,0.25)', whiteSpace: 'nowrap',
             }}>
-              Je veux ces résultats →
+              Je veux ces résultats
             </a>
             <p style={{ fontSize: 12, color: 'var(--text-muted)', paddingLeft: 4 }}>
               30+ clients · Résultats garantis ou remboursé
@@ -253,7 +253,7 @@ export function Testimonials() {
               boxShadow: '0 8px 24px rgba(30,70,107,0.25)',
               whiteSpace: 'nowrap',
             }}>
-              Je veux ces résultats →
+              Je veux ces résultats
             </a>
             <p style={{ fontSize: 11, color: 'var(--text-muted)' }}>
               30+ clients · Résultats garantis ou remboursé

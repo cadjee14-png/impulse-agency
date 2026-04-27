@@ -93,7 +93,7 @@ export function Stats() {
           boxShadow: '0 4px 20px rgba(103,186,244,0.25)',
           whiteSpace: 'nowrap',
         }}>
-          Obtenir mon diagnostic →
+          Obtenir mon diagnostic
         </a>
       </div>
 

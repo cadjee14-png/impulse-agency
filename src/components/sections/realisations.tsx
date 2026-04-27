@@ -206,7 +206,7 @@ export function Realisations() {
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(30,70,107,0.05)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--accent)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'transparent'; (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--line-hover)'; }}
             >
-              Obtenir ces résultats →
+              Obtenir ces résultats
             </a>
           </div>
         </FadeIn>

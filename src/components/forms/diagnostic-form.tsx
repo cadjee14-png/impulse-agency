@@ -429,7 +429,7 @@ export function DiagnosticForm({ variant = 'page' }: DiagnosticFormProps) {
                 onMouseEnter={e => { if (!submitting) { (e.currentTarget as HTMLButtonElement).style.background = 'var(--accent-dim)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 14px 40px rgba(30,70,107,0.35)'; }}}
                 onMouseLeave={e => { if (!submitting) { (e.currentTarget as HTMLButtonElement).style.background = 'var(--accent)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 8px 28px rgba(30,70,107,0.25)'; }}}
               >
-                {submitting ? 'Envoi en cours...' : 'Recevoir mon diagnostic offert →'}
+                {submitting ? 'Envoi en cours...' : 'Recevoir mon diagnostic offert'}
               </button>
             )}
           </Magnetic>

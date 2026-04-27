@@ -447,7 +447,7 @@ export function Services() {
             textDecoration: 'none', letterSpacing: '-0.01em', flexShrink: 0,
             boxShadow: '0 8px 24px rgba(30,70,107,0.2)', whiteSpace: 'nowrap',
           }}>
-            Analyse gratuite →
+            Analyse gratuite
           </a>
         </div>
       </div>
