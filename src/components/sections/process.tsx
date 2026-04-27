@@ -328,6 +328,54 @@ export function Process() {
           />
         ))}
       </div>
+
+      {/* ── CTA bloc ── */}
+      <div style={{
+        maxWidth: 800, margin: 'clamp(48px,6vw,72px) auto 0',
+        background: 'var(--accent)',
+        borderRadius: 20,
+        padding: 'clamp(36px,5vw,56px) clamp(28px,4vw,56px)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        textAlign: 'center', gap: 20, position: 'relative', overflow: 'hidden',
+      }}>
+        {/* Subtle texture */}
+        <div style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }} />
+        <div style={{ position: 'relative', zIndex: 1, display: 'contents' }}>
+          <span style={{
+            fontSize: 11, fontWeight: 700, letterSpacing: '0.15em',
+            textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)',
+          }}>
+            Étape 1 — Offert &amp; sans engagement
+          </span>
+          <h3 style={{
+            fontFamily: 'var(--font-heading)', fontWeight: 900,
+            fontSize: 'clamp(1.4rem,3vw,2.2rem)', color: '#ffffff',
+            letterSpacing: '-0.03em', lineHeight: 1.1, margin: 0,
+          }}>
+            Prêt à démarrer ?<br />Votre diagnostic est gratuit.
+          </h3>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, maxWidth: 420, margin: 0 }}>
+            15 minutes avec notre équipe suffisent à identifier les leviers qui vont vraiment faire bouger votre business.
+          </p>
+          <a href="/audit" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            background: '#ffffff', color: 'var(--accent)',
+            borderRadius: 64, padding: '16px 40px',
+            fontSize: 15, fontWeight: 800, fontFamily: 'var(--font-heading)',
+            textDecoration: 'none', letterSpacing: '-0.01em',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+          }}>
+            Démarrer maintenant →
+          </a>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.03em', margin: 0 }}>
+            Gratuit · Sans engagement · Réponse sous 24h
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

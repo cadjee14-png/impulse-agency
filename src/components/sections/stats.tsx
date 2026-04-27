@@ -70,6 +70,33 @@ export function Stats() {
         ))}
       </div>
 
+      {/* ── CTA strip ── */}
+      <div style={{
+        maxWidth: 1280, margin: '0 auto',
+        padding: 'clamp(24px,3vw,36px) clamp(24px,5vw,80px) 0',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        flexWrap: 'wrap', gap: 16,
+      }}>
+        <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 'clamp(0.9rem,1.1vw,1.05rem)', lineHeight: 1.6 }}>
+          <strong style={{ color: '#fff', fontFamily: 'var(--font-heading)', display: 'block', fontSize: 'clamp(1rem,1.3vw,1.2rem)', letterSpacing: '-0.02em', marginBottom: 4 }}>
+            Votre business mérite ces résultats.
+          </strong>
+          On analyse votre situation — gratuitement, en 15 minutes.
+        </p>
+        <a href="/audit" style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          background: 'var(--accent-light)', color: '#0D0D0D',
+          borderRadius: 64, padding: '14px 28px',
+          fontSize: 14, fontWeight: 700, fontFamily: 'var(--font-heading)',
+          textDecoration: 'none', letterSpacing: '-0.01em', flexShrink: 0,
+          boxShadow: '0 4px 20px rgba(103,186,244,0.25)',
+          whiteSpace: 'nowrap',
+        }}>
+          Obtenir mon diagnostic →
+        </a>
+      </div>
+
       <style>{`
         @media (max-width: 768px) {
           section#stats {

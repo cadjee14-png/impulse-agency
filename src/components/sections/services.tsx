@@ -416,6 +416,40 @@ export function Services() {
             <ServiceCard key={i} service={service} index={i} />
           ))}
         </div>
+
+        {/* ── CTA bannière ── */}
+        <div style={{
+          marginTop: 32,
+          background: 'rgba(30,70,107,0.05)',
+          border: '1px solid rgba(30,70,107,0.12)',
+          borderRadius: 16,
+          padding: 'clamp(24px,3vw,36px) clamp(20px,3vw,40px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          flexWrap: 'wrap', gap: 20,
+        }}>
+          <div>
+            <p style={{
+              fontFamily: 'var(--font-heading)', fontWeight: 800,
+              fontSize: 'clamp(1.05rem,2vw,1.4rem)', color: 'var(--text)',
+              letterSpacing: '-0.02em', marginBottom: 6,
+            }}>
+              Pas sûr de ce dont vous avez besoin ?
+            </p>
+            <p style={{ fontSize: 14, color: 'var(--text-dim)', lineHeight: 1.6 }}>
+              On étudie votre situation et on vous propose le plan d&apos;action qui correspond à vos objectifs.
+            </p>
+          </div>
+          <a href="/audit" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            background: 'var(--accent)', color: 'white',
+            borderRadius: 64, padding: '14px 28px',
+            fontSize: 14, fontWeight: 700, fontFamily: 'var(--font-heading)',
+            textDecoration: 'none', letterSpacing: '-0.01em', flexShrink: 0,
+            boxShadow: '0 8px 24px rgba(30,70,107,0.2)', whiteSpace: 'nowrap',
+          }}>
+            Analyse gratuite →
+          </a>
+        </div>
       </div>
 
       <style>{`

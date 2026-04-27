@@ -107,6 +107,43 @@ export function Testimonials() {
           ))}
         </div>
 
+        {/* ── CTA after testimonials (desktop) ── */}
+        <div className="testimonials-cta-desktop" style={{
+          marginTop: 'clamp(40px,5vw,64px)',
+          borderTop: '1px solid var(--line)',
+          paddingTop: 'clamp(40px,5vw,56px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          flexWrap: 'wrap', gap: 32,
+        }}>
+          <div>
+            <p style={{
+              fontFamily: 'var(--font-heading)', fontWeight: 900,
+              fontSize: 'clamp(1.3rem,2.5vw,2rem)',
+              letterSpacing: '-0.03em', color: 'var(--text)', lineHeight: 1.1, marginBottom: 10,
+            }}>
+              Prochains résultats ? Les vôtres.
+            </p>
+            <p style={{ fontSize: 15, color: 'var(--text-dim)', lineHeight: 1.7, maxWidth: 460 }}>
+              Rejoignez les entrepreneurs qui ont choisi de passer à l&apos;action. Diagnostic offert, sans engagement.
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
+            <a href="/audit" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: 'var(--accent)', color: 'white',
+              borderRadius: 64, padding: '16px 36px',
+              fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-heading)',
+              textDecoration: 'none', letterSpacing: '-0.01em',
+              boxShadow: '0 8px 32px rgba(30,70,107,0.25)', whiteSpace: 'nowrap',
+            }}>
+              Je veux ces résultats →
+            </a>
+            <p style={{ fontSize: 12, color: 'var(--text-muted)', paddingLeft: 4 }}>
+              30+ clients · Résultats garantis ou remboursé
+            </p>
+          </div>
+        </div>
+
         {/* Mobile — swipe carousel */}
         <div className="testimonials-mobile">
           <div
@@ -198,6 +235,29 @@ export function Testimonials() {
               />
             ))}
           </div>
+
+          {/* CTA mobile */}
+          <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <p style={{
+              fontFamily: 'var(--font-heading)', fontWeight: 900,
+              fontSize: '1.3rem', letterSpacing: '-0.03em', color: 'var(--text)', lineHeight: 1.2,
+            }}>
+              Prochains résultats ?<br />Les vôtres.
+            </p>
+            <a href="/audit" style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              background: 'var(--accent)', color: 'white',
+              borderRadius: 64, padding: '15px 28px',
+              fontSize: 14, fontWeight: 700, fontFamily: 'var(--font-heading)',
+              textDecoration: 'none', letterSpacing: '-0.01em',
+              boxShadow: '0 8px 24px rgba(30,70,107,0.25)',
+            }}>
+              Je veux ces résultats →
+            </a>
+            <p style={{ fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
+              30+ clients · Résultats garantis ou remboursé
+            </p>
+          </div>
         </div>
       </div>
 
@@ -206,6 +266,7 @@ export function Testimonials() {
         .testimonials-mobile div::-webkit-scrollbar { display: none; }
         @media (max-width: 768px) {
           .testimonials-desktop { display: none !important; }
+          .testimonials-cta-desktop { display: none !important; }
           .testimonials-mobile { display: block; }
         }
       `}</style>
