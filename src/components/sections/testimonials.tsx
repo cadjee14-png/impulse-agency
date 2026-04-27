@@ -237,7 +237,7 @@ export function Testimonials() {
           </div>
 
           {/* CTA mobile */}
-          <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, textAlign: 'center' }}>
             <p style={{
               fontFamily: 'var(--font-heading)', fontWeight: 900,
               fontSize: '1.3rem', letterSpacing: '-0.03em', color: 'var(--text)', lineHeight: 1.2,
@@ -245,16 +245,17 @@ export function Testimonials() {
               Prochains résultats ?<br />Les vôtres.
             </p>
             <a href="/audit" style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              display: 'inline-flex', alignItems: 'center', gap: 8,
               background: 'var(--accent)', color: 'white',
-              borderRadius: 64, padding: '15px 28px',
+              borderRadius: 64, padding: '14px 28px',
               fontSize: 14, fontWeight: 700, fontFamily: 'var(--font-heading)',
               textDecoration: 'none', letterSpacing: '-0.01em',
               boxShadow: '0 8px 24px rgba(30,70,107,0.25)',
+              whiteSpace: 'nowrap',
             }}>
               Je veux ces résultats →
             </a>
-            <p style={{ fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
+            <p style={{ fontSize: 11, color: 'var(--text-muted)' }}>
               30+ clients · Résultats garantis ou remboursé
             </p>
           </div>
