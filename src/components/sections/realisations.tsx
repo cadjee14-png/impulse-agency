@@ -1,9 +1,9 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import { FadeIn } from '@/components/animations/fade-in';
 import { SectionHeading } from '@/components/animations/section-heading';
 
-/* ─── Projets — à mettre à jour avec les vrais contenus ─── */
 const PROJECTS = [
   {
     image: '/images/card-1.jpg',
@@ -17,7 +17,7 @@ const PROJECTS = [
     client: 'Pokebab',
     category: 'Social Media · Branding',
     result: 'Ouverture à Marseille',
-    detail: 'Campagne d\'ouverture + animation réseaux',
+    detail: "Campagne d'ouverture + animation réseaux",
   },
   {
     image: '/images/card-3.jpg',
@@ -35,44 +35,57 @@ const PROJECTS = [
   },
 ];
 
-/* Dupliquer pour le défilement infini */
 const TRACK = [...PROJECTS, ...PROJECTS, ...PROJECTS];
 
-function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
-  return (
-    <div className="gallery-card">
-      {/* Image */}
-      <div className="gallery-img-wrap">
-        <img
-          src={project.image}
-          alt={project.client}
-          className="gallery-img"
-        />
-        {/* Overlay au hover */}
-        <div className="gallery-overlay">
-          <span className="gallery-overlay-result">{project.result}</span>
-        </div>
-      </div>
-
-      {/* Texte */}
-      <div className="gallery-info">
-        <p className="gallery-category">{project.category}</p>
-        <p className="gallery-client">{project.client}</p>
-        <p className="gallery-detail">{project.detail}</p>
-      </div>
-    </div>
-  );
-}
-
 export function Realisations() {
+  const trackRef  = useRef<HTMLDivElement>(null);
+  const rafRef    = useRef<number>(0);
+  const pausedRef = useRef(false);
+  const speedRef  = useRef(0.6);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const isMobile = window.innerWidth < 768;
+    speedRef.current = isMobile ? 1.1 : 0.6;
+
+    /* Position de départ au milieu du track pour l'infini */
+    const half = track.scrollWidth / 3;
+    track.scrollLeft = half;
+
+    const tick = () => {
+      if (!pausedRef.current && track) {
+        track.scrollLeft += speedRef.current;
+        /* Reset pour loop infini */
+        if (track.scrollLeft >= (track.scrollWidth / 3) * 2) {
+          track.scrollLeft -= track.scrollWidth / 3;
+        }
+        if (track.scrollLeft <= 0) {
+          track.scrollLeft += track.scrollWidth / 3;
+        }
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  const scrollBy = (dir: -1 | 1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    /* Pause 2s après clic flèche */
+    pausedRef.current = true;
+    const cardW = track.querySelector<HTMLElement>('.gallery-card')?.offsetWidth ?? 300;
+    track.scrollBy({ left: dir * (cardW + 20), behavior: 'smooth' });
+    setTimeout(() => { pausedRef.current = false; }, 2000);
+  };
+
   return (
     <section
       id="realisations"
-      style={{
-        padding: 'clamp(64px, 8vw, 120px) 0',
-        background: 'var(--dark)',
-        overflow: 'hidden',
-      }}
+      style={{ padding: 'clamp(64px, 8vw, 120px) 0', background: 'var(--dark)', overflow: 'hidden' }}
     >
       {/* Header */}
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(24px, 5vw, 80px)', marginBottom: 'clamp(40px, 5vw, 64px)' }}>
@@ -82,22 +95,65 @@ export function Realisations() {
           </span>
         </FadeIn>
         <FadeIn direction="up" delay={0.1}>
-          <SectionHeading
-            accent="concrets"
-            style={{ color: '#ffffff', whiteSpace: 'nowrap' }}
-          >
+          <SectionHeading accent="concrets" style={{ color: '#ffffff', whiteSpace: 'nowrap' }}>
             Des résultats vraiment
           </SectionHeading>
         </FadeIn>
       </div>
 
-      {/* Galerie défilante */}
-      <div className="gallery-track-wrap">
-        <div className="gallery-track">
+      {/* Galerie */}
+      <div style={{ position: 'relative' }}>
+
+        {/* Flèche gauche */}
+        <button
+          onClick={() => scrollBy(-1)}
+          className="gallery-arrow gallery-arrow-left"
+          aria-label="Précédent"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+
+        {/* Track */}
+        <div
+          ref={trackRef}
+          className="gallery-track"
+          onMouseEnter={() => { pausedRef.current = true; }}
+          onMouseLeave={() => { pausedRef.current = false; }}
+        >
           {TRACK.map((project, i) => (
-            <ProjectCard key={i} project={project} />
+            <div key={i} className="gallery-card">
+              <div className="gallery-img-wrap">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={project.image} alt={project.client} className="gallery-img" />
+                <div className="gallery-overlay">
+                  <span className="gallery-overlay-result">{project.result}</span>
+                </div>
+              </div>
+              <div className="gallery-info">
+                <p className="gallery-category">{project.category}</p>
+                <p className="gallery-client">{project.client}</p>
+                <p className="gallery-detail">{project.detail}</p>
+              </div>
+            </div>
           ))}
         </div>
+
+        {/* Flèche droite */}
+        <button
+          onClick={() => scrollBy(1)}
+          className="gallery-arrow gallery-arrow-right"
+          aria-label="Suivant"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+
+        {/* Dégradés latéraux */}
+        <div className="gallery-fade-left" />
+        <div className="gallery-fade-right" />
       </div>
 
       {/* CTA */}
@@ -111,7 +167,6 @@ export function Realisations() {
               border: '1px solid rgba(255,255,255,0.15)',
               borderRadius: 64, padding: '14px 32px', fontSize: 15, fontWeight: 600,
               textDecoration: 'none', transition: 'all 300ms',
-              backdropFilter: 'blur(8px)',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLAnchorElement;
@@ -132,36 +187,29 @@ export function Realisations() {
       </FadeIn>
 
       <style>{`
-        /* ─── Track ─── */
-        .gallery-track-wrap {
-          width: 100%;
-          overflow: hidden;
-          cursor: default;
-        }
+        /* ── Track ── */
         .gallery-track {
           display: flex;
           gap: 20px;
-          width: max-content;
-          animation: galleryScroll 30s linear infinite;
+          overflow-x: scroll;
+          scroll-behavior: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          padding: 4px 60px;
+          cursor: grab;
         }
-        .gallery-track:hover {
-          animation-play-state: paused;
-        }
-        @keyframes galleryScroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(calc(-100% / 3)); }
-        }
+        .gallery-track::-webkit-scrollbar { display: none; }
 
-        /* ─── Card ─── */
+        /* ── Card ── */
         .gallery-card {
           flex-shrink: 0;
-          width: clamp(260px, 28vw, 360px);
+          width: clamp(240px, 26vw, 340px);
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
         }
 
-        /* ─── Image ─── */
+        /* ── Image ── */
         .gallery-img-wrap {
           position: relative;
           aspect-ratio: 1 / 1;
@@ -175,69 +223,85 @@ export function Realisations() {
           object-fit: cover;
           transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
           display: block;
+          pointer-events: none;
         }
-        .gallery-card:hover .gallery-img {
-          transform: scale(1.04);
-        }
+        .gallery-card:hover .gallery-img { transform: scale(1.04); }
 
-        /* ─── Overlay ─── */
+        /* ── Overlay ── */
         .gallery-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(10,22,40,0.85) 0%, transparent 50%);
+          background: linear-gradient(to top, rgba(10,22,40,0.88) 0%, transparent 55%);
           opacity: 0;
           transition: opacity 400ms ease;
           display: flex;
           align-items: flex-end;
           padding: 20px;
         }
-        .gallery-card:hover .gallery-overlay {
-          opacity: 1;
-        }
+        .gallery-card:hover .gallery-overlay { opacity: 1; }
         .gallery-overlay-result {
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: clamp(18px, 2vw, 24px);
+          font-size: clamp(16px, 1.8vw, 22px);
           color: var(--accent-light);
           letter-spacing: -0.03em;
           line-height: 1;
         }
 
-        /* ─── Texte ─── */
-        .gallery-info {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          padding: 0 4px;
-        }
+        /* ── Texte ── */
+        .gallery-info { display: flex; flex-direction: column; gap: 4px; padding: 0 4px; }
         .gallery-category {
-          font-size: 11px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: rgba(255,255,255,0.35);
-          margin: 0;
+          font-size: 11px; font-weight: 600; text-transform: uppercase;
+          letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin: 0;
         }
         .gallery-client {
-          font-family: var(--font-heading);
-          font-weight: 800;
-          font-size: clamp(16px, 1.8vw, 20px);
-          color: #ffffff;
-          letter-spacing: -0.02em;
-          line-height: 1.1;
-          margin: 0;
+          font-family: var(--font-heading); font-weight: 800;
+          font-size: clamp(15px, 1.6vw, 19px);
+          color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; margin: 0;
         }
-        .gallery-detail {
-          font-size: 13px;
-          color: rgba(255,255,255,0.4);
-          line-height: 1.5;
-          margin: 0;
-        }
+        .gallery-detail { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.5; margin: 0; }
 
-        /* ─── Mobile ─── */
+        /* ── Flèches ── */
+        .gallery-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-60%);
+          z-index: 10;
+          width: 44px; height: 44px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.15);
+          background: rgba(255,255,255,0.06);
+          backdrop-filter: blur(10px);
+          color: rgba(255,255,255,0.7);
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: all 250ms ease;
+        }
+        .gallery-arrow:hover {
+          background: rgba(255,255,255,0.14);
+          border-color: rgba(255,255,255,0.3);
+          color: #ffffff;
+        }
+        .gallery-arrow-left  { left: 12px; }
+        .gallery-arrow-right { right: 12px; }
+
+        /* ── Dégradés ── */
+        .gallery-fade-left,
+        .gallery-fade-right {
+          position: absolute;
+          top: 0; bottom: 0;
+          width: 80px;
+          pointer-events: none;
+          z-index: 5;
+        }
+        .gallery-fade-left  { left: 0;  background: linear-gradient(to right, var(--dark), transparent); }
+        .gallery-fade-right { right: 0; background: linear-gradient(to left,  var(--dark), transparent); }
+
+        /* ── Mobile ── */
         @media (max-width: 768px) {
-          .gallery-card { width: 240px; }
-          .gallery-track { gap: 14px; }
+          .gallery-card { width: 220px; }
+          .gallery-track { gap: 14px; padding: 4px 48px; }
+          .gallery-arrow { width: 36px; height: 36px; }
         }
       `}</style>
     </section>
