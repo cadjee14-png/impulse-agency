@@ -77,7 +77,7 @@ export function Realisations() {
         <FadeIn direction="up" delay={0.1}>
           <SectionHeading
             accent="concrets"
-            style={{ color: '#ffffff', maxWidth: 600 }}
+            style={{ color: '#ffffff', whiteSpace: 'nowrap' }}
           >
             Des résultats vraiment
           </SectionHeading>
