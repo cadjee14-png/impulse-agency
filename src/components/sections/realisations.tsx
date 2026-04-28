@@ -45,6 +45,14 @@ const PROJECTS = [
     result: 'Campagne recrutement',
     detail: 'Création de flyers + stratégie de contenu',
   },
+  {
+    image: '/images/card-6.jpg',
+    objectPosition: 'top center',
+    client: 'Napolino',
+    category: 'Social Media · Identité visuelle',
+    result: 'Menu & flyers',
+    detail: 'Création de menu + supports visuels',
+  },
 ];
 
 const TRACK = [...PROJECTS, ...PROJECTS, ...PROJECTS];
