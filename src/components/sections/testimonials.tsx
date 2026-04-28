@@ -1,32 +1,39 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { SectionHeading } from '@/components/animations/section-heading';
 import { FadeIn } from '@/components/animations/fade-in';
 import { testimonials } from '@/data/site';
 
 export function Testimonials() {
   const [active, setActive] = useState(0);
+  const [dragging, setDragging] = useState(false);
   const total = testimonials.length;
   const dragStartX = useRef<number | null>(null);
   const didDrag = useRef(false);
+  const activeRef = useRef(active);
+  activeRef.current = active;
 
   const prev = () => setActive(i => (i - 1 + total) % total);
   const next = () => setActive(i => (i + 1) % total);
 
-  const onDragStart = (clientX: number) => {
-    dragStartX.current = clientX;
-    didDrag.current = false;
-  };
-  const onDragEnd = (clientX: number) => {
-    if (dragStartX.current === null) return;
-    const delta = dragStartX.current - clientX;
-    if (Math.abs(delta) > 40) {
-      didDrag.current = true;
-      delta > 0 ? next() : prev();
-    }
-    dragStartX.current = null;
-  };
+  /* Document-level mouseup so drag works even if cursor leaves container */
+  useEffect(() => {
+    const onUp = (e: MouseEvent) => {
+      if (dragStartX.current === null) return;
+      const delta = dragStartX.current - e.clientX;
+      if (Math.abs(delta) > 40) {
+        didDrag.current = true;
+        delta > 0
+          ? setActive(i => (i + 1) % total)
+          : setActive(i => (i - 1 + total) % total);
+      }
+      dragStartX.current = null;
+      setDragging(false);
+    };
+    document.addEventListener('mouseup', onUp);
+    return () => document.removeEventListener('mouseup', onUp);
+  }, [total]);
 
   return (
     <section
@@ -49,12 +56,20 @@ export function Testimonials() {
 
         {/* Carousel stage */}
         <div
-          style={{ position: 'relative', overflow: 'hidden', padding: '28px 0 8px', cursor: 'grab', userSelect: 'none' }}
-          onMouseDown={e => onDragStart(e.clientX)}
-          onMouseUp={e => onDragEnd(e.clientX)}
-          onMouseLeave={e => { if (dragStartX.current !== null) onDragEnd(e.clientX); }}
-          onTouchStart={e => onDragStart(e.touches[0].clientX)}
-          onTouchEnd={e => onDragEnd(e.changedTouches[0].clientX)}
+          style={{ position: 'relative', overflow: 'hidden', padding: '28px 0 8px', cursor: dragging ? 'grabbing' : 'grab', userSelect: 'none' }}
+          onMouseDown={e => {
+            e.preventDefault();
+            dragStartX.current = e.clientX;
+            didDrag.current = false;
+            setDragging(true);
+          }}
+          onTouchStart={e => { dragStartX.current = e.touches[0].clientX; didDrag.current = false; }}
+          onTouchEnd={e => {
+            if (dragStartX.current === null) return;
+            const delta = dragStartX.current - e.changedTouches[0].clientX;
+            if (Math.abs(delta) > 40) { didDrag.current = true; delta > 0 ? next() : prev(); }
+            dragStartX.current = null;
+          }}
         >
           <div
             style={{
