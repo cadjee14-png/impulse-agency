@@ -109,7 +109,7 @@ const jsonLd = {
   sameAs: [
     'https://www.instagram.com/impulseagency.fr/',
     'https://www.facebook.com/people/Impulse-Agency/61575800943551/',
-    'https://www.linkedin.com/company/impulse-agency-fr/',
+    'https://www.linkedin.com/company/113224387/',
   ],
 };
 
