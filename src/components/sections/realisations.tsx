@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/animations/section-heading';
 
 const PROJECTS = [
   {
-    image: '/images/card-1.jpg',
+    image: '/images/card-3.jpg',
     objectPosition: 'center',
     client: 'Chick & Cheez',
     category: 'Social Media · Identité visuelle',
@@ -22,7 +22,7 @@ const PROJECTS = [
     detail: "Campagne d'ouverture + animation réseaux",
   },
   {
-    image: '/images/card-3.jpg',
+    image: '/images/card-1.jpg',
     objectPosition: 'center',
     client: 'Culture Thaï',
     category: 'Social Media · Publicité',
