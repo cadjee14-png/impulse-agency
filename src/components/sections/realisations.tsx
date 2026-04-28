@@ -37,6 +37,14 @@ const PROJECTS = [
     result: '×3 prises de rendez-vous',
     detail: 'Système de réservation en ligne + site vitrine',
   },
+  {
+    image: '/images/card-5.jpg',
+    objectPosition: 'center',
+    client: 'WilliBarber',
+    category: 'Social Media · Recrutement',
+    result: 'Campagne recrutement',
+    detail: 'Création de flyers + stratégie de contenu',
+  },
 ];
 
 const TRACK = [...PROJECTS, ...PROJECTS, ...PROJECTS];
