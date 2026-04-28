@@ -1,9 +1,21 @@
-'use client';
-
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { DiagnosticForm } from '@/components/forms/diagnostic-form';
 import { FadeIn } from '@/components/animations/fade-in';
 import { LineMask } from '@/components/animations/line-mask';
+
+export const metadata: Metadata = {
+  title: 'Diagnostic Offert — Analyse de votre présence digitale',
+  description:
+    'Recevez une analyse gratuite de votre présence digitale en 30 secondes. Plan d\'action personnalisé sous 24h par nos experts à Marseille et La Réunion. Sans engagement.',
+  alternates: { canonical: 'https://impulse-agency.fr/audit' },
+  openGraph: {
+    title: 'Diagnostic Offert — Impulse Agency Marseille & La Réunion',
+    description:
+      'Analyse gratuite de votre présence digitale. Plan d\'action personnalisé sous 24h, sans engagement.',
+    url: 'https://impulse-agency.fr/audit',
+  },
+};
 
 export default function AuditPage() {
   return (

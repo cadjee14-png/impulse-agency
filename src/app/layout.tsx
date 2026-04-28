@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     url: 'https://impulse-agency.fr',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/api/og',
         width: 1200,
         height: 630,
         alt: 'Impulse Agency — Agence Digitale Marseille & La Réunion',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: 'Impulse Agency — Agence Digitale Marseille & La Réunion',
     description:
       'Publicité Meta & Google, sites web, SEO et réseaux sociaux. On transforme votre business en machine à clients.',
-    images: ['/og-image.jpg'],
+    images: ['/api/og'],
   },
   robots: {
     index: true,
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': 'MarketingAgency',
   name: 'Impulse Agency',
   description:
     'Agence digitale spécialisée en publicité Meta & Google, création de sites web, SEO, réseaux sociaux et branding.',
@@ -109,6 +109,7 @@ const jsonLd = {
   sameAs: [
     'https://www.instagram.com/impulseagency.fr/',
     'https://www.facebook.com/people/Impulse-Agency/61575800943551/',
+    'https://www.linkedin.com/company/impulse-agency-fr/',
   ],
 };
 
