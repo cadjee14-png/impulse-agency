@@ -15,17 +15,17 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      style={{ padding: 'clamp(64px,8vw,120px) 0', background: 'var(--surface)', overflow: 'hidden' }}
+      style={{ padding: 'clamp(64px,8vw,120px) 0', background: 'var(--dark)', overflow: 'hidden' }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(24px,5vw,80px)' }}>
 
         {/* Header */}
         <FadeIn direction="up">
           <div style={{ marginBottom: 'clamp(48px,6vw,80px)' }}>
-            <span className="section-label" style={{ display: 'block', marginBottom: 20 }}>
+            <span className="section-label" style={{ display: 'block', marginBottom: 20, color: 'rgba(255,255,255,0.4)' }}>
               Témoignages
             </span>
-            <SectionHeading accent="témoignent">
+            <SectionHeading accent="témoignent" style={{ color: '#ffffff' }}>
               Nos clients
             </SectionHeading>
           </div>
