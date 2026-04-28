@@ -26,6 +26,13 @@ const PROJECTS = [
     result: '+60% d\'engagement',
     detail: 'Contenus animés + stratégie éditoriale',
   },
+  {
+    image: '/images/card-4.jpg',
+    client: 'ViBoost',
+    category: 'Site Web · Réservation en ligne',
+    result: '×3 prises de rendez-vous',
+    detail: 'Système de réservation en ligne + site vitrine',
+  },
 ];
 
 /* Dupliquer pour le défilement infini */
