@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/animations/section-heading';
 const PROJECTS = [
   {
     image: '/images/card-1.jpg',
+    objectPosition: 'center',
     client: 'Chick & Cheez',
     category: 'Social Media · Identité visuelle',
     result: 'Lancement réussi',
@@ -14,6 +15,7 @@ const PROJECTS = [
   },
   {
     image: '/images/card-2.jpg',
+    objectPosition: 'center',
     client: 'Pokebab',
     category: 'Social Media · Branding',
     result: 'Ouverture à Marseille',
@@ -21,6 +23,7 @@ const PROJECTS = [
   },
   {
     image: '/images/card-3.jpg',
+    objectPosition: 'center',
     client: 'Culture Thaï',
     category: 'Social Media · Publicité',
     result: '+60% d\'engagement',
@@ -28,6 +31,7 @@ const PROJECTS = [
   },
   {
     image: '/images/card-4.jpg',
+    objectPosition: 'top center',
     client: 'ViBoost',
     category: 'Site Web · Réservation en ligne',
     result: '×3 prises de rendez-vous',
@@ -126,7 +130,7 @@ export function Realisations() {
             <div key={i} className="gallery-card">
               <div className="gallery-img-wrap">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image} alt={project.client} className="gallery-img" />
+                <img src={project.image} alt={project.client} className="gallery-img" style={{ objectPosition: project.objectPosition }} />
                 <div className="gallery-overlay">
                   <span className="gallery-overlay-result">{project.result}</span>
                 </div>
