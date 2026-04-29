@@ -63,16 +63,17 @@ const VISUELS: {
   client: string;
   detail: string;
 }[] = [
-  { image: '/images/card-3.jpg', format: 'square', label: 'Post Instagram', client: 'Chick & Cheez', detail: 'Création de contenu · Social Media' },
-  { image: '/images/card-2.jpg', format: 'square', label: 'Post Instagram', client: 'Pokebab', detail: "Campagne d'ouverture · Branding" },
-  { image: '/images/card-1.jpg', format: 'square', label: 'Post Instagram', client: 'Culture Thaï', detail: 'Contenus animés · Stratégie éditoriale' },
-  { image: '/images/card-5.jpg', format: 'story', label: 'Flyer', client: 'WilliBarber', detail: 'Création de flyers · Recrutement' },
-  { image: '/images/card-6.jpg', format: 'story', label: 'Menu & Flyer', client: 'Napolino', detail: 'Création de menu · Identité visuelle' },
-  { image: '/images/card-7.jpg', format: 'square', label: 'Visuel promotionnel', client: 'DnnUp', detail: 'Campagne produit · Identité visuelle' },
-  { image: '/images/card-8.jpg', format: 'square', label: 'Post Instagram', client: 'La Roche-Posay', detail: 'Visuel produit · Campagne réseaux' },
-  { image: '/images/card-9.jpg', format: 'story', label: 'Flyer', client: 'Smash Corner', detail: 'Menu & flyer · Identité visuelle' },
-  { image: '/images/card-10.jpg', format: 'story', label: 'Flyer promotionnel', client: 'La Maison Burger', detail: 'Visuel campagne · Social Media' },
-  // { image: '/images/visuel-X.jpg', format: 'story', label: 'Story Instagram', client: 'Client', detail: '...' },
+  // Alternance flyer (story) / post (square)
+  { image: '/images/card-5.jpg',  format: 'story',  label: 'Flyer',               client: 'WilliBarber',    detail: 'Création de flyers · Recrutement' },
+  { image: '/images/card-3.jpg',  format: 'square', label: 'Post Instagram',       client: 'Chick & Cheez',  detail: 'Création de contenu · Social Media' },
+  { image: '/images/card-6.jpg',  format: 'story',  label: 'Menu & Flyer',         client: 'Napolino',       detail: 'Création de menu · Identité visuelle' },
+  { image: '/images/card-2.jpg',  format: 'square', label: 'Post Instagram',       client: 'Pokebab',        detail: "Campagne d'ouverture · Branding" },
+  { image: '/images/card-9.jpg',  format: 'story',  label: 'Flyer',               client: 'Smash Corner',   detail: 'Menu & flyer · Identité visuelle' },
+  { image: '/images/card-1.jpg',  format: 'square', label: 'Post Instagram',       client: 'Culture Thaï',   detail: 'Contenus animés · Stratégie éditoriale' },
+  { image: '/images/card-10.jpg', format: 'story',  label: 'Flyer promotionnel',   client: 'La Maison Burger', detail: 'Visuel campagne · Social Media' },
+  { image: '/images/card-7.jpg',  format: 'square', label: 'Visuel promotionnel',  client: 'DnnUp',          detail: 'Campagne produit · Identité visuelle' },
+  { image: '/images/card-8.jpg',  format: 'square', label: 'Post Instagram',       client: 'La Roche-Posay', detail: 'Visuel produit · Campagne réseaux' },
+  // { image: '/images/visuel-X.jpg', format: 'story', label: 'Flyer', client: 'Client', detail: '...' },
 ];
 
 // Triplicate pour le scroll infini
@@ -144,8 +145,15 @@ function SitesSectionGallery() {
       >
         {SITES_TRACK.map((site, i) => (
           <div key={i} className="gallery-card site-card">
-            {/* Mockup navigateur */}
-            <div className="browser-mockup">
+            {/* Mockup navigateur — entièrement cliquable */}
+            <a
+              href={site.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="browser-mockup"
+              style={{ display: 'block', textDecoration: 'none' }}
+              onClick={e => e.stopPropagation()}
+            >
               <div className="browser-bar">
                 <span className="browser-dot" style={{ background: '#FF5F57' }} />
                 <span className="browser-dot" style={{ background: '#FEBC2E' }} />
@@ -164,7 +172,7 @@ function SitesSectionGallery() {
                   <span className="gallery-overlay-result">{site.result}</span>
                 </div>
               </div>
-            </div>
+            </a>
             {/* Infos */}
             <div className="gallery-info">
               <p className="gallery-category">{site.category}</p>
