@@ -283,32 +283,9 @@ export function Realisations() {
         <SitesSectionGallery />
       </div>
 
-      {/* CTA intermédiaire */}
+      {/* Séparateur */}
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(24px, 5vw, 80px)' }}>
-        <div style={{
-          borderTop: '1px solid rgba(255,255,255,0.07)',
-          borderBottom: '1px solid rgba(255,255,255,0.07)',
-          padding: '28px 0',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          flexWrap: 'wrap', gap: 16,
-        }}>
-          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)', margin: 0, lineHeight: 1.5 }}>
-            Votre business mérite le même résultat.
-          </p>
-          <a
-            href="/audit"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'var(--accent)', color: '#ffffff',
-              borderRadius: 64, padding: '11px 24px',
-              fontSize: 13, fontWeight: 700, fontFamily: 'var(--font-heading)',
-              textDecoration: 'none', letterSpacing: '-0.01em', whiteSpace: 'nowrap',
-              flexShrink: 0,
-            }}
-          >
-            Diagnostic offert →
-          </a>
-        </div>
+        <div style={{ height: 1, background: 'rgba(255,255,255,0.07)' }} />
       </div>
 
       {/* ── BLOC 2 : Créations Graphiques ── */}
