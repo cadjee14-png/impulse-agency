@@ -166,6 +166,8 @@ function SitesSectionGallery() {
                   src={site.image}
                   alt={site.client}
                   className="gallery-img"
+                  loading="lazy"
+                  decoding="async"
                   style={{ objectPosition: site.objectPosition }}
                 />
                 <div className="gallery-overlay">
@@ -227,7 +229,7 @@ function VisuelsSectionGallery() {
           <div key={i} className={`gallery-card visuel-card visuel-${v.format}`}>
             <div className="gallery-img-wrap">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={v.image} alt={v.client} className="gallery-img" />
+              <img src={v.image} alt={v.client} className="gallery-img" loading="lazy" decoding="async" />
               <div className="gallery-overlay">
                 <span className="gallery-overlay-result">{v.label}</span>
               </div>

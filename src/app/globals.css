@@ -221,6 +221,34 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.9;
 }
 
+/* ─── View Transitions ───────────────────────────────────────── */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vt-out 0.22s ease-out both;
+}
+::view-transition-new(root) {
+  animation: vt-in 0.28s ease-out both;
+}
+
+@keyframes vt-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-6px) scale(0.99); }
+}
+@keyframes vt-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 /* ─── Cookie Banner ──────────────────────────────────────────── */
 @keyframes cookieSlideIn {
   from { transform: translateY(100%); opacity: 0; }

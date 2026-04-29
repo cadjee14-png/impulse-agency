@@ -57,6 +57,8 @@ export function Navbar() {
     if (href.startsWith('#')) {
       const el = document.querySelector(href);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else if (document.startViewTransition) {
+      document.startViewTransition(() => { window.location.href = href; });
     } else {
       window.location.href = href;
     }

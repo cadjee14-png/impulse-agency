@@ -71,7 +71,7 @@ const SECTEURS = ['E-commerce', 'Restaurant / Food', 'Services B2B', 'Retail / B
 const STEP_CONFIG = [
   { title: 'Quels services vous intéressent ?',   sub: 'Plusieurs choix possibles.' },
   { title: 'Quel est votre budget mensuel ?',     sub: 'Pas de bonne ou mauvaise réponse.' },
-  { title: 'Vos coordonnées',                    sub: 'On vous rappelle sous 24h, gratuit.' },
+  { title: 'On vous rappelle sous 24h.',          sub: 'Où est-ce qu\'on peut vous joindre ?' },
 ];
 
 /* ── Props ─────────────────────────────────────────────────────── */
@@ -106,7 +106,7 @@ export function DiagnosticForm({ variant = 'page' }: DiagnosticFormProps) {
 
   const handleSubmit = async () => {
     if (!prenom.trim() || !whatsapp.trim()) {
-      setError('Veuillez renseigner votre prénom et votre numéro WhatsApp.');
+      setError('Veuillez renseigner votre prénom et votre numéro WhatsApp. Vos données restent confidentielles.');
       return;
     }
     setError('');

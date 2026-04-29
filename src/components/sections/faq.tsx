@@ -170,7 +170,7 @@ export function Faq() {
               onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.background = 'var(--accent-dim)'}
               onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.background = 'var(--accent)'}
             >
-              Parlez-nous
+              Je veux mon diagnostic gratuit
             </a>
           </div>
         </FadeIn>

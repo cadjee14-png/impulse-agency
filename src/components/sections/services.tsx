@@ -171,27 +171,42 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
   const handleMouseEnter = () => {
     if (!cardRef.current) return;
-    gsap.to(cardRef.current, { y: -8, scale: 1.01, duration: 0.5, ease: 'power3.out',
-      boxShadow: dark ? '0 24px 64px rgba(0,0,0,0.5)' : '0 24px 64px rgba(30,70,107,0.15)' });
+    gsap.to(cardRef.current, { y: -10, scale: 1.01, duration: 0.5, ease: 'power3.out',
+      boxShadow: dark ? '0 32px 80px rgba(0,0,0,0.55)' : '0 32px 80px rgba(30,70,107,0.18)' });
     if (accentLineRef.current) gsap.to(accentLineRef.current, { scaleX: 1, duration: 0.5, ease: 'power3.out' });
+  };
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+    const dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+    gsap.to(cardRef.current, {
+      rotateX: -dy * 5,
+      rotateY:  dx * 5,
+      duration: 0.25,
+      ease: 'power2.out',
+      overwrite: 'auto',
+    });
   };
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
-    gsap.to(cardRef.current, { y: 0, scale: 1, duration: 0.5, ease: 'power3.out', boxShadow: shadow });
+    gsap.to(cardRef.current, { y: 0, scale: 1, rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out', boxShadow: shadow });
     if (accentLineRef.current) gsap.to(accentLineRef.current, { scaleX: 0, duration: 0.5, ease: 'power3.out' });
   };
 
   return (
+    <div style={{ perspective: 1000, gridColumn: wide ? '1 / -1' : undefined }}>
     <div
       ref={cardRef}
       className={`service-card service-card-${index}`}
       onMouseEnter={handleMouseEnter}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        gridColumn: wide ? '1 / -1' : undefined,
         background: bg, border, borderRadius: 16,
         padding: wide ? 'clamp(32px,4vw,48px) clamp(24px,3vw,40px)' : 'clamp(28px,3vw,40px) clamp(20px,2.5vw,32px)',
         position: 'relative', overflow: 'hidden', cursor: 'none', willChange: 'transform',
+        transformStyle: 'preserve-3d',
       }}
     >
       <div style={dark ? lineGridStyle : dotGridStyle} />
@@ -330,6 +345,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         )}
       </div>
     </div>
+    </div>
   );
 }
 
@@ -455,7 +471,7 @@ export function Services() {
       <style>{`
         @media (max-width: 900px) {
           .services-cards-grid { grid-template-columns: 1fr !important; }
-          .service-card { grid-column: 1 !important; }
+          .services-cards-grid > div { grid-column: 1 !important; }
           .service-card-inner-wide { grid-template-columns: 1fr !important; }
           .service-card-inner-wide > div:last-child { display: none !important; }
           .services-cta-banner {
