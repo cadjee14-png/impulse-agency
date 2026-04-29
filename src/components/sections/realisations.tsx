@@ -33,6 +33,10 @@ const VISUELS: {
   { image: '/images/card-1.jpg', format: 'square', label: 'Post Instagram', client: 'Culture Thaï', detail: 'Contenus animés · Stratégie éditoriale' },
   { image: '/images/card-5.jpg', format: 'story', label: 'Flyer', client: 'WilliBarber', detail: 'Création de flyers · Recrutement' },
   { image: '/images/card-6.jpg', format: 'story', label: 'Menu & Flyer', client: 'Napolino', detail: 'Création de menu · Identité visuelle' },
+  { image: '/images/card-7.jpg', format: 'square', label: 'Visuel promotionnel', client: 'DnnUp', detail: 'Campagne produit · Identité visuelle' },
+  { image: '/images/card-8.jpg', format: 'square', label: 'Post Instagram', client: 'La Roche-Posay', detail: 'Visuel produit · Campagne réseaux' },
+  { image: '/images/card-9.jpg', format: 'story', label: 'Flyer', client: 'Smash Corner', detail: 'Menu & flyer · Identité visuelle' },
+  { image: '/images/card-10.jpg', format: 'story', label: 'Flyer promotionnel', client: 'La Maison Burger', detail: 'Visuel campagne · Social Media' },
   // { image: '/images/visuel-X.jpg', format: 'story', label: 'Story Instagram', client: 'Client', detail: '...' },
 ];
 
