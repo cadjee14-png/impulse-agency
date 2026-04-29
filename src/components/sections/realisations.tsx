@@ -10,15 +10,50 @@ import { SectionHeading } from '@/components/animations/section-heading';
 
 const SITES = [
   {
+    url: 'bellarya.fr',
+    image: '/images/site-bellarya.jpg',
+    objectPosition: 'top center',
+    client: 'Bellarya',
+    category: 'Site Web · Beauté & Cosmétiques',
+    result: 'Lancement boutique en ligne',
+    link: 'https://bellarya.fr',
+  },
+  {
     url: 'viboost.fr',
-    image: '/images/card-4.jpg',
+    image: '/images/site-viboost.jpg',
     objectPosition: 'top center',
     client: 'ViBoost',
     category: 'Site Web · Réservation en ligne',
     result: '×3 prises de rendez-vous',
-    link: 'https://viboost.fr',
+    link: 'https://viboost-v5.vercel.app/',
   },
-  // { url: 'exemple.fr', image: '/images/site-X.jpg', objectPosition: 'top', client: 'Client', category: 'Site Web · ...', result: '...', link: 'https://exemple.fr' },
+  {
+    url: 'cabinet-sourire.fr',
+    image: '/images/site-cabinet-sourire.jpg',
+    objectPosition: 'top center',
+    client: 'Cabinet Sourire',
+    category: 'Site Web · Santé & Dentaire',
+    result: 'Site vitrine premium',
+    link: 'https://cabinet-sourire.vercel.app/',
+  },
+  {
+    url: 'kits-nation.com',
+    image: '/images/site-kits-nation.jpg',
+    objectPosition: 'top center',
+    client: 'Kits Nation',
+    category: 'E-commerce · Sport',
+    result: 'Boutique en ligne complète',
+    link: 'https://kits-nation.com/',
+  },
+  {
+    url: 'buon-cibo-pizza.fr',
+    image: '/images/site-buon-cibo.jpg',
+    objectPosition: 'top center',
+    client: 'Buon Cibo Pizza',
+    category: 'Site Web · Restauration',
+    result: 'Site vitrine & menu en ligne',
+    link: 'https://buon-cibo-pizza.vercel.app/',
+  },
 ];
 
 const VISUELS: {
