@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { CustomCursor } from '@/components/layout/custom-cursor';
 import { StickyCTAMobile } from '@/components/layout/sticky-cta-mobile';
 import { CookieBanner } from '@/components/layout/cookie-banner';
+import { ExitIntentPopup } from '@/components/layout/exit-intent-popup';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://impulse-agency.fr'),
@@ -156,6 +157,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <StickyCTAMobile />
           <CookieBanner />
+          <ExitIntentPopup />
         </SmoothScroll>
       </body>
     </html>
