@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
 import { FadeIn } from '@/components/animations/fade-in';
 import { SectionHeading } from '@/components/animations/section-heading';
 import { CircularGallery, type CarouselItem } from '@/components/ui/circular-gallery';
@@ -29,7 +28,16 @@ const VISUELS: { image: string; format: 'square'|'story'; label: string; client:
   { image: '/images/card-8.jpg',  format: 'square', label: 'Post Instagram',      client: 'La Roche-Posay',  detail: 'Visuel produit · Campagne réseaux' },
 ];
 
-const SITES_TRACK = [...SITES, ...SITES, ...SITES];
+// Mapping sites → CarouselItem
+const SITES_ITEMS: CarouselItem[] = SITES.map(s => ({
+  image: s.image,
+  badge: 'Site Web',
+  title: s.client,
+  subtitle: s.result,
+  objectPosition: s.objectPosition,
+  url: s.url,
+  link: s.link,
+}));
 
 // Mapping visuels → CarouselItem
 const VISUELS_ITEMS: CarouselItem[] = VISUELS.map(v => ({
@@ -38,98 +46,6 @@ const VISUELS_ITEMS: CarouselItem[] = VISUELS.map(v => ({
   title: v.client,
   subtitle: v.detail.split(' · ')[0],
 }));
-
-// ─────────────────────────────────────────────
-// Hook auto-scroll horizontal infini
-// ─────────────────────────────────────────────
-function useAutoScroll(speed = 0.6) {
-  const trackRef  = useRef<HTMLDivElement>(null);
-  const rafRef    = useRef<number>(0);
-  const pausedRef = useRef(false);
-  const speedRef  = useRef(speed);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    speedRef.current = window.innerWidth < 768 ? 1.1 : speed;
-    const half = track.scrollWidth / 3;
-    track.scrollLeft = half;
-    const tick = () => {
-      if (!pausedRef.current && track) {
-        track.scrollLeft += speedRef.current;
-        if (track.scrollLeft >= (track.scrollWidth / 3) * 2) track.scrollLeft -= track.scrollWidth / 3;
-        if (track.scrollLeft <= 0) track.scrollLeft += track.scrollWidth / 3;
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [speed]);
-
-  const scrollBy = (dir: -1 | 1) => {
-    const track = trackRef.current;
-    if (!track) return;
-    pausedRef.current = true;
-    const cardW = track.querySelector<HTMLElement>('.gallery-card')?.offsetWidth ?? 300;
-    track.scrollBy({ left: dir * (cardW + 20), behavior: 'smooth' });
-    setTimeout(() => { pausedRef.current = false; }, 2000);
-  };
-
-  return { trackRef, pausedRef, scrollBy };
-}
-
-// ─────────────────────────────────────────────
-// Section 1 — Sites Web (scroll horizontal)
-// ─────────────────────────────────────────────
-function SitesSectionGallery() {
-  const { trackRef, pausedRef, scrollBy } = useAutoScroll(0.5);
-  return (
-    <div style={{ position: 'relative' }}>
-      <button onClick={() => scrollBy(-1)} className="gallery-arrow gallery-arrow-left" aria-label="Précédent">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <div
-        ref={trackRef}
-        className="gallery-track"
-        onMouseEnter={() => { pausedRef.current = true; }}
-        onMouseLeave={() => { pausedRef.current = false; }}
-      >
-        {SITES_TRACK.map((site, i) => (
-          <div key={i} className="gallery-card site-card">
-            <a href={site.link} target="_blank" rel="noopener noreferrer" className="browser-mockup" style={{ display: 'block', textDecoration: 'none' }}>
-              <div className="browser-bar">
-                <span className="browser-dot" style={{ background: '#FF5F57' }} />
-                <span className="browser-dot" style={{ background: '#FEBC2E' }} />
-                <span className="browser-dot" style={{ background: '#28C840' }} />
-                <div className="browser-url">{site.url}</div>
-              </div>
-              <div className="browser-screen">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={site.image} alt={site.client} className="gallery-img" loading="lazy" decoding="async" style={{ objectPosition: site.objectPosition }} />
-                <div className="gallery-overlay">
-                  <span className="gallery-overlay-result">{site.result}</span>
-                </div>
-              </div>
-            </a>
-            <div className="gallery-info">
-              <p className="gallery-category">{site.category}</p>
-              <p className="gallery-client">{site.client}</p>
-              <a href={site.link} target="_blank" rel="noopener noreferrer" className="site-link">
-                Voir le site
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 4 }}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-      <button onClick={() => scrollBy(1)} className="gallery-arrow gallery-arrow-right" aria-label="Suivant">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-      <div className="gallery-fade-left" />
-      <div className="gallery-fade-right" />
-    </div>
-  );
-}
 
 // ─────────────────────────────────────────────
 // Export principal
@@ -153,7 +69,7 @@ export function Realisations() {
             </p>
           </FadeIn>
         </div>
-        <SitesSectionGallery />
+        <CircularGallery items={SITES_ITEMS} variant="site" />
       </div>
 
       {/* Séparateur */}
@@ -193,40 +109,6 @@ export function Realisations() {
         </div>
       </FadeIn>
 
-      <style>{`
-        .gallery-track { display:flex; gap:20px; overflow-x:scroll; scroll-behavior:auto; scrollbar-width:none; -ms-overflow-style:none; padding:4px 60px; cursor:grab; align-items:flex-start; }
-        .gallery-track::-webkit-scrollbar { display:none; }
-        .gallery-card { flex-shrink:0; display:flex; flex-direction:column; gap:14px; }
-        .site-card { width: clamp(280px, 32vw, 420px); }
-        .browser-mockup { border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#111; }
-        .browser-bar { height:34px; background:#1e1e1e; display:flex; align-items:center; padding:0 12px; gap:6px; flex-shrink:0; }
-        .browser-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
-        .browser-url { flex:1; height:18px; background:#111; border-radius:4px; margin:0 8px; display:flex; align-items:center; justify-content:center; font-size:10px; color:rgba(255,255,255,0.3); font-family:monospace; }
-        .browser-screen { position:relative; aspect-ratio:16/10; overflow:hidden; }
-        .gallery-img { width:100%; height:100%; object-fit:cover; transition:transform 600ms cubic-bezier(0.16,1,0.3,1); display:block; pointer-events:none; }
-        .browser-screen .gallery-img { position:absolute; inset:0; }
-        .gallery-card:hover .gallery-img { transform:scale(1.04); }
-        .gallery-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(10,22,40,0.88) 0%,transparent 55%); opacity:0; transition:opacity 400ms ease; display:flex; align-items:flex-end; padding:16px; }
-        .gallery-card:hover .gallery-overlay { opacity:1; }
-        .gallery-overlay-result { font-family:var(--font-heading); font-weight:800; font-size:clamp(14px,1.6vw,20px); color:var(--accent-light); letter-spacing:-0.03em; line-height:1; }
-        .gallery-info { display:flex; flex-direction:column; gap:4px; padding:0 4px; }
-        .gallery-category { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin:0; }
-        .gallery-client { font-family:var(--font-heading); font-weight:800; font-size:clamp(14px,1.5vw,18px); color:#ffffff; letter-spacing:-0.02em; line-height:1.1; margin:0; }
-        .site-link { display:inline-flex; align-items:center; font-size:13px; font-weight:700; color:var(--accent-light); text-decoration:none; margin-top:2px; transition:opacity 200ms; font-family:var(--font-heading); letter-spacing:-0.01em; }
-        .site-link:hover { opacity:0.7; }
-        .gallery-arrow { position:absolute; top:38%; transform:translateY(-50%); z-index:10; width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.06); backdrop-filter:blur(10px); color:rgba(255,255,255,0.7); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 250ms ease; }
-        .gallery-arrow:hover { background:rgba(255,255,255,0.14); border-color:rgba(255,255,255,0.3); color:#ffffff; }
-        .gallery-arrow-left { left:12px; }
-        .gallery-arrow-right { right:12px; }
-        .gallery-fade-left,.gallery-fade-right { position:absolute; top:0; bottom:0; width:80px; pointer-events:none; z-index:5; }
-        .gallery-fade-left { left:0; background:linear-gradient(to right,var(--dark),transparent); }
-        .gallery-fade-right { right:0; background:linear-gradient(to left,var(--dark),transparent); }
-        @media (max-width:768px) {
-          .site-card { width:260px; }
-          .gallery-track { gap:14px; padding:4px 48px; }
-          .gallery-arrow { width:36px; height:36px; }
-        }
-      `}</style>
     </section>
   );
 }

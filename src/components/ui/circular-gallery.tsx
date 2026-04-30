@@ -8,13 +8,19 @@ export interface CarouselItem {
   title: string;
   subtitle: string;
   objectPosition?: string;
+  /** Site cards only — shown in browser URL bar */
+  url?: string;
+  /** Site cards only — wraps card in <a> */
+  link?: string;
 }
 
 interface CircularGalleryProps {
   items: CarouselItem[];
+  /** 'visual' = badge pill card (default) | 'site' = browser mockup card */
+  variant?: 'visual' | 'site';
 }
 
-export function CircularGallery({ items }: CircularGalleryProps) {
+export function CircularGallery({ items, variant = 'visual' }: CircularGalleryProps) {
   const stageRef  = useRef<HTMLDivElement>(null);
   const rotorRef  = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -50,8 +56,15 @@ export function CircularGallery({ items }: CircularGalleryProps) {
     rotor.innerHTML = '';
     items.forEach((item, i) => {
       const angle = i * anglePerItem;
-      const card = document.createElement('div');
-      card.style.cssText = `
+
+      // Wrapper (clickable for site cards)
+      const wrapper = item.link ? document.createElement('a') : document.createElement('div');
+      if (item.link) {
+        (wrapper as HTMLAnchorElement).href = item.link;
+        (wrapper as HTMLAnchorElement).target = '_blank';
+        (wrapper as HTMLAnchorElement).rel = 'noopener noreferrer';
+      }
+      wrapper.style.cssText = `
         position: absolute;
         width: ${cw}px; height: ${ch}px;
         left: 50%; top: 50%;
@@ -63,57 +76,93 @@ export function CircularGallery({ items }: CircularGalleryProps) {
         box-shadow: 0 30px 60px -20px rgba(0,0,0,.45), 0 12px 24px -8px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.06);
         backface-visibility: hidden;
         cursor: pointer;
+        text-decoration: none;
+        display: block;
         transition: opacity 0.1s linear;
         will-change: transform, opacity;
       `;
 
-      // Image
-      const img = document.createElement('img');
-      img.src = item.image;
-      img.alt = item.title;
-      img.loading = 'lazy';
-      img.draggable = false;
-      img.style.cssText = `
-        position: absolute; inset: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
-        object-position: ${item.objectPosition || 'center top'};
-        pointer-events: none;
-      `;
-      card.appendChild(img);
+      if (variant === 'site') {
+        // ── Browser mockup card ──────────────────────────────
+        const barH = isMobile ? 22 : 28;
 
-      // Badge
-      const badge = document.createElement('div');
-      badge.textContent = item.badge;
-      badge.style.cssText = `
-        position: absolute; top: 14px; left: 14px;
-        background: rgba(255,255,255,.92);
-        backdrop-filter: blur(8px);
-        border-radius: 99px; padding: 6px 10px;
-        font-size: 10px; font-weight: 700;
-        letter-spacing: .12em; text-transform: uppercase;
-        color: #0A0A0A; white-space: nowrap;
-      `;
-      card.appendChild(badge);
+        // Browser bar
+        const bar = document.createElement('div');
+        bar.style.cssText = `
+          height: ${barH}px; background: #1e1e1e;
+          display: flex; align-items: center;
+          padding: 0 10px; gap: 5px; flex-shrink: 0;
+        `;
+        ['#FF5F57','#FEBC2E','#28C840'].forEach(color => {
+          const dot = document.createElement('span');
+          dot.style.cssText = `width:7px;height:7px;border-radius:50%;background:${color};flex-shrink:0;`;
+          bar.appendChild(dot);
+        });
+        const urlBar = document.createElement('div');
+        urlBar.textContent = item.url || '';
+        urlBar.style.cssText = `
+          flex:1; height:14px; background:#111; border-radius:3px;
+          margin:0 6px; display:flex; align-items:center; justify-content:center;
+          font-size:8px; color:rgba(255,255,255,0.35); font-family:monospace;
+          overflow:hidden; white-space:nowrap; padding:0 4px;
+        `;
+        bar.appendChild(urlBar);
+        wrapper.appendChild(bar);
 
-      // Caption overlay
-      const fig = document.createElement('figcaption');
-      fig.style.cssText = `
-        position: absolute; bottom: 0; left: 0; right: 0;
-        padding: 40px 14px 16px;
-        background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.55) 60%, transparent 100%);
-      `;
-      const t1 = document.createElement('p');
-      t1.textContent = item.title;
-      t1.style.cssText = `margin:0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; color: #fff; line-height: 1.15; font-family: var(--font-heading);`;
-      const t2 = document.createElement('p');
-      t2.textContent = item.subtitle;
-      t2.style.cssText = `margin: 4px 0 0; font-size: 12px; font-weight: 500; color: rgba(255,255,255,.75); line-height: 1.3;`;
-      fig.appendChild(t1);
-      fig.appendChild(t2);
-      card.appendChild(fig);
+        // Screen
+        const screen = document.createElement('div');
+        screen.style.cssText = `position:relative; height:${ch - barH}px; overflow:hidden;`;
 
-      rotor.appendChild(card);
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title;
+        img.loading = 'lazy';
+        img.draggable = false;
+        img.style.cssText = `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${item.objectPosition||'top center'};pointer-events:none;`;
+        screen.appendChild(img);
+
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 55%);opacity:0;transition:opacity 300ms ease;display:flex;align-items:flex-end;padding:12px;`;
+        const t1 = document.createElement('p');
+        t1.textContent = item.title;
+        t1.style.cssText = `margin:0;font-size:${isMobile?11:14}px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;font-family:var(--font-heading);`;
+        overlay.appendChild(t1);
+        screen.appendChild(overlay);
+
+        wrapper.addEventListener('mouseenter', () => { overlay.style.opacity = '1'; });
+        wrapper.addEventListener('mouseleave', () => { overlay.style.opacity = '0'; });
+
+        wrapper.appendChild(screen);
+
+      } else {
+        // ── Visual card (badge + portrait image) ─────────────
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title;
+        img.loading = 'lazy';
+        img.draggable = false;
+        img.style.cssText = `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${item.objectPosition||'center top'};pointer-events:none;`;
+        wrapper.appendChild(img);
+
+        const badge = document.createElement('div');
+        badge.textContent = item.badge;
+        badge.style.cssText = `position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:99px;padding:6px 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0A0A0A;white-space:nowrap;`;
+        wrapper.appendChild(badge);
+
+        const fig = document.createElement('figcaption');
+        fig.style.cssText = `position:absolute;bottom:0;left:0;right:0;padding:40px 14px 16px;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 60%,transparent 100%);`;
+        const t1 = document.createElement('p');
+        t1.textContent = item.title;
+        t1.style.cssText = `margin:0;font-size:16px;font-weight:700;letter-spacing:-.01em;color:#fff;line-height:1.15;font-family:var(--font-heading);`;
+        const t2 = document.createElement('p');
+        t2.textContent = item.subtitle;
+        t2.style.cssText = `margin:4px 0 0;font-size:12px;font-weight:500;color:rgba(255,255,255,.75);line-height:1.3;`;
+        fig.appendChild(t1);
+        fig.appendChild(t2);
+        wrapper.appendChild(fig);
+      }
+
+      rotor.appendChild(wrapper);
     });
 
     // ── Rotation state ──────────────────────────────────────────
