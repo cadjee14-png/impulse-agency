@@ -40,15 +40,24 @@ export function CircularGallery({ items, variant = 'visual', radiusOverride }: C
     const isMobile = W < 600;
     const isTablet = W >= 600 && W < 900;
 
-    const perspective = isMobile ? 1300 : isTablet ? 1600 : 2400;
+    const perspective = isMobile ? 1200 : isTablet ? 1800 : 2800;
     const defaultRadius = isMobile ? 360  : isTablet ? 460  : 580;
     const radius      = radiusOverride !== undefined
       ? (isMobile ? Math.round(radiusOverride * 0.55) : isTablet ? Math.round(radiusOverride * 0.75) : radiusOverride)
       : defaultRadius;
-    const cw          = isMobile ? 140  : isTablet ? 170  : 200;
-    const ch          = isMobile ? 190  : isTablet ? 230  : 270;
-    const br          = isMobile ? 12   : 18;
-    const stageH      = isMobile ? 340  : isTablet ? 400  : 380;
+
+    // Site variant uses landscape dimensions; visual variant stays portrait
+    const isSite = variant === 'site';
+    const cw      = isSite
+      ? (isMobile ? 260  : isTablet ? 400  : 580)
+      : (isMobile ? 140  : isTablet ? 170  : 200);
+    const ch      = isSite
+      ? (isMobile ? 165  : isTablet ? 255  : 370)
+      : (isMobile ? 190  : isTablet ? 230  : 270);
+    const br      = isMobile ? 12 : 16;
+    const stageH  = isSite
+      ? (isMobile ? 260  : isTablet ? 340  : 480)
+      : (isMobile ? 340  : isTablet ? 400  : 380);
     const autoSpeed   = 0.06;
     const idleDelay   = 1500;
     const lerpFactor  = 0.12;
@@ -88,28 +97,29 @@ export function CircularGallery({ items, variant = 'visual', radiusOverride }: C
       `;
 
       if (variant === 'site') {
-        // ── Browser mockup card ──────────────────────────────
-        const barH = isMobile ? 22 : 28;
+        // ── Browser mockup card (landscape) ──────────────────
+        const barH = isMobile ? 22 : isTablet ? 28 : 36;
+        const dotSz = isMobile ? 7 : 9;
 
         // Browser bar
         const bar = document.createElement('div');
         bar.style.cssText = `
-          height: ${barH}px; background: #1e1e1e;
+          height: ${barH}px; background: #1a1a1a;
           display: flex; align-items: center;
-          padding: 0 10px; gap: 5px; flex-shrink: 0;
+          padding: 0 12px; gap: 6px; flex-shrink: 0;
         `;
         ['#FF5F57','#FEBC2E','#28C840'].forEach(color => {
           const dot = document.createElement('span');
-          dot.style.cssText = `width:7px;height:7px;border-radius:50%;background:${color};flex-shrink:0;`;
+          dot.style.cssText = `width:${dotSz}px;height:${dotSz}px;border-radius:50%;background:${color};flex-shrink:0;`;
           bar.appendChild(dot);
         });
         const urlBar = document.createElement('div');
         urlBar.textContent = item.url || '';
         urlBar.style.cssText = `
-          flex:1; height:14px; background:#111; border-radius:3px;
-          margin:0 6px; display:flex; align-items:center; justify-content:center;
-          font-size:8px; color:rgba(255,255,255,0.35); font-family:monospace;
-          overflow:hidden; white-space:nowrap; padding:0 4px;
+          flex:1; height:${isMobile?14:18}px; background:#111; border-radius:4px;
+          margin:0 8px; display:flex; align-items:center; justify-content:center;
+          font-size:${isMobile?8:10}px; color:rgba(255,255,255,0.4); font-family:monospace;
+          overflow:hidden; white-space:nowrap; padding:0 6px;
         `;
         bar.appendChild(urlBar);
         wrapper.appendChild(bar);
@@ -123,19 +133,24 @@ export function CircularGallery({ items, variant = 'visual', radiusOverride }: C
         img.alt = item.title;
         img.loading = 'lazy';
         img.draggable = false;
-        img.style.cssText = `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${item.objectPosition||'top center'};pointer-events:none;`;
+        img.style.cssText = `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${item.objectPosition||'top center'};pointer-events:none;transition:transform 600ms ease;`;
         screen.appendChild(img);
 
+        // Always-visible overlay at bottom
         const overlay = document.createElement('div');
-        overlay.style.cssText = `position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 55%);opacity:0;transition:opacity 300ms ease;display:flex;align-items:flex-end;padding:12px;`;
+        overlay.style.cssText = `position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.2) 45%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:${isMobile?10:16}px;`;
+        const cat = document.createElement('p');
+        cat.textContent = item.badge;
+        cat.style.cssText = `margin:0 0 4px;font-size:${isMobile?8:10}px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);font-family:var(--font-body);`;
         const t1 = document.createElement('p');
         t1.textContent = item.title;
-        t1.style.cssText = `margin:0;font-size:${isMobile?11:14}px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;font-family:var(--font-heading);`;
+        t1.style.cssText = `margin:0;font-size:${isMobile?13:isMobile?16:20}px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;font-family:var(--font-heading);`;
+        overlay.appendChild(cat);
         overlay.appendChild(t1);
         screen.appendChild(overlay);
 
-        wrapper.addEventListener('mouseenter', () => { overlay.style.opacity = '1'; });
-        wrapper.addEventListener('mouseleave', () => { overlay.style.opacity = '0'; });
+        wrapper.addEventListener('mouseenter', () => { img.style.transform = 'scale(1.04)'; });
+        wrapper.addEventListener('mouseleave', () => { img.style.transform = 'scale(1)'; });
 
         wrapper.appendChild(screen);
 
