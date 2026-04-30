@@ -55,10 +55,13 @@ export function CircularGallery({ items, variant = 'visual', radiusOverride }: C
       ? (isMobile ? 260  : isTablet ? 340  : 480)
       : (isMobile ? 340  : isTablet ? 400  : 380);
 
-    // Auto-radius: cards spaced with ~15% gap regardless of N or screen size
+    // Desktop/tablet: fixed radius to fill the section width
+    // Mobile: auto-radius so multiple cards are visible simultaneously
     const radius = radiusOverride !== undefined
       ? (isMobile ? Math.round(radiusOverride * 0.55) : isTablet ? Math.round(radiusOverride * 0.75) : radiusOverride)
-      : Math.round((cw * 1.15) / (2 * Math.sin(Math.PI / N)));
+      : isMobile
+        ? Math.round((cw * 1.15) / (2 * Math.sin(Math.PI / N)))
+        : (isTablet ? 460 : 580);
     const autoSpeed   = 0.06;
     const idleDelay   = 1500;
     const lerpFactor  = 0.12;
