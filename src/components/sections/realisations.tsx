@@ -69,7 +69,7 @@ export function Realisations() {
             </p>
           </FadeIn>
         </div>
-        <CircularGallery items={SITES_ITEMS} variant="site" />
+        <CircularGallery items={SITES_ITEMS} variant="site" radiusOverride={210} />
       </div>
 
       {/* Séparateur */}

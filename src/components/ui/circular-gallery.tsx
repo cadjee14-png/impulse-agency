@@ -18,9 +18,11 @@ interface CircularGalleryProps {
   items: CarouselItem[];
   /** 'visual' = badge pill card (default) | 'site' = browser mockup card */
   variant?: 'visual' | 'site';
+  /** Override default radius (px) for desktop — useful to tighten card spacing */
+  radiusOverride?: number;
 }
 
-export function CircularGallery({ items, variant = 'visual' }: CircularGalleryProps) {
+export function CircularGallery({ items, variant = 'visual', radiusOverride }: CircularGalleryProps) {
   const stageRef  = useRef<HTMLDivElement>(null);
   const rotorRef  = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -39,7 +41,10 @@ export function CircularGallery({ items, variant = 'visual' }: CircularGalleryPr
     const isTablet = W >= 600 && W < 900;
 
     const perspective = isMobile ? 1300 : isTablet ? 1600 : 2400;
-    const radius      = isMobile ? 360  : isTablet ? 460  : 580;
+    const defaultRadius = isMobile ? 360  : isTablet ? 460  : 580;
+    const radius      = radiusOverride !== undefined
+      ? (isMobile ? Math.round(radiusOverride * 0.55) : isTablet ? Math.round(radiusOverride * 0.75) : radiusOverride)
+      : defaultRadius;
     const cw          = isMobile ? 140  : isTablet ? 170  : 200;
     const ch          = isMobile ? 190  : isTablet ? 230  : 270;
     const br          = isMobile ? 12   : 18;
