@@ -41,10 +41,6 @@ export function CircularGallery({ items, variant = 'visual', radiusOverride }: C
     const isTablet = W >= 600 && W < 900;
 
     const perspective = isMobile ? 1200 : isTablet ? 1800 : 2800;
-    const defaultRadius = isMobile ? 360  : isTablet ? 460  : 580;
-    const radius      = radiusOverride !== undefined
-      ? (isMobile ? Math.round(radiusOverride * 0.55) : isTablet ? Math.round(radiusOverride * 0.75) : radiusOverride)
-      : defaultRadius;
 
     // Site variant uses landscape dimensions; visual variant stays portrait
     const isSite = variant === 'site';
@@ -58,6 +54,11 @@ export function CircularGallery({ items, variant = 'visual', radiusOverride }: C
     const stageH  = isSite
       ? (isMobile ? 260  : isTablet ? 340  : 480)
       : (isMobile ? 340  : isTablet ? 400  : 380);
+
+    // Auto-radius: cards spaced with ~15% gap regardless of N or screen size
+    const radius = radiusOverride !== undefined
+      ? (isMobile ? Math.round(radiusOverride * 0.55) : isTablet ? Math.round(radiusOverride * 0.75) : radiusOverride)
+      : Math.round((cw * 1.15) / (2 * Math.sin(Math.PI / N)));
     const autoSpeed   = 0.06;
     const idleDelay   = 1500;
     const lerpFactor  = 0.12;
