@@ -1,272 +1,318 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export interface CarouselItem {
   image: string;
   badge: string;
   title: string;
   subtitle: string;
-  link?: string;
   objectPosition?: string;
 }
 
 interface CircularGalleryProps {
   items: CarouselItem[];
-  radius?: number;
-  autoRotateSpeed?: number;
-  cardWidth?: number;
-  cardHeight?: number;
 }
 
-export function CircularGallery({
-  items,
-  radius = 520,
-  autoRotateSpeed = 0.14,
-  cardWidth = 240,
-  cardHeight = 340,
-}: CircularGalleryProps) {
-  const rotRef     = useRef(0);
-  const [rot, setRot] = useState(0);
-  const pausedRef  = useRef(false);
-  const rafRef     = useRef<number>(0);
-  const dragging   = useRef(false);
-  const dragStartX = useRef(0);
-  const dragStartR = useRef(0);
-  const [isMobile, setIsMobile] = useState(false);
+export function CircularGallery({ items }: CircularGalleryProps) {
+  const stageRef  = useRef<HTMLDivElement>(null);
+  const rotorRef  = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
+    const stage = stageRef.current;
+    const rotor = rotorRef.current;
+    if (!stage || !rotor) return;
 
-  // Auto-rotate RAF
-  useEffect(() => {
-    const tick = () => {
-      if (!pausedRef.current) {
-        rotRef.current += autoRotateSpeed;
-        setRot(rotRef.current);
-      }
-      rafRef.current = requestAnimationFrame(tick);
+    const N = items.length;
+    const anglePerItem = 360 / N;
+
+    // ── Responsive values ──────────────────────────────────────
+    const W = window.innerWidth;
+    const isMobile = W < 600;
+    const isTablet = W >= 600 && W < 900;
+
+    const perspective = isMobile ? 1300 : isTablet ? 1600 : 2400;
+    const radius      = isMobile ? 360  : isTablet ? 460  : 580;
+    const cw          = isMobile ? 140  : isTablet ? 170  : 200;
+    const ch          = isMobile ? 190  : isTablet ? 230  : 270;
+    const br          = isMobile ? 12   : 18;
+    const stageH      = isMobile ? 340  : isTablet ? 400  : 380;
+    const autoSpeed   = 0.06;
+    const idleDelay   = 1500;
+    const lerpFactor  = 0.12;
+
+    // ── Stage setup ─────────────────────────────────────────────
+    stage.style.height = `${stageH}px`;
+    stage.style.perspective = `${perspective}px`;
+
+    // ── Build card DOM ──────────────────────────────────────────
+    rotor.innerHTML = '';
+    items.forEach((item, i) => {
+      const angle = i * anglePerItem;
+      const card = document.createElement('div');
+      card.style.cssText = `
+        position: absolute;
+        width: ${cw}px; height: ${ch}px;
+        left: 50%; top: 50%;
+        margin: ${-(ch / 2)}px 0 0 ${-(cw / 2)}px;
+        transform: rotateY(${angle}deg) translateZ(${radius}px);
+        border-radius: ${br}px;
+        overflow: hidden;
+        background: #0A0A0A;
+        box-shadow: 0 30px 60px -20px rgba(0,0,0,.45), 0 12px 24px -8px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.06);
+        backface-visibility: hidden;
+        cursor: pointer;
+        transition: opacity 0.1s linear;
+        will-change: transform, opacity;
+      `;
+
+      // Image
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.title;
+      img.loading = 'lazy';
+      img.draggable = false;
+      img.style.cssText = `
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: ${item.objectPosition || 'center top'};
+        pointer-events: none;
+      `;
+      card.appendChild(img);
+
+      // Badge
+      const badge = document.createElement('div');
+      badge.textContent = item.badge;
+      badge.style.cssText = `
+        position: absolute; top: 14px; left: 14px;
+        background: rgba(255,255,255,.92);
+        backdrop-filter: blur(8px);
+        border-radius: 99px; padding: 6px 10px;
+        font-size: 10px; font-weight: 700;
+        letter-spacing: .12em; text-transform: uppercase;
+        color: #0A0A0A; white-space: nowrap;
+      `;
+      card.appendChild(badge);
+
+      // Caption overlay
+      const fig = document.createElement('figcaption');
+      fig.style.cssText = `
+        position: absolute; bottom: 0; left: 0; right: 0;
+        padding: 40px 14px 16px;
+        background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.55) 60%, transparent 100%);
+      `;
+      const t1 = document.createElement('p');
+      t1.textContent = item.title;
+      t1.style.cssText = `margin:0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; color: #fff; line-height: 1.15; font-family: var(--font-heading);`;
+      const t2 = document.createElement('p');
+      t2.textContent = item.subtitle;
+      t2.style.cssText = `margin: 4px 0 0; font-size: 12px; font-weight: 500; color: rgba(255,255,255,.75); line-height: 1.3;`;
+      fig.appendChild(t1);
+      fig.appendChild(t2);
+      card.appendChild(fig);
+
+      rotor.appendChild(card);
+    });
+
+    // ── Rotation state ──────────────────────────────────────────
+    let current  = 0; // displayed rotation (lerped)
+    let target   = 0; // target rotation
+    let rafId    = 0;
+    let idleTimer: ReturnType<typeof setTimeout> | null = null;
+    let isHover  = false;
+    let isDrag   = false;
+    let dragStartX = 0;
+    let dragStartT = 0;
+
+    const resetIdleTimer = () => {
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => { /* auto-rotate resumes via loop */ }, idleDelay);
     };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [autoRotateSpeed]);
 
-  // Drag helpers
-  const startDrag = (x: number) => {
-    dragging.current  = true;
-    pausedRef.current = true;
-    dragStartX.current = x;
-    dragStartR.current = rotRef.current;
-  };
-  const moveDrag = (x: number) => {
-    if (!dragging.current) return;
-    const delta = x - dragStartX.current;
-    rotRef.current = dragStartR.current + delta * 0.28;
-    setRot(rotRef.current);
-  };
-  const endDrag = () => {
-    if (!dragging.current) return;
-    dragging.current  = false;
-    pausedRef.current = false;
-  };
+    // ── Animation loop ──────────────────────────────────────────
+    const cards = Array.from(rotor.children) as HTMLDivElement[];
 
-  // Arrow nav — jump one card
-  const anglePerItem = 360 / items.length;
-  const step = (dir: 1 | -1) => {
-    pausedRef.current = true;
-    rotRef.current += dir * anglePerItem;
-    setRot(rotRef.current);
-    setTimeout(() => { pausedRef.current = false; }, 1200);
-  };
+    const tick = () => {
+      // Auto-rotate when idle
+      if (!isHover && !isDrag) {
+        target += autoSpeed;
+      }
 
-  // Responsive sizing
-  const r  = isMobile ? Math.round(radius  * 0.48) : radius;
-  const cw = isMobile ? Math.round(cardWidth  * 0.68) : cardWidth;
-  const ch = isMobile ? Math.round(cardHeight * 0.68) : cardHeight;
+      // Lerp toward target
+      current += (target - current) * lerpFactor;
+
+      rotor.style.transform = `rotateY(${current}deg)`;
+
+      // Update card opacities + zIndex
+      cards.forEach((card, i) => {
+        const itemAngle = i * anglePerItem;
+        const rel  = ((itemAngle + current) % 360 + 360) % 360;
+        const dist = rel > 180 ? 360 - rel : rel;
+        const opacity = Math.max(0.25, 1 - dist / 180);
+        card.style.opacity = String(opacity);
+        card.style.zIndex  = String(Math.round((1 - dist / 180) * 100));
+      });
+
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    // ── Scroll ─────────────────────────────────────────────────
+    const onScroll = (e: WheelEvent) => {
+      if (!isHover) return;
+      target += e.deltaY * 0.18;
+      resetIdleTimer();
+    };
+    stage.addEventListener('wheel', onScroll, { passive: true });
+
+    // ── Drag (mouse) ────────────────────────────────────────────
+    const onMouseDown = (e: MouseEvent) => {
+      isDrag = true;
+      dragStartX = e.clientX;
+      dragStartT = target;
+      stage.style.cursor = 'grabbing';
+    };
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isDrag) return;
+      target = dragStartT - (e.clientX - dragStartX) * 0.4;
+    };
+    const onMouseUp = () => {
+      isDrag = false;
+      stage.style.cursor = 'grab';
+    };
+
+    // ── Drag (touch) ────────────────────────────────────────────
+    const onTouchStart = (e: TouchEvent) => {
+      isDrag = true;
+      dragStartX = e.touches[0].clientX;
+      dragStartT = target;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDrag) return;
+      e.preventDefault();
+      target = dragStartT - (e.touches[0].clientX - dragStartX) * 0.4;
+    };
+    const onTouchEnd = () => { isDrag = false; };
+
+    // ── Hover pause ─────────────────────────────────────────────
+    const onEnter = () => { isHover = true; };
+    const onLeave = () => { isHover = false; isDrag = false; stage.style.cursor = 'grab'; };
+
+    stage.style.cursor = 'grab';
+    stage.addEventListener('mouseenter', onEnter);
+    stage.addEventListener('mouseleave', onLeave);
+    stage.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    stage.addEventListener('touchstart', onTouchStart, { passive: true });
+    stage.addEventListener('touchmove', onTouchMove, { passive: false });
+    stage.addEventListener('touchend', onTouchEnd);
+
+    // ── Arrow nav ────────────────────────────────────────────────
+    const bottom = bottomRef.current;
+    if (bottom) {
+      const [btnL, , btnR] = Array.from(bottom.children) as HTMLElement[];
+      btnL?.addEventListener('click', () => { target -= anglePerItem; });
+      btnR?.addEventListener('click', () => { target += anglePerItem; });
+    }
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (idleTimer) clearTimeout(idleTimer);
+      stage.removeEventListener('wheel', onScroll);
+      stage.removeEventListener('mouseenter', onEnter);
+      stage.removeEventListener('mouseleave', onLeave);
+      stage.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+      stage.removeEventListener('touchstart', onTouchStart);
+      stage.removeEventListener('touchmove', onTouchMove);
+      stage.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [items]);
 
   return (
-    <div style={{ userSelect: 'none', touchAction: 'none' }}>
-
-      {/* ── 3D Scene ── */}
+    <div>
+      {/* 3D stage */}
       <div
+        ref={stageRef}
         style={{
+          position: 'relative',
           width: '100%',
-          height: ch + 60,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          perspective: isMobile ? 800 : 1300,
-          cursor: 'grab',
           overflow: 'visible',
+          maskImage: 'linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%)',
         }}
-        onMouseDown={e => startDrag(e.clientX)}
-        onMouseMove={e => moveDrag(e.clientX)}
-        onMouseUp={endDrag}
-        onMouseLeave={endDrag}
-        onTouchStart={e => startDrag(e.touches[0].clientX)}
-        onTouchMove={e => { e.preventDefault(); moveDrag(e.touches[0].clientX); }}
-        onTouchEnd={endDrag}
       >
         <div
+          ref={rotorRef}
           style={{
             position: 'relative',
-            width: cw,
-            height: ch,
+            width: 0,
+            height: 0,
             transformStyle: 'preserve-3d',
-            transform: `rotateY(${rot}deg)`,
           }}
-        >
-          {items.map((item, i) => {
-            const angle = i * anglePerItem;
-            const rel  = ((angle + rot) % 360 + 360) % 360;
-            const norm = rel > 180 ? 360 - rel : rel;
-            const opacity = Math.max(0.2, 1 - (norm / 180) * 0.78);
-
-            const card = (
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: 20,
-                  overflow: 'hidden',
-                  boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
-                  position: 'relative',
-                  background: '#111',
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  draggable={false}
-                  loading="lazy"
-                  decoding="async"
-                  style={{
-                    width: '100%', height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: item.objectPosition || 'center top',
-                    display: 'block',
-                    pointerEvents: 'none',
-                  }}
-                />
-
-                {/* Badge */}
-                <div style={{
-                  position: 'absolute', top: 14, left: 14,
-                  background: 'rgba(255,255,255,0.96)',
-                  borderRadius: 100, padding: '5px 13px',
-                  fontSize: 10, fontWeight: 700,
-                  letterSpacing: '0.08em', textTransform: 'uppercase',
-                  color: '#0D0D0D',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-                }}>
-                  {item.badge}
-                </div>
-
-                {/* Bottom overlay */}
-                <div style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  background: 'linear-gradient(to top, rgba(5,12,24,0.92) 0%, rgba(5,12,24,0.4) 60%, transparent 100%)',
-                  padding: '48px 16px 18px',
-                }}>
-                  <p style={{
-                    margin: 0,
-                    fontFamily: 'var(--font-heading)', fontWeight: 800,
-                    fontSize: isMobile ? 15 : 18,
-                    color: '#ffffff',
-                    letterSpacing: '-0.025em', lineHeight: 1.1,
-                  }}>
-                    {item.title}
-                  </p>
-                  <p style={{
-                    margin: '5px 0 0',
-                    fontSize: isMobile ? 11 : 12,
-                    color: 'rgba(255,255,255,0.55)',
-                    fontWeight: 500,
-                  }}>
-                    {item.subtitle}
-                  </p>
-                </div>
-              </div>
-            );
-
-            return (
-              <div
-                key={i}
-                style={{
-                  position: 'absolute',
-                  width: cw, height: ch,
-                  left: '50%', top: '50%',
-                  marginLeft: -(cw / 2), marginTop: -(ch / 2),
-                  transform: `rotateY(${angle}deg) translateZ(${r}px)`,
-                  opacity,
-                  transition: 'opacity 0.12s linear',
-                  willChange: 'transform, opacity',
-                }}
-              >
-                {item.link ? (
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ display: 'block', width: '100%', height: '100%', textDecoration: 'none' }}
-                    onClick={e => { if (dragging.current) e.preventDefault(); }}
-                  >
-                    {card}
-                  </a>
-                ) : card}
-              </div>
-            );
-          })}
-        </div>
+        />
       </div>
 
-      {/* ── Bottom nav ── */}
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        gap: 28, marginTop: 32,
-      }}>
+      {/* Bottom nav */}
+      <div
+        ref={bottomRef}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 28,
+          marginTop: 40,
+        }}
+      >
         <button
-          onClick={() => step(-1)}
           aria-label="Précédent"
           style={{
-            width: 52, height: 52, borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.18)',
-            background: 'rgba(255,255,255,0.05)',
-            color: '#ffffff', cursor: 'pointer',
+            width: 60, height: 60, borderRadius: '50%',
+            background: '#0A0A0A', border: 'none',
+            color: '#fff', fontSize: 22, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'background 200ms, border-color 200ms',
+            boxShadow: '0 8px 24px -6px rgba(0,0,0,.4)',
+            transition: 'transform 150ms, background 150ms',
           }}
-          onMouseEnter={e => { (e.currentTarget).style.background = 'rgba(255,255,255,0.14)'; (e.currentTarget).style.borderColor = 'rgba(255,255,255,0.35)'; }}
-          onMouseLeave={e => { (e.currentTarget).style.background = 'rgba(255,255,255,0.05)'; (e.currentTarget).style.borderColor = 'rgba(255,255,255,0.18)'; }}
+          onMouseEnter={e => { (e.currentTarget).style.transform = 'scale(1.08)'; (e.currentTarget).style.background = '#1c1c1c'; }}
+          onMouseLeave={e => { (e.currentTarget).style.transform = 'scale(1)'; (e.currentTarget).style.background = '#0A0A0A'; }}
+          onMouseDown={e => { (e.currentTarget).style.transform = 'scale(0.95)'; }}
+          onMouseUp={e => { (e.currentTarget).style.transform = 'scale(1.08)'; }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
 
         <span style={{
-          fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.14em', textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.25)',
+          fontSize: 13, fontWeight: 700,
+          letterSpacing: '.18em', textTransform: 'uppercase',
+          color: 'rgba(255,255,255,.3)',
         }}>
           Drag · Scroll · Auto-rotation
         </span>
 
         <button
-          onClick={() => step(1)}
           aria-label="Suivant"
           style={{
-            width: 52, height: 52, borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.18)',
-            background: 'rgba(255,255,255,0.05)',
-            color: '#ffffff', cursor: 'pointer',
+            width: 60, height: 60, borderRadius: '50%',
+            background: '#0A0A0A', border: 'none',
+            color: '#fff', fontSize: 22, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'background 200ms, border-color 200ms',
+            boxShadow: '0 8px 24px -6px rgba(0,0,0,.4)',
+            transition: 'transform 150ms, background 150ms',
           }}
-          onMouseEnter={e => { (e.currentTarget).style.background = 'rgba(255,255,255,0.14)'; (e.currentTarget).style.borderColor = 'rgba(255,255,255,0.35)'; }}
-          onMouseLeave={e => { (e.currentTarget).style.background = 'rgba(255,255,255,0.05)'; (e.currentTarget).style.borderColor = 'rgba(255,255,255,0.18)'; }}
+          onMouseEnter={e => { (e.currentTarget).style.transform = 'scale(1.08)'; (e.currentTarget).style.background = '#1c1c1c'; }}
+          onMouseLeave={e => { (e.currentTarget).style.transform = 'scale(1)'; (e.currentTarget).style.background = '#0A0A0A'; }}
+          onMouseDown={e => { (e.currentTarget).style.transform = 'scale(0.95)'; }}
+          onMouseUp={e => { (e.currentTarget).style.transform = 'scale(1.08)'; }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
     </div>
