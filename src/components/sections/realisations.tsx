@@ -2,7 +2,7 @@
 
 import { FadeIn } from '@/components/animations/fade-in';
 import { SectionHeading } from '@/components/animations/section-heading';
-import { CircularGallery } from '@/components/ui/circular-gallery';
+import { CircularGallery, type CarouselItem } from '@/components/ui/circular-gallery';
 
 // ─────────────────────────────────────────────
 // DONNÉES — ajouter ici les nouveaux projets
@@ -77,49 +77,36 @@ const VISUELS: {
 ];
 
 // ─────────────────────────────────────────────
+// Mapping données → CarouselItem
+// ─────────────────────────────────────────────
+const SITES_ITEMS: CarouselItem[] = SITES.map(s => ({
+  image: s.image,
+  badge: 'Site Web',
+  title: s.client,
+  subtitle: s.category.split(' · ').slice(1).join(' · ') || s.category,
+  link: s.link,
+  objectPosition: s.objectPosition,
+}));
+
+const VISUELS_ITEMS: CarouselItem[] = VISUELS.map(v => ({
+  image: v.image,
+  badge: v.label,
+  title: v.client,
+  subtitle: v.detail.split(' · ')[0],
+}));
+
+// ─────────────────────────────────────────────
 // Section 1 — Sites Web (carrousel 3D)
 // ─────────────────────────────────────────────
 function SitesSectionGallery() {
   return (
-    <CircularGallery radius={520} cardWidth={360} cardHeight={260} containerHeight={500} autoRotateSpeed={0.14}>
-      {SITES.map((site) => (
-        <a
-          key={site.url}
-          href={site.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: 'block', width: '100%', height: '100%', textDecoration: 'none' }}
-        >
-          {/* Mockup navigateur */}
-          <div className="browser-mockup" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <div className="browser-bar">
-              <span className="browser-dot" style={{ background: '#FF5F57' }} />
-              <span className="browser-dot" style={{ background: '#FEBC2E' }} />
-              <span className="browser-dot" style={{ background: '#28C840' }} />
-              <div className="browser-url">{site.url}</div>
-            </div>
-            <div className="browser-screen" style={{ flex: 1 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={site.image}
-                alt={site.client}
-                className="gallery-img"
-                loading="lazy"
-                decoding="async"
-                style={{ objectPosition: site.objectPosition }}
-              />
-              <div className="gallery-overlay">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                  <span style={{ fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.5)' }}>{site.category}</span>
-                  <span className="gallery-overlay-result">{site.client}</span>
-                  <span style={{ fontSize: 13, color: 'var(--accent-light)', fontWeight: 600 }}>{site.result}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-      ))}
-    </CircularGallery>
+    <CircularGallery
+      items={SITES_ITEMS}
+      radius={500}
+      cardWidth={240}
+      cardHeight={340}
+      autoRotateSpeed={0.13}
+    />
   );
 }
 
@@ -128,31 +115,13 @@ function SitesSectionGallery() {
 // ─────────────────────────────────────────────
 function VisuelsSectionGallery() {
   return (
-    <CircularGallery radius={580} cardWidth={220} cardHeight={310} containerHeight={520} autoRotateSpeed={0.16}>
-      {VISUELS.map((v, i) => (
-        <div key={i} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div className="gallery-img-wrap" style={{ flex: 1, borderRadius: 14, overflow: 'hidden', position: 'relative', background: '#111' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={v.image}
-              alt={v.client}
-              className="gallery-img"
-              loading="lazy"
-              decoding="async"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
-            <div className="gallery-overlay">
-              <span className="gallery-overlay-result">{v.label}</span>
-            </div>
-          </div>
-          <div className="gallery-info" style={{ padding: '0 2px' }}>
-            <p className="gallery-category">{v.label}</p>
-            <p className="gallery-client">{v.client}</p>
-            <p className="gallery-detail">{v.detail}</p>
-          </div>
-        </div>
-      ))}
-    </CircularGallery>
+    <CircularGallery
+      items={VISUELS_ITEMS}
+      radius={560}
+      cardWidth={240}
+      cardHeight={340}
+      autoRotateSpeed={0.15}
+    />
   );
 }
 
@@ -235,97 +204,6 @@ export function Realisations() {
         </div>
       </FadeIn>
 
-      <style>{`
-        /* ── Browser mockup ── */
-        .browser-mockup {
-          border-radius: 12px;
-          overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.08);
-          background: #111;
-          width: 100%;
-          height: 100%;
-        }
-        .browser-bar {
-          height: 32px;
-          background: #1e1e1e;
-          display: flex;
-          align-items: center;
-          padding: 0 12px;
-          gap: 6px;
-          flex-shrink: 0;
-        }
-        .browser-dot {
-          width: 9px; height: 9px;
-          border-radius: 50%;
-          flex-shrink: 0;
-        }
-        .browser-url {
-          flex: 1;
-          height: 17px;
-          background: #111;
-          border-radius: 4px;
-          margin: 0 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 10px;
-          color: rgba(255,255,255,0.3);
-          font-family: monospace;
-        }
-        .browser-screen {
-          position: relative;
-          overflow: hidden;
-          flex: 1;
-        }
-
-        /* ── Image commune ── */
-        .gallery-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          pointer-events: none;
-        }
-        .browser-screen .gallery-img {
-          position: absolute;
-          inset: 0;
-        }
-
-        /* ── Overlay ── */
-        .gallery-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(10,22,40,0.92) 0%, transparent 55%);
-          opacity: 0;
-          transition: opacity 350ms ease;
-          display: flex;
-          align-items: flex-end;
-          padding: 16px;
-        }
-        a:hover .gallery-overlay,
-        div:hover .gallery-overlay { opacity: 1; }
-        .gallery-overlay-result {
-          font-family: var(--font-heading);
-          font-weight: 800;
-          font-size: 18px;
-          color: #ffffff;
-          letter-spacing: -0.03em;
-          line-height: 1.1;
-        }
-
-        /* ── Texte infos ── */
-        .gallery-info { display: flex; flex-direction: column; gap: 3px; }
-        .gallery-category {
-          font-size: 10px; font-weight: 600; text-transform: uppercase;
-          letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin: 0;
-        }
-        .gallery-client {
-          font-family: var(--font-heading); font-weight: 800;
-          font-size: 15px;
-          color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; margin: 0;
-        }
-        .gallery-detail { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; margin: 0; }
-      `}</style>
     </section>
   );
 }
