@@ -15,27 +15,20 @@ export interface Talent {
   published: boolean;
 }
 
-// TODO Norman : remplacer par les vraies infos des deux talents + passer published à true.
 export const talents: Talent[] = [
   {
-    slug: 'talent-1',
-    name: 'Talent 01',
+    slug: 'laura',
+    name: 'Laura',
     roles: ['Mannequin', 'Créatrice UGC'],
-    city: 'Marseille',
-    bio: 'Profil à compléter.',
-    photos: [],
-    measurements: [
-      { label: 'Taille', value: '—' },
-      { label: 'Poitrine', value: '—' },
-      { label: 'Tour de taille', value: '—' },
-      { label: 'Hanches', value: '—' },
-      { label: 'Pointure', value: '—' },
-    ],
-    socials: [],
-    specialties: [],
-    published: false,
+    city: 'Sud de la France',
+    bio: 'Des images lumineuses, entre la mer et la ville : matières naturelles, lumière de fin de journée, une allure simple et soignée. Laura pose pour des marques de mode, de beauté et des lieux qui veulent ce rendu pour leur feed et leurs publicités. Elle a déjà shooté pour les réseaux sociaux de Myessencil.',
+    photos: Array.from({ length: 8 }, (_, i) => `/images/talents/laura/laura-${i + 1}.jpg`),
+    socials: [{ platform: 'Instagram', url: 'https://www.instagram.com/laura_tnnr/', followers: '44,3k' }],
+    specialties: ['Mode', 'Beauté', 'Lifestyle', 'Hôtels et beach clubs', 'Déplacements Paris et Espagne'],
+    published: true,
   },
   {
+    // TODO Norman : infos du 2e talent, puis published: true
     slug: 'talent-2',
     name: 'Talent 02',
     roles: ['Créatrice UGC'],

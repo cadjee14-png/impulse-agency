@@ -41,7 +41,7 @@ export default function TalentsPage() {
           </LineMask>
           <FadeIn direction="up" delay={0.2}>
             <p style={{ fontSize: 'clamp(17px, 1.6vw, 20px)', color: 'var(--text-dim)', maxWidth: 620, lineHeight: 1.6, marginBottom: 36 }}>
-              Vidéos UGC, shootings et collaborations influence avec nos talents basées à Marseille. L’agence qui tourne vos contenus est aussi celle qui les diffuse : casting, tournage, montage et, si vous le voulez, campagnes Meta Ads ou TikTok Ads.
+              Vidéos UGC, shootings et collaborations influence avec nos talents basées dans le Sud. L’agence qui tourne vos contenus est aussi celle qui les diffuse : casting, tournage, montage et, si vous le voulez, campagnes Meta Ads ou TikTok Ads.
             </p>
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <a href="#booking" style={{ background: 'var(--accent)', color: 'white', padding: '16px 30px', borderRadius: 'var(--radius-btn)', fontWeight: 700, textDecoration: 'none', fontFamily: 'var(--font-heading)' }}>

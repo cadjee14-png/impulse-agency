@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const t = getTalent(slug);
   if (!t) return {};
-  const title = `${t.name} — ${t.roles.join(' & ')} à ${t.city}`;
+  const title = `${t.name} — ${t.roles.join(' & ')} · ${t.city}`;
   return {
     title,
     description: t.bio.slice(0, 155),
