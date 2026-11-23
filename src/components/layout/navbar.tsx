@@ -111,7 +111,27 @@ export function Navbar() {
             }}
             className="hidden-mobile"
           >
-            {navLinks.map((link) => (
+            {navLinks.map((link) => 'highlight' in link ? (
+              <button
+                key={link.href}
+                onClick={() => handleNavClick(link.href)}
+                style={{
+                  background: 'rgba(30,70,107,0.06)',
+                  border: '1px solid var(--line-hover)',
+                  padding: '7px 14px',
+                  fontSize: 13,
+                  fontFamily: 'var(--font-body)',
+                  color: 'var(--accent)',
+                  fontWeight: 700,
+                  borderRadius: 32,
+                  letterSpacing: '0.01em',
+                  cursor: 'none',
+                  margin: '0 4px',
+                }}
+              >
+                {link.label}
+              </button>
+            ) : (
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
@@ -248,7 +268,7 @@ export function Navbar() {
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
-                color: 'var(--text)',
+                color: 'highlight' in link ? 'var(--accent)' : 'var(--text)',
                 cursor: 'none',
                 padding: '8px 0',
               }}
