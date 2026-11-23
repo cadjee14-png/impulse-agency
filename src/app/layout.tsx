@@ -71,32 +71,30 @@ export const metadata: Metadata = {
   },
 };
 
+// Schema principal — MarketingAgency + LocalBusiness
+// Google utilise ce schema pour : la Knowledge Panel, les résultats locaux,
+// et vérifie l'identité de la marque via sameAs.
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'MarketingAgency',
+  '@type': ['MarketingAgency', 'LocalBusiness'],
   name: 'Impulse Agency',
   description:
     'Agence digitale spécialisée en publicité Meta & Google, création de sites web, SEO, réseaux sociaux et branding.',
   url: 'https://impulse-agency.fr',
   logo: 'https://impulse-agency.fr/logo.png',
-  image: 'https://impulse-agency.fr/og-image.jpg',
+  image: 'https://impulse-agency.fr/logo.png',
   telephone: '+33688663176',
   email: 'contact@impulse-agency.fr',
   address: {
     '@type': 'PostalAddress',
+    postalCode: '13003',
     addressLocality: 'Marseille',
     addressRegion: 'Provence-Alpes-Côte d\'Azur',
     addressCountry: 'FR',
   },
   areaServed: [
-    {
-      '@type': 'City',
-      name: 'Marseille',
-    },
-    {
-      '@type': 'AdministrativeArea',
-      name: 'La Réunion',
-    },
+    { '@type': 'City', name: 'Marseille' },
+    { '@type': 'AdministrativeArea', name: 'La Réunion' },
   ],
   serviceType: [
     'Publicité Meta Ads',
@@ -107,10 +105,70 @@ const jsonLd = {
     'Branding',
   ],
   priceRange: '€€',
+  // sameAs : Google croise ces URLs pour confirmer que c'est bien la même entité.
+  // URLs corrigées pour correspondre aux vrais profils.
   sameAs: [
     'https://www.instagram.com/impulseagency.fr/',
-    'https://www.facebook.com/people/Impulse-Agency/61575800943551/',
-    'https://www.linkedin.com/company/113224387/',
+    'https://www.facebook.com/profile.php?id=61560655743617',
+    'https://www.linkedin.com/company/impulse-agency-fr/',
+  ],
+};
+
+// Schema FAQ — permet à Google d'afficher les questions/réponses
+// directement dans les résultats de recherche (rich snippets).
+// Chaque paire question/réponse peut apparaître sous le lien principal.
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Comment se passe le diagnostic offert ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'C\'est simple : vous laissez votre prénom et votre numéro WhatsApp. On vous rappelle dans les 24h pour un échange de 20-30 minutes. On analyse votre présence digitale et on vous présente les axes d\'amélioration prioritaires — sans engagement, sans jargon.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Combien coûtent vos prestations ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nos tarifs dépendent entièrement de vos besoins, de l\'ampleur du projet et de vos objectifs. Chaque client a une situation unique — c\'est exactement pour ça qu\'on commence par un diagnostic offert. On prend le temps de comprendre votre business avant de vous proposer une offre sur mesure.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'En combien de temps voit-on des résultats ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Pour la publicité (Meta Ads, Google Ads), les premiers résultats se voient en 2-4 semaines. Pour le SEO, comptez 2-3 mois pour des résultats significatifs. Pour les réseaux sociaux, l\'engagement s\'améliore dès le premier mois.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Vous travaillez avec quels types de clients ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'On accompagne des TPE, PME et indépendants dans tous les secteurs : e-commerce, restauration, services B2B, immobilier, santé, mode. Peu importe votre secteur, si vous voulez développer votre présence digitale et générer plus de clients, on peut vous aider.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Est-ce qu\'il y a un engagement minimum ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Non. Nos prestations sont sans engagement longue durée. On travaille mois par mois. Si vous n\'êtes pas satisfait, vous êtes libre de partir. Notre objectif est de vous donner des résultats concrets pour que vous restiez par choix, pas par obligation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Est-ce que vous gérez tout ou faut-il s\'impliquer ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'On gère l\'essentiel — stratégie, création, diffusion, optimisation. Votre implication se limite à valider les contenus et nous fournir les informations sur votre business. On s\'adapte à votre disponibilité.',
+      },
+    },
   ],
 };
 
@@ -123,6 +181,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-S8CMV9K5NT" strategy="afterInteractive" />
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">{`
@@ -134,6 +196,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
+          try { if (localStorage.getItem('impulse-cookie-consent') !== 'accepted') fbq('consent', 'revoke'); } catch (e) { fbq('consent', 'revoke'); }
           fbq('init', '943542001830707');
           fbq('track', 'PageView');
         `}</Script>

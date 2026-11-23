@@ -50,7 +50,7 @@ export default function PolitiqueConfidentialite() {
             </h2>
             <p>
               Le responsable du traitement est <strong>Impulse Agency</strong>, représenté par Norman Cadjee.<br/>
-              Contact : hello@impulse-agency.fr — +33 6 88 66 31 76
+              Contact : contact@impulse-agency.fr — +33 6 88 66 31 76
             </p>
           </section>
 
@@ -77,6 +77,9 @@ export default function PolitiqueConfidentialite() {
               <li>Vous recontacter par WhatsApp pour convenir d'un rendez-vous</li>
               <li>Vous envoyer des informations relatives à nos services (uniquement avec votre accord)</li>
             </ul>
+            <p style={{ marginTop: 12 }}>
+              <strong>Base légale du traitement :</strong> le traitement repose sur votre consentement (art. 6.1.a du RGPD) lorsque vous soumettez volontairement votre demande via notre formulaire, ainsi que sur notre intérêt légitime (art. 6.1.f du RGPD) à traiter votre demande de contact.
+            </p>
           </section>
 
           <section>
@@ -101,8 +104,17 @@ export default function PolitiqueConfidentialite() {
             <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: 18, color: 'var(--text)', marginBottom: 12, letterSpacing: '-0.02em' }}>
               6. Cookies et mesure d'audience
             </h2>
-            <p>
-              Ce site utilise Google Analytics 4 pour mesurer l'audience (pages visitées, durée des sessions, provenance du trafic). Ces données sont anonymisées et ne permettent pas de vous identifier personnellement. Vous pouvez refuser ces cookies via les paramètres de votre navigateur ou en installant l'extension Google Analytics Opt-out.
+            <p>Ce site utilise les outils suivants qui déposent des cookies :</p>
+            <ul style={{ marginTop: 8, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <li>
+                <strong>Google Analytics 4</strong> — mesure d'audience (pages visitées, durée des sessions, provenance du trafic). Les données sont anonymisées et ne permettent pas de vous identifier personnellement.
+              </li>
+              <li>
+                <strong>Meta Pixel</strong> — outil de mesure de Facebook/Instagram permettant d'analyser l'efficacité de nos publicités. Il ne collecte pas vos données personnelles sans votre consentement préalable.
+              </li>
+            </ul>
+            <p style={{ marginTop: 12 }}>
+              Ces cookies ne sont activés qu'après votre consentement via notre bandeau cookies. Vous pouvez retirer votre consentement à tout moment en vidant le stockage local de votre navigateur, ou refuser via les paramètres de votre navigateur.
             </p>
           </section>
 
@@ -119,7 +131,7 @@ export default function PolitiqueConfidentialite() {
               <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format lisible</li>
             </ul>
             <p style={{ marginTop: 12 }}>
-              Pour exercer ces droits, contactez-nous à : <strong>hello@impulse-agency.fr</strong>
+              Pour exercer ces droits, contactez-nous à : <strong>contact@impulse-agency.fr</strong>
             </p>
           </section>
 
@@ -133,7 +145,7 @@ export default function PolitiqueConfidentialite() {
           </section>
 
           <p style={{ fontSize: 13, color: 'var(--text-muted)', borderTop: '1px solid var(--line)', paddingTop: 24 }}>
-            Dernière mise à jour : avril 2026
+            Dernière mise à jour : mai 2026
           </p>
         </div>
       </div>

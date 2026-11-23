@@ -13,7 +13,8 @@ const cardConfig = [
   { isDark: true,  isWide: true,  metricValue: '+340%', metricLabel: 'Engagement moyen' },
   { isDark: false, isWide: false, metricValue: '5.2x',  metricLabel: 'ROAS moyen' },
   { isDark: true,  isWide: false, metricValue: 'Top 3', metricLabel: 'En 90 jours' },
-  { isDark: false, isWide: true,  metricValue: '+95%',  metricLabel: 'Satisfaction client' },
+  { isDark: false, isWide: false, metricValue: '+95%',  metricLabel: 'Satisfaction client' },
+  { isDark: true,  isWide: false, metricValue: '-80%',  metricLabel: 'Tâches manuelles' },
 ];
 
 /* ─── Inline SVG paths from simple-icons + manual for missing ones ─── */
@@ -22,6 +23,7 @@ import {
   siInstagram, siTiktok, siFacebook, siMeta,
   siGoogle, siFigma, siGoogleads,
   siGooglesearchconsole, siGoogleanalytics, siSemrush,
+  siMistralai, siZapier, siN8n, siMake,
 } from 'simple-icons';
 
 // LinkedIn — removed from simple-icons, manual path
@@ -115,6 +117,13 @@ const cardLogos: React.ReactNode[][] = [
     <BrandLogo key="canva"     path={canvaPath}          bg="#00C4CC" />,
     <BrandLogo key="ai"        path={illustratorPath}   bg="#FF9A00" />,
   ],
+  // 5 — IA & Automatisation
+  [
+    <BrandLogo key="mistral"   path={siMistralai.path}  bg="#FF7000" />,
+    <BrandLogo key="zapier"    path={siZapier.path}     bg="#FF4A00" />,
+    <BrandLogo key="n8n"       path={siN8n.path}        bg="#EA4B71" />,
+    <BrandLogo key="make"      path={siMake.path}       bg="#6D00CC" />,
+  ],
 ];
 
 /* ─── Service icons ─── */
@@ -133,7 +142,10 @@ function IconSeo() {
 function IconBrand() {
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.5-.7-.5-1.1 0-.9.7-1.7 1.7-1.7H16c3 0 5.5-2.5 5.5-5.5C22 6 17.5 2 12 2z"/><circle cx="8" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="9" r="1" fill="currentColor" stroke="none"/></svg>;
 }
-const ICONS = [IconWeb, IconSocial, IconAds, IconSeo, IconBrand];
+function IconAI() {
+  return <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6L12 2z"/></svg>;
+}
+const ICONS = [IconWeb, IconSocial, IconAds, IconSeo, IconBrand, IconAI];
 
 /* ─── Grid backgrounds ─── */
 const dotGridStyle: React.CSSProperties = {
@@ -195,7 +207,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   };
 
   return (
-    <div style={{ perspective: 1000, gridColumn: wide ? '1 / -1' : undefined }}>
+    <div style={{ perspective: 1000, gridColumn: wide ? '1 / -1' : undefined, height: '100%' }}>
     <div
       ref={cardRef}
       className={`service-card service-card-${index}`}
@@ -206,7 +218,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         background: bg, border, borderRadius: 16,
         padding: wide ? 'clamp(32px,4vw,48px) clamp(24px,3vw,40px)' : 'clamp(28px,3vw,40px) clamp(20px,2.5vw,32px)',
         position: 'relative', overflow: 'hidden', cursor: 'none', willChange: 'transform',
-        transformStyle: 'preserve-3d',
+        transformStyle: 'preserve-3d', height: '100%', boxSizing: 'border-box',
       }}
     >
       <div style={dark ? lineGridStyle : dotGridStyle} />

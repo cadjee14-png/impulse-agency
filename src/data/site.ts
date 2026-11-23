@@ -7,7 +7,8 @@ export const siteConfig = {
   phone: '+33 6 88 66 31 76',
   email: 'contact@impulse-agency.fr',
   instagram: 'https://www.instagram.com/impulseagency.fr/',
-  linkedin: 'https://linkedin.com',
+  linkedin: 'https://www.linkedin.com/company/impulse-agency-fr/',
+  facebook: 'https://www.facebook.com/profile.php?id=61560655743617',
   tiktok: 'https://tiktok.com',
   whatsapp: 'https://wa.me/33688663176',
 };
@@ -54,6 +55,13 @@ export const services = [
     description: 'Identité visuelle, Logo, Charte graphique',
     metric: 'Marques mémorables',
     sub: ['Logo & identité visuelle', 'Charte graphique complète', 'Motion design & supports'],
+  },
+  {
+    number: '06',
+    name: 'IA & Automatisation',
+    description: 'Chatbots, workflows automatisés, intégration IA',
+    metric: '-80% tâches manuelles',
+    sub: ['Chatbots & assistants IA sur mesure', 'Automatisation des tâches répétitives', 'Intégration IA dans vos process métier'],
   },
 ];
 

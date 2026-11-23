@@ -104,6 +104,36 @@ export function Footer() {
                 </svg>
               </a>
               <a
+                href={siteConfig.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: '50%',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'rgba(255,255,255,0.7)',
+                  transition: 'border-color 300ms, color 300ms',
+                  textDecoration: 'none',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--accent-light)';
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--accent-light)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.2)';
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.7)';
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              </a>
+              <a
                 href={siteConfig.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -246,6 +276,14 @@ export function Footer() {
               onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.35)'}
             >
               Confidentialité
+            </Link>
+            <Link
+              href="/cgv"
+              style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 200ms' }}
+              onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.7)'}
+              onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.35)'}
+            >
+              CGV
             </Link>
             <a
               href="/audit"

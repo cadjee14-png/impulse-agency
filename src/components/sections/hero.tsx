@@ -12,7 +12,12 @@ const CARDS = [
   { rot:   9, tx:  95, ty:  20, z: 1, src: '/images/card-3.jpg' },
 ];
 
-export function Hero() {
+interface HeroProps {
+  label?: string;
+  subtext?: string;
+}
+
+export function Hero({ label, subtext }: HeroProps = {}) {
   const sectionRef   = useRef<HTMLElement>(null);
   const labelRef     = useRef<HTMLSpanElement>(null);
   const line1Ref     = useRef<HTMLDivElement>(null);
@@ -160,7 +165,7 @@ export function Hero() {
             display: 'inline-block', width: 30, height: 1.5,
             background: 'var(--accent)', borderRadius: 2,
           }} />
-          Agence Digitale Full-Service
+          {label ?? 'Agence Digitale Full-Service'}
         </span>
 
         <h1
@@ -206,7 +211,7 @@ export function Hero() {
             marginBottom: 32,
           }}
         >
-          {siteConfig.subtext}
+          {subtext ?? siteConfig.subtext}
         </p>
 
         <div

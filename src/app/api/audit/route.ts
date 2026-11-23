@@ -1,19 +1,36 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
+const esc = (v: unknown) =>
+  String(v ?? '')
+    .slice(0, 2000)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
 export async function POST(req: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { prenom, whatsapp, entreprise, secteur, services, budget, description } = await req.json();
+    const body = await req.json();
 
-    if (!prenom || !whatsapp) {
+    if (!body.prenom || !body.whatsapp) {
       return NextResponse.json({ error: 'Champs manquants' }, { status: 400 });
     }
+
+    const prenom = esc(body.prenom);
+    const whatsapp = esc(body.whatsapp);
+    const entreprise = esc(body.entreprise);
+    const secteur = esc(body.secteur);
+    const budget = esc(body.budget);
+    const description = esc(body.description);
+    const services: string[] = Array.isArray(body.services) ? body.services.map(esc) : [];
 
     await resend.emails.send({
       from: 'Impulse Agency <noreply@impulse-agency.fr>',
       to: 'cadjee14@gmail.com',
-      subject: `🔥 Nouveau lead — ${prenom}`,
+      subject: `🔥 Nouveau lead — ${String(body.prenom).slice(0, 60)}`,
       html: `
         <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; padding: 32px; background: #f9f9f9; border-radius: 12px;">
           <div style="background: #1E466B; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px;">
@@ -40,9 +57,9 @@ export async function POST(req: Request) {
               <td style="padding: 12px 0; border-bottom: 1px solid #eee; color: #666; font-size: 14px;">Budget</td>
               <td style="padding: 12px 0; border-bottom: 1px solid #eee; font-weight: 700; font-size: 16px; color: #1E466B;">${budget}</td>
             </tr>` : ''}
-            ${services?.length ? `<tr>
+            ${services.length ?`<tr>
               <td style="padding: 12px 0; border-bottom: ${description ? '1px solid #eee' : 'none'}; color: #666; font-size: 14px; vertical-align: top; padding-top: 14px;">Besoins</td>
-              <td style="padding: 12px 0; border-bottom: ${description ? '1px solid #eee' : 'none'}; font-size: 14px; color: #0D0D0D; padding-top: 14px;">${(services as string[]).map(s => `<span style="display:inline-block;background:#EBF4FF;color:#1E466B;padding:3px 10px;border-radius:20px;margin:2px 2px 4px 0;font-size:13px;font-weight:600;">${s}</span>`).join('')}</td>
+              <td style="padding: 12px 0; border-bottom: ${description ? '1px solid #eee' : 'none'}; font-size: 14px; color: #0D0D0D; padding-top: 14px;">${services.map(s => `<span style="display:inline-block;background:#EBF4FF;color:#1E466B;padding:3px 10px;border-radius:20px;margin:2px 2px 4px 0;font-size:13px;font-weight:600;">${s}</span>`).join('')}</td>
             </tr>` : ''}
             ${description ? `<tr>
               <td style="padding: 12px 0; color: #666; font-size: 14px; vertical-align: top; padding-top: 14px;">Projet</td>

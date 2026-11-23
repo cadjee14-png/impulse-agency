@@ -8,7 +8,13 @@ const STORAGE_KEY = 'impulse-cookie-consent';
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
+}
+
+function grantConsent() {
+  window.gtag?.('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+  window.fbq?.('consent', 'grant');
 }
 
 export function CookieBanner() {
@@ -21,16 +27,12 @@ export function CookieBanner() {
       const t = setTimeout(() => setVisible(true), 800);
       return () => clearTimeout(t);
     }
-    if (consent === 'accepted' && typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', { analytics_storage: 'granted' });
-    }
+    if (consent === 'accepted') grantConsent();
   }, []);
 
   const accept = () => {
     localStorage.setItem(STORAGE_KEY, 'accepted');
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', { analytics_storage: 'granted' });
-    }
+    grantConsent();
     setVisible(false);
   };
 
@@ -80,7 +82,7 @@ export function CookieBanner() {
           </div>
           <p style={{ margin: 0, fontSize: 'clamp(13px, 2vw, 14px)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.5 }}>
             <strong style={{ color: 'white', fontWeight: 600 }}>Cookies & Confidentialité</strong>
-            {' '}— Nous utilisons Google Analytics pour analyser notre trafic de façon anonyme.{' '}
+            {' '}— Nous utilisons Google Analytics et le pixel Meta pour mesurer notre audience et nos publicités, uniquement avec votre accord.{' '}
             <Link href="/politique-de-confidentialite" style={{ color: '#67BAF4', textDecoration: 'none', fontSize: 13 }}>
               En savoir plus
             </Link>

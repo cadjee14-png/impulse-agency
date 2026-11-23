@@ -51,8 +51,12 @@ export default function MentionsLegales() {
             <p>Le site <strong>impulse-agency.fr</strong> est édité par :</p>
             <p style={{ marginTop: 8 }}>
               <strong>Impulse Agency</strong><br/>
+              Forme juridique : Micro-entreprise<br/>
               Représentant légal : Norman Cadjee<br/>
-              Email : hello@impulse-agency.fr<br/>
+              Directeur de la publication : Norman Cadjee<br/>
+              Adresse : 23 rue Mathieu Stilati, 13003 Marseille, France<br/>
+              SIRET : 104 336 540 000 18<br/>
+              Email : contact@impulse-agency.fr<br/>
               Téléphone : +33 6 88 66 31 76
             </p>
           </section>
@@ -112,7 +116,7 @@ export default function MentionsLegales() {
           </section>
 
           <p style={{ fontSize: 13, color: 'var(--text-muted)', borderTop: '1px solid var(--line)', paddingTop: 24 }}>
-            Dernière mise à jour : avril 2026
+            Dernière mise à jour : mai 2026
           </p>
         </div>
       </div>

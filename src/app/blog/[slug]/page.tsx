@@ -93,6 +93,8 @@ export default async function BlogPostPage({ params }: Props) {
 
   const related = getRelatedPosts(slug);
 
+  // Schema Article — indique à Google que c'est un article de blog avec auteur,
+  // date de publication, et mots-clés. Améliore l'affichage dans Google News et Search.
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -100,6 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.metaDescription,
     image: post.image,
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
     author: { '@type': 'Organization', name: 'Impulse Agency', url: 'https://impulse-agency.fr' },
     publisher: {
       '@type': 'Organization',
@@ -110,9 +113,38 @@ export default async function BlogPostPage({ params }: Props) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://impulse-agency.fr/blog/${post.slug}` },
   };
 
+  // Schema BreadcrumbList — affiche le fil d'Ariane dans les résultats Google :
+  // "impulse-agency.fr > Blog > [Titre de l'article]"
+  // Ça prend plus de place dans les SERPs et améliore le CTR.
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Accueil',
+        item: 'https://impulse-agency.fr',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://impulse-agency.fr/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://impulse-agency.fr/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingTop: 100 }}>
 
@@ -182,6 +214,41 @@ export default async function BlogPostPage({ params }: Props) {
                 <span key={kw} style={{ fontSize: 12, padding: '4px 12px', borderRadius: 32, background: 'var(--bg-2)', color: 'var(--text-dim)', border: '1px solid var(--line)' }}>
                   {kw}
                 </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Maillage interne — liens vers les services clés du site.
+              Chaque lien vers une page de service transfère du "jus SEO" de l'article
+              vers la page cible et aide Google à comprendre la structure du site. */}
+          <div style={{ padding: '28px 0', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', marginBottom: 48 }}>
+            <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 16 }}>
+              Nos services
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {[
+                { label: 'Création de site web', href: '/#services' },
+                { label: 'Meta Ads & Google Ads', href: '/#services' },
+                { label: 'SEO', href: '/#services' },
+                { label: 'Réseaux sociaux', href: '/#services' },
+                { label: 'Branding', href: '/#services' },
+              ].map(({ label, href }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    padding: '8px 16px',
+                    borderRadius: 32,
+                    border: '1px solid var(--accent)',
+                    color: 'var(--accent)',
+                    textDecoration: 'none',
+                    transition: 'background 200ms, color 200ms',
+                  }}
+                >
+                  {label}
+                </Link>
               ))}
             </div>
           </div>
