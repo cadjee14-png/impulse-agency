@@ -13,22 +13,22 @@ import { ExitIntentPopup } from '@/components/layout/exit-intent-popup';
 export const metadata: Metadata = {
   metadataBase: new URL('https://impulse-agency.fr'),
   title: {
-    default: 'Impulse Agency — Agence Digitale Marseille & La Réunion',
+    default: 'Impulse Agency — Agence Digitale France & La Réunion',
     template: '%s | Impulse Agency',
   },
   description:
-    'Agence digitale à Marseille et La Réunion. Publicité Meta & Google, création de sites web, SEO, réseaux sociaux et branding pour les entreprises ambitieuses.',
+    'Agence digitale en France et à La Réunion. Publicité Meta & Google, création de sites web, SEO, réseaux sociaux et branding pour les entreprises ambitieuses.',
   keywords: [
-    'agence digitale Marseille',
-    'agence publicité Marseille',
-    'agence Meta Ads Marseille',
-    'agence Google Ads Marseille',
-    'création site web Marseille',
-    'agence SEO Marseille',
+    'agence digitale France',
+    'agence publicité Meta Ads',
+    'agence Google Ads',
+    'création site web',
+    'agence SEO',
+    'agence réseaux sociaux',
+    'agence talents UGC',
+    'agence influence',
     'agence digitale La Réunion',
-    'agence publicité La Réunion',
-    'marketing digital Marseille',
-    'agence réseaux sociaux Marseille',
+    'agence digitale Marseille',
   ],
   authors: [{ name: 'Impulse Agency' }],
   creator: 'Impulse Agency',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     canonical: 'https://impulse-agency.fr',
   },
   openGraph: {
-    title: 'Impulse Agency — Agence Digitale Marseille & La Réunion',
+    title: 'Impulse Agency — Agence Digitale France & La Réunion',
     description:
       'Publicité Meta & Google, sites web, SEO et réseaux sociaux. On transforme votre business en machine à clients.',
     locale: 'fr_FR',
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
         url: '/api/og',
         width: 1200,
         height: 630,
-        alt: 'Impulse Agency — Agence Digitale Marseille & La Réunion',
+        alt: 'Impulse Agency — Agence Digitale France & La Réunion',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Impulse Agency — Agence Digitale Marseille & La Réunion',
+    title: 'Impulse Agency — Agence Digitale France & La Réunion',
     description:
       'Publicité Meta & Google, sites web, SEO et réseaux sociaux. On transforme votre business en machine à clients.',
     images: ['/api/og'],
@@ -93,7 +93,7 @@ const jsonLd = {
     addressCountry: 'FR',
   },
   areaServed: [
-    { '@type': 'City', name: 'Marseille' },
+    { '@type': 'Country', name: 'France' },
     { '@type': 'AdministrativeArea', name: 'La Réunion' },
   ],
   serviceType: [

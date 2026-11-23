@@ -4,12 +4,12 @@ import Image from 'next/image';
 import { blogPosts } from '@/data/blog';
 
 export const metadata: Metadata = {
-  title: 'Blog — Stratégie Digitale Marseille & La Réunion',
-  description: 'Conseils, stratégies et guides pratiques en marketing digital pour les entreprises de Marseille et La Réunion. SEO, Meta Ads, Google Ads, création de site web.',
+  title: 'Blog — Stratégie Digitale France & La Réunion',
+  description: 'Conseils, stratégies et guides pratiques en marketing digital pour les entreprises en France et à La Réunion. SEO, Meta Ads, Google Ads, création de site web.',
   alternates: { canonical: 'https://impulse-agency.fr/blog' },
   openGraph: {
-    title: 'Blog Impulse Agency — Marketing Digital Marseille & La Réunion',
-    description: 'Stratégies digitales concrètes pour développer votre business à Marseille et à La Réunion.',
+    title: 'Blog Impulse Agency — Marketing Digital France & La Réunion',
+    description: 'Stratégies digitales concrètes pour développer votre business en France et à La Réunion.',
     url: 'https://impulse-agency.fr/blog',
   },
 };
@@ -41,7 +41,7 @@ export default function BlogPage() {
           <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: 'clamp(36px, 6vw, 72px)', color: 'var(--text)', letterSpacing: '-0.035em', lineHeight: 0.95, marginBottom: 20 }}>
             Marketing Digital
             <br />
-            <span style={{ color: 'var(--accent)' }}>Marseille & La Réunion</span>
+            <span style={{ color: 'var(--accent)' }}>France & La Réunion</span>
           </h1>
           <p style={{ fontSize: 18, color: 'var(--text-dim)', lineHeight: 1.6, maxWidth: 560 }}>
             Stratégies concrètes, guides pratiques et analyses pour développer votre business en ligne sur vos deux marchés.

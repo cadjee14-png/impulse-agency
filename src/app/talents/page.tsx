@@ -7,7 +7,7 @@ import { TalentCard } from '@/components/sections/talent-card';
 import { visibleTalents, brandOffers, bookingSteps } from '@/data/talents';
 
 export const metadata: Metadata = {
-  title: 'Talents UGC & Influence à Marseille',
+  title: 'Agence Talents UGC & Influence en France',
   description:
     'Créatrices UGC et mannequins pour vos pubs Meta et TikTok, shootings et collaborations influence. Booking, tournage, montage et diffusion gérés par Impulse Agency.',
   alternates: { canonical: 'https://impulse-agency.fr/talents' },
@@ -41,7 +41,7 @@ export default function TalentsPage() {
           </LineMask>
           <FadeIn direction="up" delay={0.2}>
             <p style={{ fontSize: 'clamp(17px, 1.6vw, 20px)', color: 'var(--text-dim)', maxWidth: 620, lineHeight: 1.6, marginBottom: 36 }}>
-              Vidéos UGC, shootings et collaborations influence avec nos talents basées dans le Sud. L’agence qui tourne vos contenus est aussi celle qui les diffuse : casting, tournage, montage et, si vous le voulez, campagnes Meta Ads ou TikTok Ads.
+              Vidéos UGC, shootings et collaborations influence avec nos talents, partout en France. L’agence qui tourne vos contenus est aussi celle qui les diffuse : casting, tournage, montage et, si vous le voulez, campagnes Meta Ads ou TikTok Ads.
             </p>
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <a href="#booking" style={{ background: 'var(--accent)', color: 'white', padding: '16px 30px', borderRadius: 'var(--radius-btn)', fontWeight: 700, textDecoration: 'none', fontFamily: 'var(--font-heading)' }}>
@@ -120,7 +120,7 @@ export default function TalentsPage() {
         <div style={{ ...wrap, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
           <div style={{ maxWidth: 620 }}>
             <h2 style={{ ...h2, marginBottom: 12, fontSize: 'clamp(24px, 3vw, 36px)' }}>Tu es mannequin ou créatrice UGC ?</h2>
-            <p style={{ color: 'var(--text-dim)' }}>On cherche des profils à Marseille et à La Réunion pour des tournages réguliers avec nos marques clientes.</p>
+            <p style={{ color: 'var(--text-dim)' }}>On cherche des profils partout en France pour des tournages réguliers avec nos marques clientes.</p>
           </div>
           <Link href="/talents/rejoindre" style={{ border: '1.5px solid var(--accent)', color: 'var(--accent)', padding: '16px 30px', borderRadius: 'var(--radius-btn)', fontWeight: 700, textDecoration: 'none' }}>
             Envoyer ma candidature

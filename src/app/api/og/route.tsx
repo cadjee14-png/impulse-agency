@@ -46,7 +46,7 @@ export async function GET() {
           marginBottom: 28, display: 'flex', flexDirection: 'column',
         }}>
           <span>Agence Digitale</span>
-          <span style={{ color: '#67BAF4' }}>Marseille & La Réunion</span>
+          <span style={{ color: '#67BAF4' }}>France & La Réunion</span>
         </div>
 
         {/* Sous-titre */}

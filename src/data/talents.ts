@@ -32,7 +32,7 @@ export const talents: Talent[] = [
     slug: 'talent-2',
     name: 'Talent 02',
     roles: ['Créatrice UGC'],
-    city: 'Marseille',
+    city: 'France',
     bio: 'Profil à compléter.',
     photos: [],
     socials: [],

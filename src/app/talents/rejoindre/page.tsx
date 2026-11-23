@@ -5,7 +5,7 @@ import { TalentForm } from '@/components/forms/talent-form';
 export const metadata: Metadata = {
   title: 'Devenir talent UGC ou mannequin',
   description:
-    'Mannequin ou créatrice UGC à Marseille ou La Réunion ? Postule pour tourner avec les marques clientes d’Impulse Agency.',
+    'Mannequin ou créatrice UGC, où que tu sois en France ? Postule pour tourner avec les marques clientes d’Impulse Agency.',
   alternates: { canonical: 'https://impulse-agency.fr/talents/rejoindre' },
 };
 
@@ -25,7 +25,7 @@ export default function RejoindrePage() {
           Tourne avec nos marques.
         </h1>
         <p style={{ fontSize: 18, color: 'var(--text-dim)', lineHeight: 1.6, marginBottom: 28 }}>
-          On cherche des mannequins et des créatrices UGC à Marseille et à La Réunion. Pas besoin d’avoir une grosse communauté : on regarde surtout ton aisance face caméra et la qualité de tes contenus.
+          On cherche des mannequins et des créatrices UGC partout en France. Pas besoin d’avoir une grosse communauté : on regarde surtout ton aisance face caméra et la qualité de tes contenus.
         </p>
         <ul style={{ listStyle: 'none', marginBottom: 48, borderTop: '1px solid var(--line-hover)' }}>
           {points.map(p => (
