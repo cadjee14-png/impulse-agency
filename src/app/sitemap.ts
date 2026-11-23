@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/data/blog';
+import { visibleTalents } from '@/data/talents';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://impulse-agency.fr';
@@ -31,6 +32,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     ...blogEntries,
+    { url: `${baseUrl}/talents`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/talents/rejoindre`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    ...visibleTalents().map(t => ({
+      url: `${baseUrl}/talents/${t.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+    { url: `${baseUrl}/cgv`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
     {
       url: `${baseUrl}/agence-digitale-la-reunion`,
       lastModified: new Date(),

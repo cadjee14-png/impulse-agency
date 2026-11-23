@@ -188,6 +188,7 @@ export function Footer() {
               { label: 'Accueil', href: '/' },
               { label: 'Réalisations', href: '#realisations' },
               { label: 'Process', href: '#process' },
+              { label: 'Talents UGC', href: '/talents' },
               { label: 'Diagnostic offert', href: '/audit' },
             ].map(link => (
               <div key={link.href} style={{ marginBottom: 10 }}>
